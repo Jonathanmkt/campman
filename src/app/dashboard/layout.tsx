@@ -1,5 +1,6 @@
-import { createClient } from '@/lib/supabase/server'
-import { redirect } from 'next/navigation'
+// TODO: TEMPORÁRIO - Imports comentados durante desenvolvimento
+// import { createClient } from '@/lib/supabase/server'
+// import { redirect } from 'next/navigation'
 import { Sidebar } from '@/components/supabase/sidebar'
 
 export default async function DashboardLayout({
@@ -7,15 +8,17 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const supabase = await createClient()
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) {
-    redirect('/auth/login')
-  }
+  // TODO: TEMPORÁRIO - Remover proteção de autenticação durante desenvolvimento
+  // Esta proteção deve ser reativada antes do deploy em produção
+  // Descomente as linhas abaixo para reativar a proteção:
+  
+  // const supabase = await createClient()
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser()
+  // if (!user) {
+  //   redirect('/auth/login')
+  // }
 
   return (
     <div className="flex h-screen bg-background">
