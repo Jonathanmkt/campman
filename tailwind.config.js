@@ -26,6 +26,7 @@ module.exports = {
           DEFAULT: 'var(--secondary)',
           foreground: 'var(--secondary-foreground)'
         },
+        tertiary: 'var(--tertiary)',
         // Cores do sistema Shadcn/ui
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

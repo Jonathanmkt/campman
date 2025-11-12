@@ -5,10 +5,11 @@
 @layer base {
   :root {
     /* Defina suas variáveis CSS customizadas */
-    --primary: #0D6759;
-    --primary-foreground: #EDEBB9;
+    --primary: #335d7d;
+    --primary-foreground: #b3a52d;
     --secondary: #329788;
     --secondary-foreground: #FFFFFF;
+    --tertiary: #f8fafc;
     
     /* Variáveis do sistema Shadcn/ui */
     --background: 0 0% 100%;
