@@ -1,8 +1,7 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/lib/supabase/utils"
-import { getInteractionClasses } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 const inputVariants = cva(
   [
@@ -11,8 +10,9 @@ const inputVariants = cva(
     "dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs", 
     "outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium md:text-sm",
     
-    // Interactive states from design tokens
-    getInteractionClasses('input', ['default', 'hover', 'focus', 'disabled'])
+    // Interactive states
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    "disabled:cursor-not-allowed disabled:opacity-50"
   ].join(' '),
   {
     variants: {
