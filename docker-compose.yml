@@ -1,0 +1,19 @@
+version: '3'
+services:
+  campanha-thiago-moura:
+    image: ghcr.io/jonathanmkt/campanha-thiago-moura:latest
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    environment:
+      - NEXT_PUBLIC_SITE_URL=https://campanha-thiago-moura.com
+    ports:
+      - "3000:3000"
+
+networks:
+  app-network:
+    external: true
