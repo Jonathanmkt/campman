@@ -37,22 +37,35 @@ interface SimpleGanttChartProps {
   loading?: boolean
 }
 
-export function SimpleGanttChart({ tasks = [], loading = false }: SimpleGanttChartProps) {
+export function SimpleGanttChart({ tasks = [], projects = [], loading = false }: SimpleGanttChartProps) {
   const [currentWeek, setCurrentWeek] = useState(new Date())
 
-  // Converter tarefas reais para formato Gantt
+  // Converter projetos reais para formato Gantt
   const ganttTasks = useMemo(() => {
-    return tasks.map((task) => ({
+    const projectTasks = projects.map((project) => ({
+      id: project.id,
+      title: project.name,
+      startDate: project.start_date || project.created_at,
+      endDate: project.end_date || format(addDays(new Date(project.start_date || project.created_at), 30), 'yyyy-MM-dd'),
+      progress: 50, // TODO: Calcular progresso real baseado nas tarefas
+      priority: 'MEDIUM' as const,
+      assignee: 'Equipe do Projeto',
+      type: 'EPIC' as const
+    }))
+    
+    const taskItems = tasks.map((task) => ({
       id: task.id,
       title: task.title,
       startDate: task.created_at,
       endDate: task.due_date || format(addDays(new Date(task.created_at), 7), 'yyyy-MM-dd'),
-      progress: Math.min((task.story_points || 1) * 20, 100), // Progresso baseado em story points
+      progress: Math.min((task.story_points || 1) * 20, 100),
       priority: task.priority,
       assignee: task.task_assignees?.[0]?.colaborador?.funcao || 'Não atribuído',
       type: task.type === 'EPIC' ? 'MILESTONE' : 'TASK'
     }))
-  }, [tasks])
+    
+    return [...projectTasks, ...taskItems]
+  }, [projects, tasks])
 
   if (loading) {
     return (

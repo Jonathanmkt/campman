@@ -17,8 +17,7 @@ export async function GET(
         task_statuses(id, name, category, color),
         projects(
           id, 
-          name, 
-          slug,
+          name,
           projeto_equipe(
             equipe:equipe(id, nome, tipo_equipe)
           )
@@ -175,7 +174,7 @@ export async function PUT(
     // Verificar se a tarefa existe
     const { data: existingTask } = await supabase
       .from('tasks')
-      .select('id, project_id, slug')
+      .select('id, project_id')
       .eq('id', id)
       .single()
 
@@ -184,24 +183,6 @@ export async function PUT(
         { error: 'Tarefa não encontrada' },
         { status: 404 }
       )
-    }
-
-    // Se está atualizando o slug, verificar se não existe outra tarefa com o mesmo slug no projeto
-    if (body.slug && body.slug !== existingTask.slug) {
-      const { data: slugExists } = await supabase
-        .from('tasks')
-        .select('id')
-        .eq('slug', body.slug)
-        .eq('project_id', existingTask.project_id)
-        .neq('id', id)
-        .single()
-
-      if (slugExists) {
-        return NextResponse.json(
-          { error: 'Slug já existe neste projeto' },
-          { status: 409 }
-        )
-      }
     }
 
     // Se está marcando como concluída, definir completed_at
@@ -229,7 +210,7 @@ export async function PUT(
       .select(`
         *,
         task_statuses(id, name, category, color),
-        projects(id, name, slug)
+        projects(id, name)
       `)
       .single()
 

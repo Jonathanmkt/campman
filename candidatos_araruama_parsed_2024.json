@@ -1,0 +1,149 @@
+{
+  "municipio": "Araruama",
+  "estado": "RJ",
+  "cargo": "Vereador",
+  "ano": 2024,
+  "total": 15,
+  "eleitos": 15,
+  "fonte": "TSE - Dados extraídos via parsing HTML",
+  "url_origem": "https://resultados.tse.jus.br/oficial/app/index.html#/eleicao;e=e619;uf=rj;mu=58033;tipo=3/resultados/cargo/13",
+  "data_extracao": "2025-11-24 11:28:51",
+  "metodo": "Parsing HTML + Padrões de texto",
+  "candidatos": [
+    {
+      "index": 1,
+      "nome": "THIAGO PINHEIRO",
+      "numero": "10000",
+      "partido": "MDB",
+      "votos": 2290,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 2,
+      "nome": "ROBERTA BARRETO",
+      "numero": "58033",
+      "partido": "PL",
+      "votos": 2163,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 3,
+      "nome": "REPUBLICANOS",
+      "numero": "58033",
+      "partido": "CIDADANIA",
+      "votos": 2109,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 4,
+      "nome": "AMIGO WALMIR",
+      "numero": "58033",
+      "partido": "REPUBLICANOS",
+      "votos": 2040,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 5,
+      "nome": "JULIO CESAR COUTINHO",
+      "numero": "58033",
+      "partido": "SOLIDARIEDADE",
+      "votos": 1958,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 6,
+      "nome": "SOLIDARIEDADE",
+      "numero": "15620",
+      "partido": "NOVO",
+      "votos": 1912,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 7,
+      "nome": "ELOI RAMALHO",
+      "numero": "15456",
+      "partido": "PDT",
+      "votos": 1906,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 9,
+      "nome": "NELSINHO DO SOM",
+      "numero": "15680",
+      "partido": "PL",
+      "votos": 1849,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 10,
+      "nome": "MAGNO DHECO",
+      "numero": "77123",
+      "partido": "CIDADANIA",
+      "votos": 1776,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 11,
+      "nome": "ARMANDO POLATI",
+      "numero": "10333",
+      "partido": "REPUBLICANOS",
+      "votos": 1742,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 12,
+      "nome": "THIAGO MOURA",
+      "numero": "15123",
+      "partido": "SOLIDARIEDADE",
+      "votos": 1571,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 13,
+      "nome": "CARLINHOS DE DEUS",
+      "numero": "25999",
+      "partido": "NOVO",
+      "votos": 1549,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 15,
+      "nome": "DIEGO DE CIRALDO",
+      "numero": "23123",
+      "partido": "MDB",
+      "votos": 1327,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 16,
+      "nome": "RODRIGUINHO DAS EXCURSOES",
+      "numero": "10698",
+      "partido": "PL",
+      "votos": 1091,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 17,
+      "nome": "OLIVEIRA DA GUARDA",
+      "numero": "30456",
+      "partido": "CIDADANIA",
+      "votos": 1070,
+      "situacao": "ELEITO",
+      "eleito": true
+    }
+  ]
+}

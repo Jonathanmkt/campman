@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
       .select(`
         *,
         task_statuses(id, name, category, color),
-        projects(id, name, slug),
+        projects(id, name),
         sprints(id, name, status)
       `, { count: 'exact' })
       .eq('archived', archived)
@@ -117,28 +117,11 @@ export async function POST(request: NextRequest) {
     } = body
 
     // Validações básicas
-    if (!taskData.title || !taskData.slug) {
+    if (!taskData.title) {
       return NextResponse.json(
-        { error: 'Título e slug são obrigatórios' },
+        { error: 'Título é obrigatório' },
         { status: 400 }
       )
-    }
-
-    // Verificar se o slug já existe no projeto
-    if (taskData.project_id) {
-      const { data: existingTask } = await supabase
-        .from('tasks')
-        .select('id')
-        .eq('slug', taskData.slug)
-        .eq('project_id', taskData.project_id)
-        .single()
-
-      if (existingTask) {
-        return NextResponse.json(
-          { error: 'Slug já existe neste projeto' },
-          { status: 409 }
-        )
-      }
     }
 
     // Gerar task_number automaticamente

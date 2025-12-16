@@ -13,11 +13,13 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { SimpleKanbanBoard } from '@/components/gestao-projetos/kanban/SimpleKanbanBoard'
 import { SimpleGanttChart } from '@/components/gestao-projetos/gantt/SimpleGanttChart'
 import { TeamManagement } from '@/components/gestao-projetos/team/TeamManagement'
 import { ProjectAnalytics } from '@/components/gestao-projetos/analytics/ProjectAnalytics'
 import { useProjects, useTasks, useAnalytics, useTeam, useWorkflows, type Task, type Colaborador, type Project } from './hooks'
+import { useCategories } from './hooks/useCategories'
 import { CreateProjectModal } from './modals/CreateProjectModal'
 import { EditProjectModal } from './modals/EditProjectModal'
 import { CreateTaskModal } from './modals/CreateTaskModal'
@@ -47,6 +49,7 @@ export default function GestaoProjetosPage() {
     createProject,
     updateProject,
     deleteProject,
+    setCategoriaFilter,
     getProjectStats
   } = useProjects()
   
@@ -71,6 +74,10 @@ export default function GestaoProjetosPage() {
   const {
     taskStatuses
   } = useWorkflows()
+  
+  const {
+    categories
+  } = useCategories()
 
   // Estatísticas calculadas
   const projectStats = getProjectStats()
@@ -199,10 +206,25 @@ export default function GestaoProjetosPage() {
           <div className="grid gap-4">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold">Projetos Ativos</h2>
-              <Button variant="outline" size="sm">
-                <Settings className="mr-2 h-4 w-4" />
-                Filtros
-              </Button>
+              <div className="flex gap-2">
+                <Select onValueChange={(value) => setCategoriaFilter(value)}>
+                  <SelectTrigger className="w-[200px]">
+                    <SelectValue placeholder="Filtrar por categoria" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Todas as categorias</SelectItem>
+                    {categories.map((category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.nome}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Button variant="outline" size="sm">
+                  <Settings className="mr-2 h-4 w-4" />
+                  Filtros
+                </Button>
+              </div>
             </div>
             
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

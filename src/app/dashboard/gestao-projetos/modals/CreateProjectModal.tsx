@@ -7,18 +7,20 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { CategoryComboBox } from '@/components/gestao-projetos/CategoryComboBox'
+import { CollaboratorSearchBox } from '@/components/gestao-projetos/CollaboratorSearchBox'
 import { FolderKanban, Loader2 } from 'lucide-react'
 
 interface CreateProjectData {
   name: string
-  slug: string
   description?: string
   status: string
   priority: string
-  visibility: string
   color: string
   start_date?: string
   end_date?: string
+  responsavel_id?: string | null
+  categoria_id?: string | null
 }
 
 interface CreateProjectModalProps {
@@ -40,11 +42,6 @@ const priorityOptions = [
   { value: 'HIGH', label: 'Alta' }
 ]
 
-const visibilityOptions = [
-  { value: 'INTERNAL', label: 'Interno' },
-  { value: 'PUBLIC', label: 'Público' },
-  { value: 'PRIVATE', label: 'Privado' }
-]
 
 const colorOptions = [
   '#3b82f6', '#ef4444', '#10b981', '#f59e0b', 
@@ -54,53 +51,37 @@ const colorOptions = [
 export function CreateProjectModal({ open, onOpenChange, onCreateProject }: CreateProjectModalProps) {
   const [formData, setFormData] = useState<CreateProjectData>({
     name: '',
-    slug: '',
     description: '',
     status: 'PLANNING',
     priority: 'MEDIUM',
-    visibility: 'INTERNAL',
     color: '#3b82f6'
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .trim()
-  }
-
-  const handleNameChange = (name: string) => {
-    setFormData(prev => ({
-      ...prev,
-      name,
-      slug: generateSlug(name)
-    }))
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!formData.name || !formData.slug) {
-      alert('Por favor, preencha os campos obrigatórios.')
+    if (!formData.name) {
+      alert('Por favor, preencha o nome do projeto.')
       return
     }
 
     setIsSubmitting(true)
     try {
-      await onCreateProject(formData)
+      // Tratar 'none' como null para campos opcionais
+      const dataToSend = {
+        ...formData,
+        responsavel_id: formData.responsavel_id === 'none' ? null : formData.responsavel_id,
+        categoria_id: formData.categoria_id === 'none' ? null : formData.categoria_id
+      }
+      await onCreateProject(dataToSend)
       // Reset form
       setFormData({
         name: '',
-        slug: '',
         description: '',
         status: 'PLANNING',
         priority: 'MEDIUM',
-        visibility: 'INTERNAL',
         color: '#3b82f6'
       })
       onOpenChange(false)
@@ -136,20 +117,19 @@ export function CreateProjectModal({ open, onOpenChange, onCreateProject }: Crea
               <Input
                 id="name"
                 value={formData.name}
-                onChange={(e) => handleNameChange(e.target.value)}
+                onChange={(e) => handleInputChange('name', e.target.value)}
                 placeholder="Digite o nome do projeto"
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="slug">Slug *</Label>
-              <Input
-                id="slug"
-                value={formData.slug}
-                onChange={(e) => handleInputChange('slug', e.target.value)}
-                placeholder="slug-do-projeto"
-                required
+              <Label htmlFor="responsavel_id">Responsável</Label>
+              <CollaboratorSearchBox
+                value={formData.responsavel_id || 'none'}
+                onValueChange={(value) => handleInputChange('responsavel_id', value)}
+                placeholder="Buscar responsável..."
+                className="w-full"
               />
             </div>
           </div>
@@ -165,7 +145,19 @@ export function CreateProjectModal({ open, onOpenChange, onCreateProject }: Crea
             />
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label>Categoria</Label>
+              <CategoryComboBox
+                value={formData.categoria_id || 'none'}
+                onValueChange={(value) => handleInputChange('categoria_id', value)}
+                placeholder="Selecionar categoria..."
+                className="w-full"
+              />
+            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <Label>Status</Label>
               <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
@@ -198,21 +190,6 @@ export function CreateProjectModal({ open, onOpenChange, onCreateProject }: Crea
               </Select>
             </div>
 
-            <div className="space-y-2">
-              <Label>Visibilidade</Label>
-              <Select value={formData.visibility} onValueChange={(value) => handleInputChange('visibility', value)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {visibilityOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">

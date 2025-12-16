@@ -4,11 +4,14 @@
  * Este arquivo contém tipos auxiliares e re-exports dos tipos do Supabase
  * para facilitar o uso em toda a aplicação.
  * 
- * Última atualização: 2025-11-21T14:46:27.252Z
+ * Última atualização: 2025-12-15T22:31:14.321Z
  */
 
-// Re-export dos tipos principais do Supabase
-export type { Database, Json } from './database.types';
+// Import dos tipos principais do Supabase
+import type { Database, Json } from './database.types';
+
+// Re-export dos tipos principais
+export type { Database, Json };
 
 // Tipos auxiliares para tabelas específicas
 export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row'];

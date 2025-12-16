@@ -113,6 +113,11 @@ export async function PUT(
     const supabase = await createClient()
     const { id } = await params
     const body = await request.json()
+    
+    console.log('PUT /api/supabase/projetos/[id] - Dados recebidos:', {
+      id,
+      body
+    })
 
     // Verificar se o projeto existe
     const { data: existingProject } = await supabase
@@ -128,27 +133,31 @@ export async function PUT(
       )
     }
 
-    // Se está atualizando o slug, verificar se não existe outro projeto com o mesmo slug
-    if (body.slug) {
-      const { data: slugExists } = await supabase
-        .from('projects')
-        .select('id')
-        .eq('slug', body.slug)
-        .neq('id', id)
-        .single()
 
-      if (slugExists) {
-        return NextResponse.json(
-          { error: 'Slug já existe em outro projeto' },
-          { status: 409 }
-        )
-      }
-    }
+    // Filtrar apenas campos válidos para evitar erros
+    const allowedFields = [
+      'name', 'description', 'status', 'priority', 'color', 
+      'start_date', 'end_date', 'responsavel_id', 'categoria_id'
+    ]
+    
+    const filteredBody = Object.keys(body)
+      .filter(key => allowedFields.includes(key))
+      .reduce((obj, key) => {
+        let value = body[key]
+        // Tratar campos que devem ser null quando vazios
+        if ((key === 'responsavel_id' || key === 'categoria_id') && (value === '' || value === 'none')) {
+          value = null
+        }
+        obj[key] = value
+        return obj
+      }, {} as Record<string, any>)
+    
+    console.log('Dados filtrados para update:', filteredBody)
 
     const { data, error } = await supabase
       .from('projects')
       .update({
-        ...body,
+        ...filteredBody,
         updated_at: new Date().toISOString()
       })
       .eq('id', id)

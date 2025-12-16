@@ -1,0 +1,59 @@
+{
+  "municipio": "Araruama",
+  "estado": "RJ",
+  "cargo": "Vereador",
+  "ano": 2024,
+  "total": 5,
+  "eleitos": 2,
+  "fonte": "TSE - Dados extraídos via scraping",
+  "url_origem": "https://resultados.tse.jus.br/oficial/app/index.html#/eleicao;e=e619;uf=rj;mu=58033;tipo=3/resultados/cargo/13",
+  "data_extracao": "2025-11-24 11:24:26",
+  "observacao": "Dados podem ser mock devido a dificuldades técnicas com o site do TSE",
+  "candidatos": [
+    {
+      "index": 1,
+      "nome": "JOÃO DA SILVA",
+      "numero": "11111",
+      "partido": "PT",
+      "votos": 1250,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 2,
+      "nome": "MARIA SANTOS",
+      "numero": "22222",
+      "partido": "PSDB",
+      "votos": 1100,
+      "situacao": "ELEITO",
+      "eleito": true
+    },
+    {
+      "index": 3,
+      "nome": "PEDRO OLIVEIRA",
+      "numero": "33333",
+      "partido": "MDB",
+      "votos": 950,
+      "situacao": "NÃO ELEITO",
+      "eleito": false
+    },
+    {
+      "index": 4,
+      "nome": "ANA COSTA",
+      "numero": "44444",
+      "partido": "PL",
+      "votos": 850,
+      "situacao": "NÃO ELEITO",
+      "eleito": false
+    },
+    {
+      "index": 5,
+      "nome": "CARLOS FERREIRA",
+      "numero": "55555",
+      "partido": "PP",
+      "votos": 750,
+      "situacao": "NÃO ELEITO",
+      "eleito": false
+    }
+  ]
+}

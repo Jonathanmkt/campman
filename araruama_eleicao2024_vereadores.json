@@ -1,0 +1,1920 @@
+[
+  {
+    "Position": "1",
+    "Votes": "2.290 votos",
+    "Partido e numero": "MDB – 15620",
+    "Candidate Name": "THIAGO PINHEIRO",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "2",
+    "Votes": "2.163 votos",
+    "Partido e numero": "MDB – 15456",
+    "Candidate Name": "ROBERTA BARRETO",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "3",
+    "Votes": "2.109 votos",
+    "Partido e numero": "REPUBLICANOS – 10123",
+    "Candidate Name": "AMIGO WALMIR",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "4",
+    "Votes": "2.040 votos",
+    "Partido e numero": "MDB – 15680",
+    "Candidate Name": "JULIO CESAR COUTINHO",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "5",
+    "Votes": "1.958 votos",
+    "Partido e numero": "SOLIDARIEDADE – 77123",
+    "Candidate Name": "ELOI RAMALHO",
+    "Election Status": "Eleito por média"
+  },
+  {
+    "Position": "6",
+    "Votes": "1.912 votos",
+    "Partido e numero": "REPUBLICANOS – 10333",
+    "Candidate Name": "NELSINHO DO SOM",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "7",
+    "Votes": "1.906 votos",
+    "Partido e numero": "MDB – 15123",
+    "Candidate Name": "MAGNO DHECO",
+    "Election Status": "Eleito por média"
+  },
+  {
+    "Position": "8",
+    "Votes": "1.879 votos",
+    "Partido e numero": "PRD – 25999",
+    "Candidate Name": "ARMANDO POLATI",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "9",
+    "Votes": "1.849 votos",
+    "Partido e numero": "CIDADANIA – 23023",
+    "Candidate Name": "THIAGO MOURA",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "10",
+    "Votes": "1.776 votos",
+    "Partido e numero": "CIDADANIA – 23123",
+    "Candidate Name": "CARLINHOS DE DEUS",
+    "Election Status": "Eleito por média"
+  },
+  {
+    "Position": "11",
+    "Votes": "1.742 votos",
+    "Partido e numero": "REPUBLICANOS – 10698",
+    "Candidate Name": "DIEGO DE CIRALDO",
+    "Election Status": "Eleito por média"
+  },
+  {
+    "Position": "12",
+    "Votes": "1.571 votos",
+    "Partido e numero": "NOVO – 30456",
+    "Candidate Name": "RODRIGUINHO DAS EXCURSOES",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "13",
+    "Votes": "1.549 votos",
+    "Partido e numero": "UNIÃO – 44123",
+    "Candidate Name": "OLIVEIRA DA GUARDA",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "14",
+    "Votes": "1.484 votos",
+    "Partido e numero": "PL – 22123",
+    "Candidate Name": "ARIDINHO",
+    "Election Status": "Eleito por QP"
+  },
+  {
+    "Position": "15",
+    "Votes": "1.327 votos",
+    "Partido e numero": "PL – 22222",
+    "Candidate Name": "ANDERSON MOURA",
+    "Election Status": "Eleito por média"
+  },
+  {
+    "Position": "16",
+    "Votes": "1.091 votos",
+    "Partido e numero": "PRD – 25679",
+    "Candidate Name": "CARLOS RUSSO",
+    "Election Status": "Eleito por média"
+  },
+  {
+    "Position": "17",
+    "Votes": "1.070 votos",
+    "Partido e numero": "PDT – 12620",
+    "Candidate Name": "FABIO DA RAÇÃO",
+    "Election Status": "Eleito por média"
+  },
+  {
+    "Position": "1",
+    "Candidate Name": "APARICIO",
+    "Party and Number": "PL – 22007",
+    "Vote Count": "1.264",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "2",
+    "Candidate Name": "BRUNO BORGES",
+    "Party and Number": "UNIÃO – 44321",
+    "Vote Count": "1.220",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "3",
+    "Candidate Name": "LINEKER VIEIRA",
+    "Party and Number": "CIDADANIA – 23456",
+    "Vote Count": "1.190",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "4",
+    "Candidate Name": "LUIZ DO TÁXI",
+    "Party and Number": "PRD – 25122",
+    "Vote Count": "1.052",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "5",
+    "Candidate Name": "WAGUINHO DA AGENCIA",
+    "Party and Number": "NOVO – 30230",
+    "Vote Count": "968",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "6",
+    "Candidate Name": "HELENIO GUERREIRO",
+    "Party and Number": "REPUBLICANOS – 10555",
+    "Vote Count": "946",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "7",
+    "Candidate Name": "HERIKA DA VIRTUOSA",
+    "Party and Number": "PL – 22100",
+    "Vote Count": "882",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "8",
+    "Candidate Name": "RODOLFO BUDA",
+    "Party and Number": "PRD – 25123",
+    "Vote Count": "874",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "9",
+    "Candidate Name": "SYLVINHA CORRÊA",
+    "Party and Number": "UNIÃO – 44605",
+    "Vote Count": "842",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "10",
+    "Candidate Name": "TONINHO DO HOSPITAL",
+    "Party and Number": "MDB – 15033",
+    "Vote Count": "842",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "11",
+    "Candidate Name": "GIL GUERREIRA",
+    "Party and Number": "MDB – 15777",
+    "Vote Count": "827",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "12",
+    "Candidate Name": "JEAN DRUMOND",
+    "Party and Number": "NOVO – 30123",
+    "Vote Count": "801",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "13",
+    "Candidate Name": "COIA",
+    "Party and Number": "MDB – 15333",
+    "Vote Count": "742",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "14",
+    "Candidate Name": "MONICA COSTA",
+    "Party and Number": "MDB – 15111",
+    "Vote Count": "685",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "15",
+    "Candidate Name": "MARIZETI RAMOS",
+    "Party and Number": "MDB – 15255",
+    "Vote Count": "667",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "16",
+    "Candidate Name": "ZEZINHO",
+    "Party and Number": "UNIÃO – 44609",
+    "Vote Count": "659",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "17",
+    "Candidate Name": "CINTIA MENINA DOS OLHOS",
+    "Party and Number": "REPUBLICANOS – 10221",
+    "Vote Count": "623",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "18",
+    "Candidate Name": "MARCIO DAMIANI",
+    "Party and Number": "MDB – 15015",
+    "Vote Count": "616",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "19",
+    "Candidate Name": "ANDRE NEGÃO",
+    "Party and Number": "MDB – 15190",
+    "Vote Count": "613",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "20",
+    "Candidate Name": "PROFESSORA VALÉRIA",
+    "Party and Number": "PDT – 12000",
+    "Vote Count": "604",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "21",
+    "Candidate Name": "ARMANDO DA VILA CAPRI",
+    "Party and Number": "PL – 22022",
+    "Vote Count": "561",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "22",
+    "Candidate Name": "NEIA MARINHO",
+    "Party and Number": "MDB – 15150",
+    "Vote Count": "556",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "23",
+    "Candidate Name": "FERNANDO DANIEL",
+    "Party and Number": "REPUBLICANOS – 10777",
+    "Vote Count": "555",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "24",
+    "Candidate Name": "RODOLFO DA FARMÁCIA",
+    "Party and Number": "CIDADANIA – 23000",
+    "Vote Count": "529",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "25",
+    "Candidate Name": "RODRIGO PEREIRA",
+    "Party and Number": "SOLIDARIEDADE – 77800",
+    "Vote Count": "521",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "26",
+    "Candidate Name": "DR FERNANDO CAPITÃO MOR",
+    "Party and Number": "PDT – 12345",
+    "Vote Count": "493",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "27",
+    "Candidate Name": "LUIS DA SAÚDE",
+    "Party and Number": "PDT – 12001",
+    "Vote Count": "482",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "28",
+    "Candidate Name": "JEOVANI JARDIM",
+    "Party and Number": "SOLIDARIEDADE – 77234",
+    "Vote Count": "455",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "29",
+    "Candidate Name": "CARLOS MINEIRO",
+    "Party and Number": "PL – 22234",
+    "Vote Count": "413",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "30",
+    "Candidate Name": "SARGENTO RAIMUNDO",
+    "Party and Number": "MDB – 15288",
+    "Vote Count": "385",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "31",
+    "Candidate Name": "MAYCON DA CESTA BASICA",
+    "Party and Number": "PRD – 25321",
+    "Vote Count": "361",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "32",
+    "Candidate Name": "RUSSO DA CESTA BÁSICA",
+    "Party and Number": "CIDADANIA – 23100",
+    "Vote Count": "335",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "33",
+    "Candidate Name": "NEGO BOM",
+    "Party and Number": "PDT – 12100",
+    "Vote Count": "306",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "34",
+    "Candidate Name": "RODRIGO BARRETO",
+    "Party and Number": "MDB – 15000",
+    "Vote Count": "297",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "35",
+    "Candidate Name": "DIEGO SILVA",
+    "Party and Number": "REPUBLICANOS – 10535",
+    "Vote Count": "297",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "36",
+    "Candidate Name": "MARCELO MAGATON",
+    "Party and Number": "PRD – 25555",
+    "Vote Count": "279",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "37",
+    "Candidate Name": "MARIANA DA MATA",
+    "Party and Number": "CIDADANIA – 23111",
+    "Vote Count": "265",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "38",
+    "Candidate Name": "MAX DO MARINHO",
+    "Party and Number": "NOVO – 30380",
+    "Vote Count": "260",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "39",
+    "Candidate Name": "NELSON ALVES",
+    "Party and Number": "NOVO – 30777",
+    "Vote Count": "254",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "40",
+    "Candidate Name": "MARCELA BRASIL",
+    "Party and Number": "NOVO – 30300",
+    "Vote Count": "251",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "41",
+    "Candidate Name": "NEUZINHA LAGOS",
+    "Party and Number": "PRD – 25777",
+    "Vote Count": "249",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "42",
+    "Candidate Name": "JP CORREA",
+    "Party and Number": "PL – 22605",
+    "Vote Count": "244",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "43",
+    "Candidate Name": "DANI LEAL",
+    "Party and Number": "NOVO – 30888",
+    "Vote Count": "222",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "44",
+    "Candidate Name": "RODRIGO DO CARTÓRIO",
+    "Party and Number": "SOLIDARIEDADE – 77033",
+    "Vote Count": "210",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "45",
+    "Candidate Name": "GABRIELA VALLADARES",
+    "Party and Number": "SOLIDARIEDADE – 77321",
+    "Vote Count": "208",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "46",
+    "Candidate Name": "TIO FELIX",
+    "Party and Number": "PL – 22999",
+    "Vote Count": "201",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "47",
+    "Candidate Name": "JOSÉ RICARDO VIANA",
+    "Party and Number": "SOLIDARIEDADE – 77077",
+    "Vote Count": "201",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "48",
+    "Candidate Name": "PROFESSOR EDUARDO",
+    "Party and Number": "PDT – 12222",
+    "Vote Count": "196",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "49",
+    "Candidate Name": "DANIELLY SERRANO",
+    "Party and Number": "PL – 22321",
+    "Vote Count": "196",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "50",
+    "Candidate Name": "ANDRÉ DOMINGUES",
+    "Party and Number": "SOLIDARIEDADE – 77556",
+    "Vote Count": "189",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "51",
+    "Candidate Name": "MARCOS PEIXEIRO",
+    "Party and Number": "PDT – 12660",
+    "Vote Count": "186",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "52",
+    "Candidate Name": "BEBETO BARCELOS",
+    "Party and Number": "NOVO – 30789",
+    "Vote Count": "186",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "53",
+    "Candidate Name": "NEY SILVA",
+    "Party and Number": "PDT – 12444",
+    "Vote Count": "185",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "54",
+    "Candidate Name": "BORRACHA",
+    "Party and Number": "UNIÃO – 44789",
+    "Vote Count": "178",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "55",
+    "Candidate Name": "CANUDO AGUIAR",
+    "Party and Number": "SOLIDARIEDADE – 77777",
+    "Vote Count": "175",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "56",
+    "Candidate Name": "PRETO DE MOCA",
+    "Party and Number": "PDT – 12015",
+    "Vote Count": "172",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "57",
+    "Candidate Name": "RAFAEL PEZAO",
+    "Party and Number": "REPUBLICANOS – 10000",
+    "Vote Count": "170",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "58",
+    "Candidate Name": "WAGUINHO AMORIM DA CORRIDA",
+    "Party and Number": "NOVO – 30030",
+    "Vote Count": "166",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "59",
+    "Candidate Name": "FERNANDO CAROCO",
+    "Party and Number": "NOVO – 30333",
+    "Vote Count": "162",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "60",
+    "Candidate Name": "ROBERIO DO ESPORTE",
+    "Party and Number": "NOVO – 30332",
+    "Vote Count": "162",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "61",
+    "Candidate Name": "UILIANA DO SOCIAL",
+    "Party and Number": "NOVO – 30033",
+    "Vote Count": "157",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "62",
+    "Candidate Name": "RAFAEL PADEIRO",
+    "Party and Number": "PRD – 25888",
+    "Vote Count": "157",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "63",
+    "Candidate Name": "EDSON DA AURORA",
+    "Party and Number": "PL – 22333",
+    "Vote Count": "154",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "64",
+    "Candidate Name": "ROSI DE SOBARA",
+    "Party and Number": "NOVO – 30234",
+    "Vote Count": "144",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "65",
+    "Candidate Name": "SIDINHO",
+    "Party and Number": "PL – 22147",
+    "Vote Count": "142",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "66",
+    "Candidate Name": "JEAN DO RADIADOR",
+    "Party and Number": "SOLIDARIEDADE – 77999",
+    "Vote Count": "140",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "67",
+    "Candidate Name": "RAFAELA SOCIAL",
+    "Party and Number": "PRD – 25015",
+    "Vote Count": "137",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "68",
+    "Candidate Name": "DRA FABIANA LINHARES",
+    "Party and Number": "UNIÃO – 44000",
+    "Vote Count": "132",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "69",
+    "Candidate Name": "MARRECO",
+    "Party and Number": "PL – 22456",
+    "Vote Count": "131",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "70",
+    "Candidate Name": "ELIZEU SANTIAGO",
+    "Party and Number": "UNIÃO – 44444",
+    "Vote Count": "130",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "71",
+    "Candidate Name": "THIAGO DOMINGOS",
+    "Party and Number": "UNIÃO – 44669",
+    "Vote Count": "130",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "72",
+    "Candidate Name": "DEZINHO CORRÊA",
+    "Party and Number": "CIDADANIA – 23700",
+    "Vote Count": "128",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "73",
+    "Candidate Name": "PABLO MONTEIRO",
+    "Party and Number": "CIDADANIA – 23333",
+    "Vote Count": "127",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "74",
+    "Candidate Name": "FLÁVIO AFFONSO",
+    "Party and Number": "PDT – 12011",
+    "Vote Count": "124",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "75",
+    "Candidate Name": "BRAZ DA SAUDE",
+    "Party and Number": "PRD – 25333",
+    "Vote Count": "120",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "76",
+    "Candidate Name": "TATI FURTADO",
+    "Party and Number": "REPUBLICANOS – 10645",
+    "Vote Count": "115",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "77",
+    "Candidate Name": "ELISA BASTOS",
+    "Party and Number": "REPUBLICANOS – 10137",
+    "Vote Count": "110",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "78",
+    "Candidate Name": "FABIANE BARRETO",
+    "Party and Number": "CIDADANIA – 23007",
+    "Vote Count": "110",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "79",
+    "Candidate Name": "DRª ILZINETE",
+    "Party and Number": "CIDADANIA – 23257",
+    "Vote Count": "105",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "80",
+    "Candidate Name": "SHEILA TRAKINAS",
+    "Party and Number": "CIDADANIA – 23303",
+    "Vote Count": "104",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "81",
+    "Candidate Name": "CELESTE DA GIGI",
+    "Party and Number": "PRD – 25112",
+    "Vote Count": "103",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "82",
+    "Candidate Name": "CELSO TINE",
+    "Party and Number": "UNIÃO – 44333",
+    "Vote Count": "100",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "83",
+    "Candidate Name": "MARCELO BANDEIRA",
+    "Party and Number": "PL – 22012",
+    "Vote Count": "98",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "84",
+    "Candidate Name": "SILVINHO PAULO NUNES",
+    "Party and Number": "PRD – 25222",
+    "Vote Count": "97",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "85",
+    "Candidate Name": "VICTOR CARANGA",
+    "Party and Number": "PL – 22789",
+    "Vote Count": "97",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "86",
+    "Candidate Name": "AMIGA SANDRÃO",
+    "Party and Number": "UNIÃO – 44144",
+    "Vote Count": "94",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "87",
+    "Candidate Name": "LUCIMERE ESPAÇO GEMEAS",
+    "Party and Number": "PL – 22522",
+    "Vote Count": "94",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "88",
+    "Candidate Name": "PAULO DA HORA",
+    "Party and Number": "MDB – 15115",
+    "Vote Count": "92",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "89",
+    "Candidate Name": "CAROL BONFIM",
+    "Party and Number": "SOLIDARIEDADE – 77333",
+    "Vote Count": "92",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "90",
+    "Candidate Name": "LÉO DA CANAÃ",
+    "Party and Number": "UNIÃO – 44022",
+    "Vote Count": "90",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "91",
+    "Candidate Name": "ALEX PRESIDENTE",
+    "Party and Number": "UNIÃO – 44222",
+    "Vote Count": "86",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "92",
+    "Candidate Name": "VALDA DO SALGADO",
+    "Party and Number": "REPUBLICANOS – 10211",
+    "Vote Count": "83",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "93",
+    "Candidate Name": "PEDRO REIMBURG",
+    "Party and Number": "PDT – 12626",
+    "Vote Count": "81",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "94",
+    "Candidate Name": "ANDREA BRAGA",
+    "Party and Number": "REPUBLICANOS – 10567",
+    "Vote Count": "81",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "95",
+    "Candidate Name": "RODRIGO MEIRA",
+    "Party and Number": "REPUBLICANOS – 10133",
+    "Vote Count": "78",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "96",
+    "Candidate Name": "DILCLEA MARINHO",
+    "Party and Number": "PRD – 25025",
+    "Vote Count": "75",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "97",
+    "Candidate Name": "ROSANGELA NAZARETH",
+    "Party and Number": "UNIÃO – 44180",
+    "Vote Count": "74",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "98",
+    "Candidate Name": "LEO DO AMARELINHO",
+    "Party and Number": "CIDADANIA – 23321",
+    "Vote Count": "74",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "99",
+    "Candidate Name": "LAIS ALFRADIQUE",
+    "Party and Number": "REPUBLICANOS – 10456",
+    "Vote Count": "73",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "100",
+    "Candidate Name": "CHRISTINA ROCHA",
+    "Party and Number": "NOVO – 30111",
+    "Vote Count": "72",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "101",
+    "Candidate Name": "NAYRA FRANÇA",
+    "Party and Number": "MDB – 15555",
+    "Vote Count": "71",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "102",
+    "Candidate Name": "DINHO MENDONCA",
+    "Party and Number": "REPUBLICANOS – 10200",
+    "Vote Count": "70",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "103",
+    "Candidate Name": "REJANE DA GUARDA",
+    "Party and Number": "PDT – 12120",
+    "Vote Count": "69",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "104",
+    "Candidate Name": "ZEZINHO BRITO",
+    "Party and Number": "NOVO – 30555",
+    "Vote Count": "67",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "105",
+    "Candidate Name": "DR. ELIEZER",
+    "Party and Number": "SOLIDARIEDADE – 77677",
+    "Vote Count": "66",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "106",
+    "Candidate Name": "MARCOS DAMIANI",
+    "Party and Number": "SOLIDARIEDADE – 77000",
+    "Vote Count": "65",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "107",
+    "Candidate Name": "MAURICIO LIBERATO",
+    "Party and Number": "NOVO – 30630",
+    "Vote Count": "62",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "108",
+    "Candidate Name": "MARCELO DA EDUMAR",
+    "Party and Number": "PRD – 25666",
+    "Vote Count": "60",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "109",
+    "Candidate Name": "GOLDA DA PUB",
+    "Party and Number": "CIDADANIA – 23030",
+    "Vote Count": "58",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "110",
+    "Candidate Name": "JC DO FALA ARARUAMA",
+    "Party and Number": "PRD – 25234",
+    "Vote Count": "57",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "111",
+    "Candidate Name": "DACIA DA SAÚDE",
+    "Party and Number": "PL – 22627",
+    "Vote Count": "56",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "112",
+    "Candidate Name": "JÚLIA CASTELO BRANCO",
+    "Party and Number": "PDT – 12123",
+    "Vote Count": "56",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "113",
+    "Candidate Name": "JOELMA DE SÃO VICENTE",
+    "Party and Number": "PRD – 25040",
+    "Vote Count": "55",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "114",
+    "Candidate Name": "HÉLIO DA GUARDA",
+    "Party and Number": "SOLIDARIEDADE – 77017",
+    "Vote Count": "53",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "115",
+    "Candidate Name": "NETHI RAFAELI",
+    "Party and Number": "UNIÃO – 44124",
+    "Vote Count": "53",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "116",
+    "Candidate Name": "TARCILA PONCIANO",
+    "Party and Number": "SOLIDARIEDADE – 77013",
+    "Vote Count": "49",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "117",
+    "Candidate Name": "VERONICA SOBARA",
+    "Party and Number": "PRD – 25208",
+    "Vote Count": "48",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "118",
+    "Candidate Name": "MERALDO HULPAN",
+    "Party and Number": "PDT – 12580",
+    "Vote Count": "47",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "119",
+    "Candidate Name": "CONSTRUTOR JONAS SALES",
+    "Party and Number": "REPUBLICANOS – 10444",
+    "Vote Count": "42",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "120",
+    "Candidate Name": "ALINE DO SOS LAGUNA",
+    "Party and Number": "PL – 22010",
+    "Vote Count": "42",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "121",
+    "Candidate Name": "EUGENIO FRANCESCHI",
+    "Party and Number": "UNIÃO – 44111",
+    "Vote Count": "40",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "122",
+    "Candidate Name": "ALEXANDRE FUBÁ",
+    "Party and Number": "SOLIDARIEDADE – 77153",
+    "Vote Count": "39",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "123",
+    "Candidate Name": "RAFA BJJ",
+    "Party and Number": "CIDADANIA – 23789",
+    "Vote Count": "36",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "124",
+    "Candidate Name": "PENHA DA SAÚDE",
+    "Party and Number": "SOLIDARIEDADE – 77022",
+    "Vote Count": "35",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "125",
+    "Candidate Name": "FELIPINHO MONTANHA",
+    "Party and Number": "PRD – 25000",
+    "Vote Count": "35",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "126",
+    "Candidate Name": "ELIANA LOIRA",
+    "Party and Number": "PL – 22689",
+    "Vote Count": "33",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "127",
+    "Candidate Name": "SANA NOGUEIRA",
+    "Party and Number": "UNIÃO – 44456",
+    "Vote Count": "33",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "128",
+    "Candidate Name": "RAPHAELA MALFITANO",
+    "Party and Number": "PDT – 12333",
+    "Vote Count": "31",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "129",
+    "Candidate Name": "ALEXANDRE BERRIEL",
+    "Party and Number": "NOVO – 30245",
+    "Vote Count": "31",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "130",
+    "Candidate Name": "VERA LÚCIA PROTETORA",
+    "Party and Number": "PDT – 12055",
+    "Vote Count": "30",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "131",
+    "Candidate Name": "NANA DE GILDO",
+    "Party and Number": "PDT – 12012",
+    "Vote Count": "28",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "132",
+    "Candidate Name": "SOL ARAÚJO",
+    "Party and Number": "SOLIDARIEDADE – 77500",
+    "Vote Count": "25",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "133",
+    "Candidate Name": "BETA",
+    "Party and Number": "CIDADANIA – 23108",
+    "Vote Count": "24",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "134",
+    "Candidate Name": "LARIANE DEPOLO",
+    "Party and Number": "PDT – 12199",
+    "Vote Count": "24",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "135",
+    "Candidate Name": "GLEIBE DO TÁXI",
+    "Party and Number": "UNIÃO – 44224",
+    "Vote Count": "20",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "136",
+    "Candidate Name": "MARCIA ANTUNES",
+    "Party and Number": "SOLIDARIEDADE – 77227",
+    "Vote Count": "9",
+    "Candidate Status": "Suplente"
+  },
+  {
+    "Position": "137",
+    "Candidate Name": "PAULINHO",
+    "Party and Number": "PP – 11777",
+    "Vote Count": "1.288",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "138",
+    "Candidate Name": "ANGELA BARREIRA",
+    "Party and Number": "AGIR – 36543",
+    "Vote Count": "1.088",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "139",
+    "Candidate Name": "JONAS MARQUES",
+    "Party and Number": "AGIR – 36123",
+    "Vote Count": "894",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "140",
+    "Candidate Name": "MÃEZONA DO POVO",
+    "Party and Number": "NOVO – 30321",
+    "Vote Count": "709",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "141",
+    "Candidate Name": "DIEGO DO GÁS",
+    "Party and Number": "PT – 13444",
+    "Vote Count": "581",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "142",
+    "Candidate Name": "SARTORI",
+    "Party and Number": "AGIR – 36133",
+    "Vote Count": "439",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "143",
+    "Candidate Name": "FABRIZZIO VOZ ATIVA",
+    "Party and Number": "PT – 13013",
+    "Vote Count": "349",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "144",
+    "Candidate Name": "REGINALDO COELHO",
+    "Party and Number": "PP – 11789",
+    "Vote Count": "323",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "145",
+    "Candidate Name": "MARCELA DO LULA",
+    "Party and Number": "PT – 13111",
+    "Vote Count": "208",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "146",
+    "Candidate Name": "EGGER",
+    "Party and Number": "MOBILIZA – 33000",
+    "Vote Count": "197",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "147",
+    "Candidate Name": "JUNIOR DO RAIO X",
+    "Party and Number": "PP – 11321",
+    "Vote Count": "197",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "148",
+    "Candidate Name": "JONAS SILVA",
+    "Party and Number": "PP – 11222",
+    "Vote Count": "194",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "149",
+    "Candidate Name": "VINI",
+    "Party and Number": "PT – 13000",
+    "Vote Count": "184",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "150",
+    "Candidate Name": "ERIVELTON",
+    "Party and Number": "PRTB – 28722",
+    "Vote Count": "176",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "151",
+    "Candidate Name": "MARCIO DA EDUCAÇÃO",
+    "Party and Number": "PSB – 40333",
+    "Vote Count": "163",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "152",
+    "Candidate Name": "GAGUINHO SÓ VITÓRIA",
+    "Party and Number": "PSD – 55111",
+    "Vote Count": "144",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "153",
+    "Candidate Name": "WAGNER NASCIMENTO",
+    "Party and Number": "AGIR – 36221",
+    "Vote Count": "131",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "154",
+    "Candidate Name": "CEARÁ DO CORTE",
+    "Party and Number": "AGIR – 36222",
+    "Vote Count": "126",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "155",
+    "Candidate Name": "VERONICA MARINS",
+    "Party and Number": "AGIR – 36888",
+    "Vote Count": "123",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "156",
+    "Candidate Name": "PROF LILIAN OLIVEIRA",
+    "Party and Number": "AGIR – 36036",
+    "Vote Count": "122",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "157",
+    "Candidate Name": "MARCELÃO DA ROUPA",
+    "Party and Number": "AVANTE – 70123",
+    "Vote Count": "109",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "158",
+    "Candidate Name": "LYANA E LEO MANDATO COLETIVO",
+    "Party and Number": "PT – 13113",
+    "Vote Count": "104",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "159",
+    "Candidate Name": "PASTOR BIRA",
+    "Party and Number": "PP – 11620",
+    "Vote Count": "101",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "160",
+    "Candidate Name": "AQUINO DO PAPA",
+    "Party and Number": "PP – 11122",
+    "Vote Count": "93",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "161",
+    "Candidate Name": "PROFESSOR KHRISTIAN GIOVANNEY",
+    "Party and Number": "PV – 43333",
+    "Vote Count": "92",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "162",
+    "Candidate Name": "ROSANA MENDONÇA",
+    "Party and Number": "PSD – 55222",
+    "Vote Count": "91",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "163",
+    "Candidate Name": "ZÉ RENATO GOES",
+    "Party and Number": "PT – 13300",
+    "Vote Count": "89",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "164",
+    "Candidate Name": "BETO BAD BOY",
+    "Party and Number": "MOBILIZA – 33333",
+    "Vote Count": "85",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "165",
+    "Candidate Name": "ALINE DEPOLO",
+    "Party and Number": "PP – 11333",
+    "Vote Count": "82",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "166",
+    "Candidate Name": "BERRIEL",
+    "Party and Number": "PSB – 40000",
+    "Vote Count": "82",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "167",
+    "Candidate Name": "CHARLES GENTE NOSSA",
+    "Party and Number": "PRTB – 28100",
+    "Vote Count": "76",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "168",
+    "Candidate Name": "FELIPE OLIVEIRA",
+    "Party and Number": "AGIR – 36520",
+    "Vote Count": "76",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "169",
+    "Candidate Name": "MICAELA OLIVEIRA",
+    "Party and Number": "AGIR – 36132",
+    "Vote Count": "75",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "170",
+    "Candidate Name": "CILANGE DO POVO",
+    "Party and Number": "PT – 13456",
+    "Vote Count": "72",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "171",
+    "Candidate Name": "IGOR DA XÉROX",
+    "Party and Number": "PSD – 55234",
+    "Vote Count": "67",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "172",
+    "Candidate Name": "CANTORA JUCILENY FRANÇA",
+    "Party and Number": "PRTB – 28123",
+    "Vote Count": "66",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "173",
+    "Candidate Name": "MARCILEI DO RAIO X",
+    "Party and Number": "PP – 11023",
+    "Vote Count": "63",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "174",
+    "Candidate Name": "ZIEL CORREA",
+    "Party and Number": "AGIR – 36000",
+    "Vote Count": "61",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "175",
+    "Candidate Name": "BRUNO MARTINS",
+    "Party and Number": "PSD – 55123",
+    "Vote Count": "60",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "176",
+    "Candidate Name": "MAURO DE NIKA DO SALGADO",
+    "Party and Number": "PRTB – 28244",
+    "Vote Count": "59",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "177",
+    "Candidate Name": "ATTILA KARATÊ",
+    "Party and Number": "PRTB – 28151",
+    "Vote Count": "59",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "178",
+    "Candidate Name": "CHINA",
+    "Party and Number": "UNIÃO – 44044",
+    "Vote Count": "58",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "179",
+    "Candidate Name": "DUDU VALLADARES",
+    "Party and Number": "PT – 13123",
+    "Vote Count": "58",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "180",
+    "Candidate Name": "EMERSON SANTOS",
+    "Party and Number": "MOBILIZA – 33777",
+    "Vote Count": "58",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "181",
+    "Candidate Name": "CLEBER LOCUTOR",
+    "Party and Number": "PMB – 35777",
+    "Vote Count": "56",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "182",
+    "Candidate Name": "ADRIANA DA AUTO ESCOLA",
+    "Party and Number": "PP – 11645",
+    "Vote Count": "56",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "183",
+    "Candidate Name": "DEJAIR FINO",
+    "Party and Number": "MOBILIZA – 33123",
+    "Vote Count": "55",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "184",
+    "Candidate Name": "ELIANE BARRETO",
+    "Party and Number": "PMB – 35333",
+    "Vote Count": "54",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "185",
+    "Candidate Name": "WALDIR DO TAXI",
+    "Party and Number": "PSD – 55369",
+    "Vote Count": "54",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "186",
+    "Candidate Name": "JOSUÉ LIBERATO",
+    "Party and Number": "PSD – 55225",
+    "Vote Count": "54",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "187",
+    "Candidate Name": "MIRIAN DO TRAILLER",
+    "Party and Number": "PSD – 55121",
+    "Vote Count": "53",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "188",
+    "Candidate Name": "JAMILSON DO CAMINHÃO",
+    "Party and Number": "PSD – 55000",
+    "Vote Count": "51",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "189",
+    "Candidate Name": "RICARDINHO DA SAUDE",
+    "Party and Number": "AGIR – 36777",
+    "Vote Count": "51",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "190",
+    "Candidate Name": "NEI POVÃO",
+    "Party and Number": "MOBILIZA – 33233",
+    "Vote Count": "50",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "191",
+    "Candidate Name": "ROMINHO DO POVO",
+    "Party and Number": "AGIR – 36369",
+    "Vote Count": "50",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "192",
+    "Candidate Name": "ELIS VENCIONEK MAGANHA",
+    "Party and Number": "PRTB – 28222",
+    "Vote Count": "49",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "193",
+    "Candidate Name": "DARIO MAIS VELHO",
+    "Party and Number": "PP – 11555",
+    "Vote Count": "46",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "194",
+    "Candidate Name": "FABRICIO DA ZOOM",
+    "Party and Number": "PP – 11234",
+    "Vote Count": "46",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "195",
+    "Candidate Name": "MARCELO DO TREVO",
+    "Party and Number": "PSD – 55333",
+    "Vote Count": "45",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "196",
+    "Candidate Name": "GUILHERME LADEIRA",
+    "Party and Number": "AGIR – 36106",
+    "Vote Count": "45",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "197",
+    "Candidate Name": "GERALDINHO NUNES",
+    "Party and Number": "MOBILIZA – 33234",
+    "Vote Count": "43",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "198",
+    "Candidate Name": "ROSE NUNES",
+    "Party and Number": "AGIR – 36447",
+    "Vote Count": "42",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "199",
+    "Candidate Name": "EDUARDO SOUZA",
+    "Party and Number": "MOBILIZA – 33456",
+    "Vote Count": "41",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "200",
+    "Candidate Name": "SEBASTIANA ELIENE",
+    "Party and Number": "PMB – 35123",
+    "Vote Count": "40",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "201",
+    "Candidate Name": "PASTOR ADRIANO SILVA",
+    "Party and Number": "PRTB – 28111",
+    "Vote Count": "40",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "202",
+    "Candidate Name": "SUELI BOREL",
+    "Party and Number": "PP – 11444",
+    "Vote Count": "39",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "203",
+    "Candidate Name": "NATALIA NAVARRO",
+    "Party and Number": "MOBILIZA – 33024",
+    "Vote Count": "39",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "204",
+    "Candidate Name": "PADRE ANTERO",
+    "Party and Number": "PSB – 40123",
+    "Vote Count": "37",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "205",
+    "Candidate Name": "PROFESSOR ANDRE",
+    "Party and Number": "PP – 11123",
+    "Vote Count": "37",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "206",
+    "Candidate Name": "MARIO DA QUENTINHA",
+    "Party and Number": "MOBILIZA – 33557",
+    "Vote Count": "37",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "207",
+    "Candidate Name": "MARCIO SANTOS LOCUTOR",
+    "Party and Number": "PRTB – 28699",
+    "Vote Count": "37",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "208",
+    "Candidate Name": "TIRSA TULOSA",
+    "Party and Number": "PT – 13777",
+    "Vote Count": "37",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "209",
+    "Candidate Name": "SENINHA",
+    "Party and Number": "AVANTE – 70666",
+    "Vote Count": "36",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "210",
+    "Candidate Name": "SALATIEL",
+    "Party and Number": "AVANTE – 70455",
+    "Vote Count": "33",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "211",
+    "Candidate Name": "ROSE E NEIDE MANDATO COLETIVO",
+    "Party and Number": "PT – 13405",
+    "Vote Count": "33",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "212",
+    "Candidate Name": "ENFERMEIRA GLAUCIA RAHHAL",
+    "Party and Number": "PP – 11345",
+    "Vote Count": "33",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "213",
+    "Candidate Name": "MARQUINHOS DA ENFERMAGEM",
+    "Party and Number": "PSD – 55789",
+    "Vote Count": "33",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "214",
+    "Candidate Name": "PASTORA ROSILDA",
+    "Party and Number": "PP – 11040",
+    "Vote Count": "32",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "215",
+    "Candidate Name": "PROFESSORA ALCIVAINE",
+    "Party and Number": "MOBILIZA – 33263",
+    "Vote Count": "31",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "216",
+    "Candidate Name": "DJALMA AUTOCENTER",
+    "Party and Number": "PRTB – 28013",
+    "Vote Count": "29",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "217",
+    "Candidate Name": "DRA SIMONE BRITO",
+    "Party and Number": "MOBILIZA – 33500",
+    "Vote Count": "29",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "218",
+    "Candidate Name": "ALEXANDRE LOPES",
+    "Party and Number": "PT – 13555",
+    "Vote Count": "28",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "219",
+    "Candidate Name": "DURVAL MARQUES",
+    "Party and Number": "PMB – 35035",
+    "Vote Count": "27",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "220",
+    "Candidate Name": "HUGO DO COCO",
+    "Party and Number": "AVANTE – 70620",
+    "Vote Count": "26",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "221",
+    "Candidate Name": "ALEX DO TAXI",
+    "Party and Number": "AGIR – 36999",
+    "Vote Count": "24",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "222",
+    "Candidate Name": "LIGIA FRANCISCO",
+    "Party and Number": "PMB – 35779",
+    "Vote Count": "24",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "223",
+    "Candidate Name": "ALEF DA REFLEXÃO",
+    "Party and Number": "PRTB – 28721",
+    "Vote Count": "23",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "224",
+    "Candidate Name": "TERESA IGREJA CORRETORA",
+    "Party and Number": "MOBILIZA – 33999",
+    "Vote Count": "22",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "225",
+    "Candidate Name": "PRETA BIA",
+    "Party and Number": "PSB – 40777",
+    "Vote Count": "21",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "226",
+    "Candidate Name": "MARQUINHOS DO UBER",
+    "Party and Number": "PSD – 55158",
+    "Vote Count": "20",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "227",
+    "Candidate Name": "VANESSA SIQUEIRA",
+    "Party and Number": "PP – 11000",
+    "Vote Count": "20",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "228",
+    "Candidate Name": "KELY E GUGA MANDATO COLETIVO",
+    "Party and Number": "PT – 13333",
+    "Vote Count": "19",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "229",
+    "Candidate Name": "MAYCON DE FARIA",
+    "Party and Number": "PT – 13007",
+    "Vote Count": "19",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "230",
+    "Candidate Name": "MÔNICA DE PRAIA SECA",
+    "Party and Number": "PRTB – 28514",
+    "Vote Count": "16",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "231",
+    "Candidate Name": "DAVI DE SOUZA",
+    "Party and Number": "PSB – 40760",
+    "Vote Count": "15",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "232",
+    "Candidate Name": "TIA NILDA",
+    "Party and Number": "PV – 43123",
+    "Vote Count": "15",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "233",
+    "Candidate Name": "ERIKA DO PRODIGIO",
+    "Party and Number": "MOBILIZA – 33360",
+    "Vote Count": "14",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "234",
+    "Candidate Name": "DJ LEO",
+    "Party and Number": "PP – 11001",
+    "Vote Count": "13",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "235",
+    "Candidate Name": "RENATA CAKE",
+    "Party and Number": "AVANTE – 70000",
+    "Vote Count": "13",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "236",
+    "Candidate Name": "GOMES DO COLETIVO",
+    "Party and Number": "MOBILIZA – 33555",
+    "Vote Count": "11",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "237",
+    "Candidate Name": "LUIZ DA CFC",
+    "Party and Number": "AGIR – 36195",
+    "Vote Count": "11",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "238",
+    "Candidate Name": "ALICE FERREIRA",
+    "Party and Number": "PMB – 35456",
+    "Vote Count": "11",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "239",
+    "Candidate Name": "PROF MARCELO MORAES",
+    "Party and Number": "AVANTE – 70035",
+    "Vote Count": "10",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "240",
+    "Candidate Name": "MARCIO DJ",
+    "Party and Number": "PMB – 35044",
+    "Vote Count": "10",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "241",
+    "Candidate Name": "MARCELO POSTO WAL",
+    "Party and Number": "PRTB – 28031",
+    "Vote Count": "10",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "242",
+    "Candidate Name": "DEDÉIA",
+    "Party and Number": "PRTB – 28350",
+    "Vote Count": "10",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "243",
+    "Candidate Name": "NEWTON DO AMARELINHO",
+    "Party and Number": "AVANTE – 70921",
+    "Vote Count": "9",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "244",
+    "Candidate Name": "KATIA DO CUSCUZ",
+    "Party and Number": "AVANTE – 70484",
+    "Vote Count": "8",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "245",
+    "Candidate Name": "PAULÃO DA CULTURA",
+    "Party and Number": "MOBILIZA – 33133",
+    "Vote Count": "8",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "246",
+    "Candidate Name": "PAULA MEDEIROS",
+    "Party and Number": "PSD – 55001",
+    "Vote Count": "8",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "247",
+    "Candidate Name": "DOUGLAS MAXWELL",
+    "Party and Number": "PRTB – 28288",
+    "Vote Count": "8",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "248",
+    "Candidate Name": "ANDRÉ LIMOEIRO",
+    "Party and Number": "PT – 13213",
+    "Vote Count": "8",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "249",
+    "Candidate Name": "LÍGIA BIÓLOGA",
+    "Party and Number": "PSB – 40012",
+    "Vote Count": "7",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "250",
+    "Candidate Name": "NINA DE SÁ",
+    "Party and Number": "PRTB – 28115",
+    "Vote Count": "6",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "251",
+    "Candidate Name": "JOYCE DO TRINTA",
+    "Party and Number": "AVANTE – 70080",
+    "Vote Count": "6",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "252",
+    "Candidate Name": "MARCIO ANASTÁCIO",
+    "Party and Number": "MOBILIZA – 33373",
+    "Vote Count": "5",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "253",
+    "Candidate Name": "JANETE CORRÊA",
+    "Party and Number": "PSD – 55055",
+    "Vote Count": "4",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "254",
+    "Candidate Name": "FUKA",
+    "Party and Number": "PRTB – 28161",
+    "Vote Count": "4",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "255",
+    "Candidate Name": "ANA PAULA FERNANDES",
+    "Party and Number": "PSB – 40400",
+    "Vote Count": "4",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "256",
+    "Candidate Name": "MARCELO SUKITA",
+    "Party and Number": "AVANTE – 70722",
+    "Vote Count": "1",
+    "Candidate Status": "Não Eleito"
+  },
+  {
+    "Position": "257",
+    "Candidate Name": "FERNANDA COUTINHO",
+    "Party and Number": "PRTB – 28017",
+    "Vote Count": "0",
+    "Candidate Status": "Não Eleito"
+  }
+]

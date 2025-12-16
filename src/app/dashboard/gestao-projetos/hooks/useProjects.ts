@@ -5,18 +5,17 @@ import { useState, useEffect, useCallback } from 'react'
 export interface Project {
   id: string
   name: string
-  slug: string
   description?: string
-  avatar?: string
   color: string
   status: 'ACTIVE' | 'PLANNING' | 'ON_HOLD' | 'COMPLETED'
   priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT'
-  visibility: 'PUBLIC' | 'INTERNAL' | 'PRIVATE'
   start_date?: string
   end_date?: string
   created_at: string
   updated_at: string
   archived: boolean
+  responsavel_id?: string
+  categoria_id?: string
   projeto_equipe?: Array<{
     id: string
     papel: string
@@ -64,6 +63,7 @@ interface UseProjectsReturn {
     status?: string
     priority?: string
     equipe_id?: string
+    categoria_id?: string
   }) => Promise<void>
   createProject: (projectData: Partial<Project>) => Promise<Project | null>
   updateProject: (id: string, projectData: Partial<Project>) => Promise<Project | null>
@@ -74,6 +74,7 @@ interface UseProjectsReturn {
   setStatusFilter: (status: string) => void
   setPriorityFilter: (priority: string) => void
   setEquipeFilter: (equipeId: string) => void
+  setCategoriaFilter: (categoriaId: string) => void
   // Stats
   getProjectStats: () => {
     total: number
@@ -97,6 +98,7 @@ export function useProjects(): UseProjectsReturn {
   const [statusFilter, setStatusFilter] = useState('')
   const [priorityFilter, setPriorityFilter] = useState('')
   const [equipeFilter, setEquipeFilter] = useState('')
+  const [categoriaFilter, setCategoriaFilter] = useState('')
 
   const fetchProjects = useCallback(async (params?: {
     page?: number
@@ -105,6 +107,7 @@ export function useProjects(): UseProjectsReturn {
     status?: string
     priority?: string
     equipe_id?: string
+    categoria_id?: string
   }) => {
     setLoading(true)
     setError(null)
@@ -118,6 +121,9 @@ export function useProjects(): UseProjectsReturn {
       if (params?.status || statusFilter) queryParams.set('status', params?.status || statusFilter)
       if (params?.priority || priorityFilter) queryParams.set('priority', params?.priority || priorityFilter)
       if (params?.equipe_id || equipeFilter) queryParams.set('equipe_id', params?.equipe_id || equipeFilter)
+      if ((params?.categoria_id && params.categoria_id !== 'all') || (categoriaFilter && categoriaFilter !== 'all')) {
+        queryParams.set('categoria_id', (params?.categoria_id !== 'all' ? params?.categoria_id : null) || (categoriaFilter !== 'all' ? categoriaFilter : null))
+      }
 
       const response = await fetch(`/api/supabase/projetos?${queryParams.toString()}`)
       
@@ -138,7 +144,7 @@ export function useProjects(): UseProjectsReturn {
     } finally {
       setLoading(false)
     }
-  }, [search, statusFilter, priorityFilter, equipeFilter])
+  }, [search, statusFilter, priorityFilter, equipeFilter, categoriaFilter])
 
   const createProject = useCallback(async (projectData: Partial<Project>): Promise<Project | null> => {
     setLoading(true)
@@ -275,10 +281,10 @@ export function useProjects(): UseProjectsReturn {
 
   // Recarregar quando filtros mudarem
   useEffect(() => {
-    if (search || statusFilter || priorityFilter || equipeFilter) {
+    if (search || statusFilter || priorityFilter || equipeFilter || categoriaFilter) {
       fetchProjects()
     }
-  }, [search, statusFilter, priorityFilter, equipeFilter, fetchProjects])
+  }, [search, statusFilter, priorityFilter, equipeFilter, categoriaFilter, fetchProjects])
 
   return {
     projects,
@@ -296,6 +302,7 @@ export function useProjects(): UseProjectsReturn {
     setStatusFilter,
     setPriorityFilter,
     setEquipeFilter,
+    setCategoriaFilter,
     getProjectStats,
   }
 }

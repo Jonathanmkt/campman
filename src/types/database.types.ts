@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2025-11-21T14:46:27.241Z
+ * Última atualização: 2025-12-15T22:31:14.309Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -120,6 +120,33 @@ export type Database = {
           },
         ]
       }
+      categoria_projeto: {
+        Row: {
+          cor: string | null
+          created_at: string
+          descricao: string | null
+          id: string
+          nome: string
+          updated_at: string
+        }
+        Insert: {
+          cor?: string | null
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          nome: string
+          updated_at?: string
+        }
+        Update: {
+          cor?: string | null
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          nome?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       colaborador: {
         Row: {
           area_responsavel_id: string | null
@@ -145,7 +172,7 @@ export type Database = {
           pode_gerenciar_tarefas: boolean | null
           possui_cnh: string | null
           possui_veiculo: boolean | null
-          profile_id: string
+          profile_id: string | null
           salario: number | null
           status_colaborador: string | null
           supervisor_id: string | null
@@ -174,7 +201,7 @@ export type Database = {
           pode_gerenciar_tarefas?: boolean | null
           possui_cnh?: string | null
           possui_veiculo?: boolean | null
-          profile_id: string
+          profile_id?: string | null
           salario?: number | null
           status_colaborador?: string | null
           supervisor_id?: string | null
@@ -203,7 +230,7 @@ export type Database = {
           pode_gerenciar_tarefas?: boolean | null
           possui_cnh?: string | null
           possui_veiculo?: boolean | null
-          profile_id?: string
+          profile_id?: string | null
           salario?: number | null
           status_colaborador?: string | null
           supervisor_id?: string | null
@@ -426,6 +453,71 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "vw_equipe_membros"
             referencedColumns: ["equipe_id"]
+          },
+        ]
+      }
+      coordenador_regional: {
+        Row: {
+          data_atualizacao: string
+          data_criacao: string
+          id: string
+          profile_id: string
+        }
+        Insert: {
+          data_atualizacao?: string
+          data_criacao?: string
+          id?: string
+          profile_id: string
+        }
+        Update: {
+          data_atualizacao?: string
+          data_criacao?: string
+          id?: string
+          profile_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coordenador_regional_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      coordenador_regional_municipio: {
+        Row: {
+          coordenador_regional_id: string
+          data_criacao: string
+          id: string
+          municipio_id: string
+        }
+        Insert: {
+          coordenador_regional_id: string
+          data_criacao?: string
+          id?: string
+          municipio_id: string
+        }
+        Update: {
+          coordenador_regional_id?: string
+          data_criacao?: string
+          id?: string
+          municipio_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coordenador_regional_municipio_coordenador_regional_id_fkey"
+            columns: ["coordenador_regional_id"]
+            isOneToOne: false
+            referencedRelation: "coordenador_regional"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "coordenador_regional_municipio_municipio_id_fkey"
+            columns: ["municipio_id"]
+            isOneToOne: false
+            referencedRelation: "municipio"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -1020,6 +1112,7 @@ export type Database = {
           bairro: string | null
           cep: string | null
           cidade: string | null
+          coordenador_regional_id: string | null
           cpf: string | null
           data_atualizacao: string
           data_criacao: string
@@ -1034,6 +1127,7 @@ export type Database = {
           nome_completo: string
           nome_popular: string | null
           observacoes: string | null
+          profile_id: string | null
           profissao: string | null
           responsavel_cadastro: string | null
           rg: string | null
@@ -1047,6 +1141,7 @@ export type Database = {
           bairro?: string | null
           cep?: string | null
           cidade?: string | null
+          coordenador_regional_id?: string | null
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1061,6 +1156,7 @@ export type Database = {
           nome_completo: string
           nome_popular?: string | null
           observacoes?: string | null
+          profile_id?: string | null
           profissao?: string | null
           responsavel_cadastro?: string | null
           rg?: string | null
@@ -1074,6 +1170,7 @@ export type Database = {
           bairro?: string | null
           cep?: string | null
           cidade?: string | null
+          coordenador_regional_id?: string | null
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1088,6 +1185,7 @@ export type Database = {
           nome_completo?: string
           nome_popular?: string | null
           observacoes?: string | null
+          profile_id?: string | null
           profissao?: string | null
           responsavel_cadastro?: string | null
           rg?: string | null
@@ -1096,6 +1194,20 @@ export type Database = {
           tipo_lideranca?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "lideranca_coordenador_regional_id_fkey"
+            columns: ["coordenador_regional_id"]
+            isOneToOne: false
+            referencedRelation: "coordenador_regional"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lideranca_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "lideranca_responsavel_cadastro_fkey"
             columns: ["responsavel_cadastro"]
@@ -1307,6 +1419,77 @@ export type Database = {
           },
         ]
       }
+      milestones: {
+        Row: {
+          color: string | null
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          icon: string | null
+          id: string
+          milestone_date: string
+          name: string
+          project_id: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          icon?: string | null
+          id?: string
+          milestone_date: string
+          name: string
+          project_id: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          color?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          icon?: string | null
+          id?: string
+          milestone_date?: string
+          name?: string
+          project_id?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "milestones_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "colaborador"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "milestones_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "vw_colaboradores_multiplas_equipes"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "milestones_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "vw_equipe_membros"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "milestones_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       municipio: {
         Row: {
           area_km2: number | null
@@ -1444,10 +1627,69 @@ export type Database = {
         }
         Relationships: []
       }
+      project_baselines: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          project_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          project_id: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          project_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_baselines_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "colaborador"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_baselines_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "vw_colaboradores_multiplas_equipes"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "project_baselines_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "vw_equipe_membros"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "project_baselines_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       projects: {
         Row: {
           archived: boolean | null
-          avatar: string | null
+          categoria_id: string | null
           color: string | null
           created_at: string | null
           created_by: string | null
@@ -1456,17 +1698,16 @@ export type Database = {
           id: string
           name: string
           priority: Database["public"]["Enums"]["project_priority"] | null
+          responsavel_id: string | null
           settings: Json | null
-          slug: string
           start_date: string | null
           status: Database["public"]["Enums"]["project_status"] | null
           updated_at: string | null
           updated_by: string | null
-          visibility: Database["public"]["Enums"]["project_visibility"] | null
         }
         Insert: {
           archived?: boolean | null
-          avatar?: string | null
+          categoria_id?: string | null
           color?: string | null
           created_at?: string | null
           created_by?: string | null
@@ -1475,17 +1716,16 @@ export type Database = {
           id?: string
           name: string
           priority?: Database["public"]["Enums"]["project_priority"] | null
+          responsavel_id?: string | null
           settings?: Json | null
-          slug: string
           start_date?: string | null
           status?: Database["public"]["Enums"]["project_status"] | null
           updated_at?: string | null
           updated_by?: string | null
-          visibility?: Database["public"]["Enums"]["project_visibility"] | null
         }
         Update: {
           archived?: boolean | null
-          avatar?: string | null
+          categoria_id?: string | null
           color?: string | null
           created_at?: string | null
           created_by?: string | null
@@ -1494,15 +1734,21 @@ export type Database = {
           id?: string
           name?: string
           priority?: Database["public"]["Enums"]["project_priority"] | null
+          responsavel_id?: string | null
           settings?: Json | null
-          slug?: string
           start_date?: string | null
           status?: Database["public"]["Enums"]["project_status"] | null
           updated_at?: string | null
           updated_by?: string | null
-          visibility?: Database["public"]["Enums"]["project_visibility"] | null
         }
         Relationships: [
+          {
+            foreignKeyName: "projects_categoria_id_fkey"
+            columns: ["categoria_id"]
+            isOneToOne: false
+            referencedRelation: "categoria_projeto"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "projects_created_by_fkey"
             columns: ["created_by"]
@@ -1520,6 +1766,27 @@ export type Database = {
           {
             foreignKeyName: "projects_created_by_fkey"
             columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "vw_equipe_membros"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "projects_responsavel_id_fkey"
+            columns: ["responsavel_id"]
+            isOneToOne: false
+            referencedRelation: "colaborador"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "projects_responsavel_id_fkey"
+            columns: ["responsavel_id"]
+            isOneToOne: false
+            referencedRelation: "vw_colaboradores_multiplas_equipes"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "projects_responsavel_id_fkey"
+            columns: ["responsavel_id"]
             isOneToOne: false
             referencedRelation: "vw_equipe_membros"
             referencedColumns: ["colaborador_id"]
@@ -1730,372 +1997,116 @@ export type Database = {
           },
         ]
       }
-      task_assignees: {
+      task_baseline_snapshots: {
         Row: {
-          ativo: boolean | null
-          colaborador_id: string
+          baseline_id: string
           created_at: string | null
-          data_atribuicao: string | null
-          data_conclusao: string | null
+          due_date: string | null
+          estimated_hours: number | null
           id: string
-          observacoes: string | null
-          papel_na_tarefa: string | null
+          progress: number | null
+          start_date: string | null
           task_id: string
-          tempo_estimado: number | null
-          tempo_gasto: number | null
-          updated_at: string | null
+          task_title: string
         }
         Insert: {
-          ativo?: boolean | null
-          colaborador_id: string
+          baseline_id: string
           created_at?: string | null
-          data_atribuicao?: string | null
-          data_conclusao?: string | null
+          due_date?: string | null
+          estimated_hours?: number | null
           id?: string
-          observacoes?: string | null
-          papel_na_tarefa?: string | null
+          progress?: number | null
+          start_date?: string | null
           task_id: string
-          tempo_estimado?: number | null
-          tempo_gasto?: number | null
-          updated_at?: string | null
+          task_title: string
         }
         Update: {
-          ativo?: boolean | null
-          colaborador_id?: string
+          baseline_id?: string
           created_at?: string | null
-          data_atribuicao?: string | null
-          data_conclusao?: string | null
+          due_date?: string | null
+          estimated_hours?: number | null
           id?: string
-          observacoes?: string | null
-          papel_na_tarefa?: string | null
+          progress?: number | null
+          start_date?: string | null
           task_id?: string
-          tempo_estimado?: number | null
-          tempo_gasto?: number | null
-          updated_at?: string | null
+          task_title?: string
         }
         Relationships: [
           {
-            foreignKeyName: "task_assignees_colaborador_id_fkey"
-            columns: ["colaborador_id"]
+            foreignKeyName: "task_baseline_snapshots_baseline_id_fkey"
+            columns: ["baseline_id"]
             isOneToOne: false
-            referencedRelation: "colaborador"
+            referencedRelation: "project_baselines"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "task_assignees_colaborador_id_fkey"
-            columns: ["colaborador_id"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_assignees_colaborador_id_fkey"
-            columns: ["colaborador_id"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_assignees_task_id_fkey"
+            foreignKeyName: "task_baseline_snapshots_task_id_fkey"
             columns: ["task_id"]
             isOneToOne: false
             referencedRelation: "tasks"
             referencedColumns: ["id"]
-          },
-        ]
-      }
-      task_attachments: {
-        Row: {
-          created_at: string | null
-          created_by: string | null
-          file_name: string
-          file_path: string | null
-          file_size: number
-          id: string
-          mime_type: string
-          storage_key: string | null
-          task_id: string | null
-          updated_at: string | null
-          updated_by: string | null
-          url: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          created_by?: string | null
-          file_name: string
-          file_path?: string | null
-          file_size: number
-          id?: string
-          mime_type: string
-          storage_key?: string | null
-          task_id?: string | null
-          updated_at?: string | null
-          updated_by?: string | null
-          url?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          created_by?: string | null
-          file_name?: string
-          file_path?: string | null
-          file_size?: number
-          id?: string
-          mime_type?: string
-          storage_key?: string | null
-          task_id?: string | null
-          updated_at?: string | null
-          updated_by?: string | null
-          url?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "task_attachments_task_id_fkey"
-            columns: ["task_id"]
-            isOneToOne: false
-            referencedRelation: "tasks"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      task_comments: {
-        Row: {
-          author_id: string | null
-          content: string
-          created_at: string | null
-          created_by: string | null
-          id: string
-          parent_comment_id: string | null
-          task_id: string | null
-          updated_at: string | null
-          updated_by: string | null
-        }
-        Insert: {
-          author_id?: string | null
-          content: string
-          created_at?: string | null
-          created_by?: string | null
-          id?: string
-          parent_comment_id?: string | null
-          task_id?: string | null
-          updated_at?: string | null
-          updated_by?: string | null
-        }
-        Update: {
-          author_id?: string | null
-          content?: string
-          created_at?: string | null
-          created_by?: string | null
-          id?: string
-          parent_comment_id?: string | null
-          task_id?: string | null
-          updated_at?: string | null
-          updated_by?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "task_comments_author_id_fkey"
-            columns: ["author_id"]
-            isOneToOne: false
-            referencedRelation: "colaborador"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_comments_author_id_fkey"
-            columns: ["author_id"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_comments_author_id_fkey"
-            columns: ["author_id"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_comments_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "colaborador"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_comments_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_comments_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_comments_parent_comment_id_fkey"
-            columns: ["parent_comment_id"]
-            isOneToOne: false
-            referencedRelation: "task_comments"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_comments_task_id_fkey"
-            columns: ["task_id"]
-            isOneToOne: false
-            referencedRelation: "tasks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_comments_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "colaborador"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_comments_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_comments_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
           },
         ]
       }
       task_dependencies: {
         Row: {
-          blocking_task_id: string | null
           created_at: string | null
           created_by: string | null
-          dependent_task_id: string | null
+          dependency_type: string
+          depends_on_task_id: string
           id: string
-          type: Database["public"]["Enums"]["dependency_type"] | null
-          updated_at: string | null
-          updated_by: string | null
-        }
-        Insert: {
-          blocking_task_id?: string | null
-          created_at?: string | null
-          created_by?: string | null
-          dependent_task_id?: string | null
-          id?: string
-          type?: Database["public"]["Enums"]["dependency_type"] | null
-          updated_at?: string | null
-          updated_by?: string | null
-        }
-        Update: {
-          blocking_task_id?: string | null
-          created_at?: string | null
-          created_by?: string | null
-          dependent_task_id?: string | null
-          id?: string
-          type?: Database["public"]["Enums"]["dependency_type"] | null
-          updated_at?: string | null
-          updated_by?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "task_dependencies_blocking_task_id_fkey"
-            columns: ["blocking_task_id"]
-            isOneToOne: false
-            referencedRelation: "tasks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_dependencies_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "colaborador"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_dependencies_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_dependencies_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_dependencies_dependent_task_id_fkey"
-            columns: ["dependent_task_id"]
-            isOneToOne: false
-            referencedRelation: "tasks"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_dependencies_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "colaborador"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_dependencies_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_dependencies_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
-          },
-        ]
-      }
-      task_labels: {
-        Row: {
-          created_at: string | null
-          created_by: string | null
-          label_id: string
+          lag_days: number | null
           task_id: string
-          updated_at: string | null
-          updated_by: string | null
         }
         Insert: {
           created_at?: string | null
           created_by?: string | null
-          label_id: string
+          dependency_type?: string
+          depends_on_task_id: string
+          id?: string
+          lag_days?: number | null
           task_id: string
-          updated_at?: string | null
-          updated_by?: string | null
         }
         Update: {
           created_at?: string | null
           created_by?: string | null
-          label_id?: string
+          dependency_type?: string
+          depends_on_task_id?: string
+          id?: string
+          lag_days?: number | null
           task_id?: string
-          updated_at?: string | null
-          updated_by?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "task_labels_label_id_fkey"
-            columns: ["label_id"]
+            foreignKeyName: "task_dependencies_created_by_fkey"
+            columns: ["created_by"]
             isOneToOne: false
-            referencedRelation: "labels"
+            referencedRelation: "colaborador"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "task_labels_task_id_fkey"
+            foreignKeyName: "task_dependencies_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "vw_colaboradores_multiplas_equipes"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "task_dependencies_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "vw_equipe_membros"
+            referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "task_dependencies_depends_on_task_id_fkey"
+            columns: ["depends_on_task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "task_dependencies_task_id_fkey"
             columns: ["task_id"]
             isOneToOne: false
             referencedRelation: "tasks"
@@ -2103,161 +2114,78 @@ export type Database = {
           },
         ]
       }
-      task_statuses: {
+      task_resources: {
         Row: {
-          category: Database["public"]["Enums"]["status_category"]
-          color: string
-          created_at: string | null
-          created_by: string | null
-          id: string
-          is_default: boolean | null
-          name: string
-          position: number
-          updated_at: string | null
-          updated_by: string | null
-          workflow_id: string | null
-        }
-        Insert: {
-          category: Database["public"]["Enums"]["status_category"]
-          color: string
-          created_at?: string | null
-          created_by?: string | null
-          id?: string
-          is_default?: boolean | null
-          name: string
-          position: number
-          updated_at?: string | null
-          updated_by?: string | null
-          workflow_id?: string | null
-        }
-        Update: {
-          category?: Database["public"]["Enums"]["status_category"]
-          color?: string
-          created_at?: string | null
-          created_by?: string | null
-          id?: string
-          is_default?: boolean | null
-          name?: string
-          position?: number
-          updated_at?: string | null
-          updated_by?: string | null
-          workflow_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "task_statuses_workflow_id_fkey"
-            columns: ["workflow_id"]
-            isOneToOne: false
-            referencedRelation: "workflows"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      task_watchers: {
-        Row: {
+          allocation_percentage: number | null
           colaborador_id: string
           created_at: string | null
-          created_by: string | null
+          hours_allocated: number | null
+          hours_worked: number | null
           id: string
+          role_in_task: string | null
           task_id: string
           updated_at: string | null
-          updated_by: string | null
         }
         Insert: {
+          allocation_percentage?: number | null
           colaborador_id: string
           created_at?: string | null
-          created_by?: string | null
+          hours_allocated?: number | null
+          hours_worked?: number | null
           id?: string
+          role_in_task?: string | null
           task_id: string
           updated_at?: string | null
-          updated_by?: string | null
         }
         Update: {
+          allocation_percentage?: number | null
           colaborador_id?: string
           created_at?: string | null
-          created_by?: string | null
+          hours_allocated?: number | null
+          hours_worked?: number | null
           id?: string
+          role_in_task?: string | null
           task_id?: string
           updated_at?: string | null
-          updated_by?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "task_watchers_colaborador_id_fkey"
+            foreignKeyName: "task_resources_colaborador_id_fkey"
             columns: ["colaborador_id"]
             isOneToOne: false
             referencedRelation: "colaborador"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "task_watchers_colaborador_id_fkey"
+            foreignKeyName: "task_resources_colaborador_id_fkey"
             columns: ["colaborador_id"]
             isOneToOne: false
             referencedRelation: "vw_colaboradores_multiplas_equipes"
             referencedColumns: ["colaborador_id"]
           },
           {
-            foreignKeyName: "task_watchers_colaborador_id_fkey"
+            foreignKeyName: "task_resources_colaborador_id_fkey"
             columns: ["colaborador_id"]
             isOneToOne: false
             referencedRelation: "vw_equipe_membros"
             referencedColumns: ["colaborador_id"]
           },
           {
-            foreignKeyName: "task_watchers_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "colaborador"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_watchers_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_watchers_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_watchers_task_id_fkey"
+            foreignKeyName: "task_resources_task_id_fkey"
             columns: ["task_id"]
             isOneToOne: false
             referencedRelation: "tasks"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_watchers_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "colaborador"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "task_watchers_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "vw_colaboradores_multiplas_equipes"
-            referencedColumns: ["colaborador_id"]
-          },
-          {
-            foreignKeyName: "task_watchers_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "vw_equipe_membros"
-            referencedColumns: ["colaborador_id"]
           },
         ]
       }
       tasks: {
         Row: {
+          actual_hours: number | null
           archived: boolean | null
           archived_by: string | null
+          baseline_end_date: string | null
+          baseline_start_date: string | null
           colaborador_responsavel_id: string | null
           completed_at: string | null
           created_at: string | null
@@ -2265,11 +2193,16 @@ export type Database = {
           custom_fields: Json | null
           description: string | null
           due_date: string | null
+          duration_days: number | null
           equipe_responsavel_id: string | null
+          estimated_hours: number | null
           id: string
+          is_critical_path: boolean | null
+          is_milestone: boolean | null
           original_estimate: number | null
           parent_task_id: string | null
           priority: Database["public"]["Enums"]["task_priority"] | null
+          progress: number | null
           project_id: string | null
           remaining_estimate: number | null
           slug: string
@@ -2284,8 +2217,11 @@ export type Database = {
           updated_by: string | null
         }
         Insert: {
+          actual_hours?: number | null
           archived?: boolean | null
           archived_by?: string | null
+          baseline_end_date?: string | null
+          baseline_start_date?: string | null
           colaborador_responsavel_id?: string | null
           completed_at?: string | null
           created_at?: string | null
@@ -2293,11 +2229,16 @@ export type Database = {
           custom_fields?: Json | null
           description?: string | null
           due_date?: string | null
+          duration_days?: number | null
           equipe_responsavel_id?: string | null
+          estimated_hours?: number | null
           id?: string
+          is_critical_path?: boolean | null
+          is_milestone?: boolean | null
           original_estimate?: number | null
           parent_task_id?: string | null
           priority?: Database["public"]["Enums"]["task_priority"] | null
+          progress?: number | null
           project_id?: string | null
           remaining_estimate?: number | null
           slug: string
@@ -2312,8 +2253,11 @@ export type Database = {
           updated_by?: string | null
         }
         Update: {
+          actual_hours?: number | null
           archived?: boolean | null
           archived_by?: string | null
+          baseline_end_date?: string | null
+          baseline_start_date?: string | null
           colaborador_responsavel_id?: string | null
           completed_at?: string | null
           created_at?: string | null
@@ -2321,11 +2265,16 @@ export type Database = {
           custom_fields?: Json | null
           description?: string | null
           due_date?: string | null
+          duration_days?: number | null
           equipe_responsavel_id?: string | null
+          estimated_hours?: number | null
           id?: string
+          is_critical_path?: boolean | null
+          is_milestone?: boolean | null
           original_estimate?: number | null
           parent_task_id?: string | null
           priority?: Database["public"]["Enums"]["task_priority"] | null
+          progress?: number | null
           project_id?: string | null
           remaining_estimate?: number | null
           slug?: string
@@ -2436,13 +2385,6 @@ export type Database = {
             columns: ["sprint_id"]
             isOneToOne: false
             referencedRelation: "sprints"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "tasks_status_id_fkey"
-            columns: ["status_id"]
-            isOneToOne: false
-            referencedRelation: "task_statuses"
             referencedColumns: ["id"]
           },
           {
@@ -2774,29 +2716,6 @@ export type Database = {
       addgeometrycolumn:
         | {
             Args: {
-              column_name: string
-              new_dim: number
-              new_srid: number
-              new_type: string
-              schema_name: string
-              table_name: string
-              use_typmod?: boolean
-            }
-            Returns: string
-          }
-        | {
-            Args: {
-              column_name: string
-              new_dim: number
-              new_srid: number
-              new_type: string
-              table_name: string
-              use_typmod?: boolean
-            }
-            Returns: string
-          }
-        | {
-            Args: {
               catalog_name: string
               column_name: string
               new_dim: number
@@ -2808,8 +2727,40 @@ export type Database = {
             }
             Returns: string
           }
+        | {
+            Args: {
+              column_name: string
+              new_dim: number
+              new_srid: number
+              new_type: string
+              schema_name: string
+              table_name: string
+              use_typmod?: boolean
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              column_name: string
+              new_dim: number
+              new_srid: number
+              new_type: string
+              table_name: string
+              use_typmod?: boolean
+            }
+            Returns: string
+          }
       disablelongtransactions: { Args: never; Returns: string }
       dropgeometrycolumn:
+        | {
+            Args: {
+              catalog_name: string
+              column_name: string
+              schema_name: string
+              table_name: string
+            }
+            Returns: string
+          }
         | {
             Args: {
               column_name: string
@@ -2819,26 +2770,17 @@ export type Database = {
             Returns: string
           }
         | { Args: { column_name: string; table_name: string }; Returns: string }
+      dropgeometrytable:
         | {
             Args: {
               catalog_name: string
-              column_name: string
               schema_name: string
               table_name: string
             }
             Returns: string
           }
-      dropgeometrytable:
         | { Args: { schema_name: string; table_name: string }; Returns: string }
         | { Args: { table_name: string }; Returns: string }
-        | {
-            Args: {
-              catalog_name: string
-              schema_name: string
-              table_name: string
-            }
-            Returns: string
-          }
       enablelongtransactions: { Args: never; Returns: string }
       equals: { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
       geometry: { Args: { "": string }; Returns: unknown }
@@ -3045,8 +2987,8 @@ export type Database = {
       gettransactionid: { Args: never; Returns: unknown }
       longtransactionsenabled: { Args: never; Returns: boolean }
       populate_geometry_columns:
-        | { Args: { use_typmod?: boolean }; Returns: string }
         | { Args: { tbl_oid: unknown; use_typmod?: boolean }; Returns: number }
+        | { Args: { use_typmod?: boolean }; Returns: string }
       postgis_constraint_dims: {
         Args: { geomcolumn: string; geomschema: string; geomtable: string }
         Returns: number
@@ -3132,6 +3074,14 @@ export type Database = {
       st_asewkt: { Args: { "": string }; Returns: string }
       st_asgeojson:
         | {
+            Args: { geog: unknown; maxdecimaldigits?: number; options?: number }
+            Returns: string
+          }
+        | {
+            Args: { geom: unknown; maxdecimaldigits?: number; options?: number }
+            Returns: string
+          }
+        | {
             Args: {
               geom_column?: string
               maxdecimaldigits?: number
@@ -3140,18 +3090,32 @@ export type Database = {
             }
             Returns: string
           }
-        | {
-            Args: { geom: unknown; maxdecimaldigits?: number; options?: number }
-            Returns: string
-          }
-        | {
-            Args: { geog: unknown; maxdecimaldigits?: number; options?: number }
-            Returns: string
-          }
         | { Args: { "": string }; Returns: string }
       st_asgml:
         | {
+            Args: {
+              geog: unknown
+              id?: string
+              maxdecimaldigits?: number
+              nprefix?: string
+              options?: number
+            }
+            Returns: string
+          }
+        | {
             Args: { geom: unknown; maxdecimaldigits?: number; options?: number }
+            Returns: string
+          }
+        | { Args: { "": string }; Returns: string }
+        | {
+            Args: {
+              geog: unknown
+              id?: string
+              maxdecimaldigits?: number
+              nprefix?: string
+              options?: number
+              version: number
+            }
             Returns: string
           }
         | {
@@ -3165,35 +3129,13 @@ export type Database = {
             }
             Returns: string
           }
-        | {
-            Args: {
-              geog: unknown
-              id?: string
-              maxdecimaldigits?: number
-              nprefix?: string
-              options?: number
-              version: number
-            }
-            Returns: string
-          }
-        | {
-            Args: {
-              geog: unknown
-              id?: string
-              maxdecimaldigits?: number
-              nprefix?: string
-              options?: number
-            }
-            Returns: string
-          }
-        | { Args: { "": string }; Returns: string }
       st_askml:
         | {
-            Args: { geom: unknown; maxdecimaldigits?: number; nprefix?: string }
+            Args: { geog: unknown; maxdecimaldigits?: number; nprefix?: string }
             Returns: string
           }
         | {
-            Args: { geog: unknown; maxdecimaldigits?: number; nprefix?: string }
+            Args: { geom: unknown; maxdecimaldigits?: number; nprefix?: string }
             Returns: string
           }
         | { Args: { "": string }; Returns: string }
@@ -3214,11 +3156,11 @@ export type Database = {
       }
       st_assvg:
         | {
-            Args: { geom: unknown; maxdecimaldigits?: number; rel?: number }
+            Args: { geog: unknown; maxdecimaldigits?: number; rel?: number }
             Returns: string
           }
         | {
-            Args: { geog: unknown; maxdecimaldigits?: number; rel?: number }
+            Args: { geom: unknown; maxdecimaldigits?: number; rel?: number }
             Returns: string
           }
         | { Args: { "": string }; Returns: string }
@@ -3226,8 +3168,7 @@ export type Database = {
       st_astwkb:
         | {
             Args: {
-              geom: unknown[]
-              ids: number[]
+              geom: unknown
               prec?: number
               prec_m?: number
               prec_z?: number
@@ -3238,7 +3179,8 @@ export type Database = {
           }
         | {
             Args: {
-              geom: unknown
+              geom: unknown[]
+              ids: number[]
               prec?: number
               prec_m?: number
               prec_z?: number
@@ -3252,8 +3194,8 @@ export type Database = {
         Returns: string
       }
       st_azimuth:
-        | { Args: { geom1: unknown; geom2: unknown }; Returns: number }
         | { Args: { geog1: unknown; geog2: unknown }; Returns: number }
+        | { Args: { geom1: unknown; geom2: unknown }; Returns: number }
       st_boundingdiagonal: {
         Args: { fits?: boolean; geom: unknown }
         Returns: unknown
@@ -3318,11 +3260,11 @@ export type Database = {
         Returns: boolean
       }
       st_distance:
-        | { Args: { geom1: unknown; geom2: unknown }; Returns: number }
         | {
             Args: { geog1: unknown; geog2: unknown; use_spheroid?: boolean }
             Returns: number
           }
+        | { Args: { geom1: unknown; geom2: unknown }; Returns: number }
       st_distancesphere:
         | { Args: { geom1: unknown; geom2: unknown }; Returns: number }
         | {
@@ -3344,6 +3286,11 @@ export type Database = {
       }
       st_equals: { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
       st_expand:
+        | { Args: { box: unknown; dx: number; dy: number }; Returns: unknown }
+        | {
+            Args: { box: unknown; dx: number; dy: number; dz?: number }
+            Returns: unknown
+          }
         | {
             Args: {
               dm?: number
@@ -3354,11 +3301,6 @@ export type Database = {
             }
             Returns: unknown
           }
-        | {
-            Args: { box: unknown; dx: number; dy: number; dz?: number }
-            Returns: unknown
-          }
-        | { Args: { box: unknown; dx: number; dy: number }; Returns: unknown }
       st_force3d: { Args: { geom: unknown; zvalue?: number }; Returns: unknown }
       st_force3dm: {
         Args: { geom: unknown; mvalue?: number }
@@ -3381,8 +3323,8 @@ export type Database = {
       st_geogfromtext: { Args: { "": string }; Returns: unknown }
       st_geographyfromtext: { Args: { "": string }; Returns: unknown }
       st_geohash:
-        | { Args: { geom: unknown; maxchars?: number }; Returns: string }
         | { Args: { geog: unknown; maxchars?: number }; Returns: string }
+        | { Args: { geom: unknown; maxchars?: number }; Returns: string }
       st_geomcollfromtext: { Args: { "": string }; Returns: unknown }
       st_geometricmedian: {
         Args: {
@@ -3426,8 +3368,8 @@ export type Database = {
         Returns: unknown
       }
       st_intersects:
-        | { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
         | { Args: { geog1: unknown; geog2: unknown }; Returns: boolean }
+        | { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
       st_isvaliddetail: {
         Args: { flags?: number; geom: unknown }
         Returns: Database["public"]["CompositeTypes"]["valid_detail"]
@@ -3580,8 +3522,8 @@ export type Database = {
         Returns: unknown
       }
       st_setsrid:
-        | { Args: { geom: unknown; srid: number }; Returns: unknown }
         | { Args: { geog: unknown; srid: number }; Returns: unknown }
+        | { Args: { geom: unknown; srid: number }; Returns: unknown }
       st_sharedpaths: {
         Args: { geom1: unknown; geom2: unknown }
         Returns: unknown
@@ -3604,8 +3546,8 @@ export type Database = {
         Returns: Record<string, unknown>[]
       }
       st_srid:
-        | { Args: { geom: unknown }; Returns: number }
         | { Args: { geog: unknown }; Returns: number }
+        | { Args: { geom: unknown }; Returns: number }
       st_subdivide: {
         Args: { geom: unknown; gridsize?: number; maxvertices?: number }
         Returns: unknown[]
@@ -3634,15 +3576,15 @@ export type Database = {
       }
       st_touches: { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
       st_transform:
-        | { Args: { geom: unknown; to_proj: string }; Returns: unknown }
-        | {
-            Args: { from_proj: string; geom: unknown; to_srid: number }
-            Returns: unknown
-          }
         | {
             Args: { from_proj: string; geom: unknown; to_proj: string }
             Returns: unknown
           }
+        | {
+            Args: { from_proj: string; geom: unknown; to_srid: number }
+            Returns: unknown
+          }
+        | { Args: { geom: unknown; to_proj: string }; Returns: unknown }
       st_triangulatepolygon: { Args: { g1: unknown }; Returns: unknown }
       st_union:
         | { Args: { geom1: unknown; geom2: unknown }; Returns: unknown }

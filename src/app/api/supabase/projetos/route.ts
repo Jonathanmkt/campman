@@ -15,6 +15,7 @@ export async function GET(request: NextRequest) {
     const priority = searchParams.get('priority')
     const archived = searchParams.get('archived') === 'true'
     const equipeId = searchParams.get('equipe_id')
+    const categoriaId = searchParams.get('categoria_id')
     
     let query = supabase
       .from('projects')
@@ -47,6 +48,10 @@ export async function GET(request: NextRequest) {
 
     if (equipeId) {
       query = query.eq('projeto_equipe.equipe_id', equipeId)
+    }
+
+    if (categoriaId) {
+      query = query.eq('categoria_id', categoriaId)
     }
 
     // Paginação
@@ -92,24 +97,10 @@ export async function POST(request: NextRequest) {
     const { equipes, ...projectData }: { equipes?: string[], [key: string]: unknown } = body
 
     // Validações básicas
-    if (!projectData.name || !projectData.slug) {
+    if (!projectData.name) {
       return NextResponse.json(
-        { error: 'Nome e slug são obrigatórios' },
+        { error: 'Nome é obrigatório' },
         { status: 400 }
-      )
-    }
-
-    // Verificar se o slug já existe
-    const { data: existingProject } = await supabase
-      .from('projects')
-      .select('id')
-      .eq('slug', projectData.slug)
-      .single()
-
-    if (existingProject) {
-      return NextResponse.json(
-        { error: 'Slug já existe' },
-        { status: 409 }
       )
     }
 

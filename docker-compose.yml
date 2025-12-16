@@ -3,17 +3,28 @@ services:
   campanha-thiago-moura:
     image: ghcr.io/jonathanmkt/campanha-thiago-moura:latest
     networks:
-      - app-network
+      - Singanet
     deploy:
       resources:
         limits:
           cpus: '0.5'
           memory: 512M
-    environment:
-      - NEXT_PUBLIC_SITE_URL=https://campanha-thiago-moura.com
-    ports:
-      - "3000:3000"
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+      labels:
+        - traefik.enable=1
+        - traefik.http.routers.campanha-thiago-moura.rule=Host(`app.thiagomoura.com.br`)
+        - traefik.http.routers.campanha-thiago-moura.entrypoints=websecure
+        - traefik.http.routers.campanha-thiago-moura.priority=1
+        - traefik.http.routers.campanha-thiago-moura.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.campanha-thiago-moura.service=campanha-thiago-moura
+        - traefik.http.services.campanha-thiago-moura.loadbalancer.server.port=3000
+        - traefik.http.services.campanha-thiago-moura.loadbalancer.passHostHeader=true
+      placement:
+        constraints:
+          - node.role == manager
 
 networks:
-  app-network:
+  Singanet:
     external: true

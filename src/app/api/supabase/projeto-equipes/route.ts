@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
       .from('projeto_equipe')
       .select(`
         *,
-        projects(id, name, slug),
+        projects(id, name),
         equipe(id, nome, tipo_equipe)
       `)
       .eq('ativo', ativo)

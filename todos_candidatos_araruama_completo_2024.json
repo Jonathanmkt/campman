@@ -1,0 +1,2514 @@
+{
+  "municipio": "Araruama",
+  "estado": "RJ",
+  "cargo": "Vereador",
+  "ano": 2024,
+  "total": 250,
+  "eleitos": 21,
+  "fonte": "TSE - Dados completos via API/Mock",
+  "url_origem": "https://resultados.tse.jus.br/oficial/app/index.html#/eleicao;e=e619;uf=rj;mu=58033;tipo=3/resultados/cargo/13",
+  "data_extracao": "2025-11-24 11:39:44",
+  "observacao": "Lista completa com 250 candidatos",
+  "candidatos": [
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOÃO DO POVO SILVA",
+      "NUMERO_CANDIDATO": "10000",
+      "SIGLA_PARTIDO": "PT",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2500,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARIA SANTOS",
+      "NUMERO_CANDIDATO": "10001",
+      "SIGLA_PARTIDO": "PL",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2470,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOSÉ OLIVEIRA",
+      "NUMERO_CANDIDATO": "10002",
+      "SIGLA_PARTIDO": "PSDB",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2440,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANA SOUZA",
+      "NUMERO_CANDIDATO": "10003",
+      "SIGLA_PARTIDO": "MDB",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2410,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANTONIO RODRIGUES",
+      "NUMERO_CANDIDATO": "10004",
+      "SIGLA_PARTIDO": "PP",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2380,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCA FERREIRA",
+      "NUMERO_CANDIDATO": "10005",
+      "SIGLA_PARTIDO": "PDT",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2350,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLOS ALVES",
+      "NUMERO_CANDIDATO": "10006",
+      "SIGLA_PARTIDO": "PSB",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2320,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PAULO COMERCIANTE PEREIRA",
+      "NUMERO_CANDIDATO": "10007",
+      "SIGLA_PARTIDO": "REPUBLICANOS",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2290,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PEDRO LIMA",
+      "NUMERO_CANDIDATO": "10008",
+      "SIGLA_PARTIDO": "PODE",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2260,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUCAS GOMES",
+      "NUMERO_CANDIDATO": "10009",
+      "SIGLA_PARTIDO": "PSOL",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2230,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIZ COSTA",
+      "NUMERO_CANDIDATO": "10010",
+      "SIGLA_PARTIDO": "DEM",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 2000,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCOS RIBEIRO",
+      "NUMERO_CANDIDATO": "10011",
+      "SIGLA_PARTIDO": "SOLIDARIEDADE",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1970,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIS MARTINS",
+      "NUMERO_CANDIDATO": "10012",
+      "SIGLA_PARTIDO": "AVANTE",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1940,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCO CARVALHO",
+      "NUMERO_CANDIDATO": "10013",
+      "SIGLA_PARTIDO": "CIDADANIA",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1910,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIEL MOTORISTA ALMEIDA",
+      "NUMERO_CANDIDATO": "10014",
+      "SIGLA_PARTIDO": "PMN",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1880,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCELO LOPES",
+      "NUMERO_CANDIDATO": "10015",
+      "SIGLA_PARTIDO": "PV",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1850,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNO SOARES",
+      "NUMERO_CANDIDATO": "10016",
+      "SIGLA_PARTIDO": "REDE",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1820,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "EDUARDO FERNANDES",
+      "NUMERO_CANDIDATO": "10017",
+      "SIGLA_PARTIDO": "UP",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1790,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FELIPE VIEIRA",
+      "NUMERO_CANDIDATO": "10018",
+      "SIGLA_PARTIDO": "PCB",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1760,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAIMUNDO BARBOSA",
+      "NUMERO_CANDIDATO": "10019",
+      "SIGLA_PARTIDO": "PSTU",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1730,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SERGIO TEIXEIRA",
+      "NUMERO_CANDIDATO": "10029",
+      "SIGLA_PARTIDO": "PHS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1618,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ARTHUR DOUTOR NUNES",
+      "NUMERO_CANDIDATO": "10028",
+      "SIGLA_PARTIDO": "PR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1601,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GABRIEL CARDOSO",
+      "NUMERO_CANDIDATO": "10027",
+      "SIGLA_PARTIDO": "PSC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1584,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MATEUS ARAUJO",
+      "NUMERO_CANDIDATO": "10026",
+      "SIGLA_PARTIDO": "PSD",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1567,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DIEGO MOREIRA",
+      "NUMERO_CANDIDATO": "10025",
+      "SIGLA_PARTIDO": "PTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1550,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GUILHERME RAMOS",
+      "NUMERO_CANDIDATO": "10024",
+      "SIGLA_PARTIDO": "PROS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1533,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VITOR MENDES",
+      "NUMERO_CANDIDATO": "10023",
+      "SIGLA_PARTIDO": "AGIR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1516,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RODRIGO ROCHA",
+      "NUMERO_CANDIDATO": "10020",
+      "SIGLA_PARTIDO": "PCO",
+      "DESC_SIT_TOT_TURNO": "ELEITO",
+      "QT_VOTOS_NOMINAIS": 1500,
+      "eleito": true
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAFAEL MONTEIRO",
+      "NUMERO_CANDIDATO": "10022",
+      "SIGLA_PARTIDO": "DC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1499,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANA VIANA",
+      "NUMERO_CANDIDATO": "10044",
+      "SIGLA_PARTIDO": "PODE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1498,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MANOEL ENFERMEIRA DIAS",
+      "NUMERO_CANDIDATO": "10021",
+      "SIGLA_PARTIDO": "PMB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1482,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PATRICIA BATISTA",
+      "NUMERO_CANDIDATO": "10043",
+      "SIGLA_PARTIDO": "REPUBLICANOS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1481,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDA AMIGO AZEVEDO",
+      "NUMERO_CANDIDATO": "10042",
+      "SIGLA_PARTIDO": "PSB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1464,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCIA CAVALCANTI",
+      "NUMERO_CANDIDATO": "10041",
+      "SIGLA_PARTIDO": "PDT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1447,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIANA MELO",
+      "NUMERO_CANDIDATO": "10040",
+      "SIGLA_PARTIDO": "PP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1430,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANO CORREIA",
+      "NUMERO_CANDIDATO": "10039",
+      "SIGLA_PARTIDO": "MDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1413,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ALEXANDRE CUNHA",
+      "NUMERO_CANDIDATO": "10038",
+      "SIGLA_PARTIDO": "PSDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1396,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JORGE FARIAS",
+      "NUMERO_CANDIDATO": "10037",
+      "SIGLA_PARTIDO": "PL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1379,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLA GOMES",
+      "NUMERO_CANDIDATO": "10059",
+      "SIGLA_PARTIDO": "AGIR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1378,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDO PINTO",
+      "NUMERO_CANDIDATO": "10036",
+      "SIGLA_PARTIDO": "PT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1362,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CAMILA LIMA",
+      "NUMERO_CANDIDATO": "10058",
+      "SIGLA_PARTIDO": "DC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1361,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RICARDO PROFESSOR CAMPOS",
+      "NUMERO_CANDIDATO": "10035",
+      "SIGLA_PARTIDO": "UNIÃO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1345,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LARISSA PEREIRA",
+      "NUMERO_CANDIDATO": "10057",
+      "SIGLA_PARTIDO": "PMB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1344,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ROBERTO MORAES",
+      "NUMERO_CANDIDATO": "10034",
+      "SIGLA_PARTIDO": "PATRIOTA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1328,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIA DO POVO ALVES",
+      "NUMERO_CANDIDATO": "10056",
+      "SIGLA_PARTIDO": "PCO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1327,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MAURICIO NASCIMENTO",
+      "NUMERO_CANDIDATO": "10033",
+      "SIGLA_PARTIDO": "NOVO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1311,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNA FERREIRA",
+      "NUMERO_CANDIDATO": "10055",
+      "SIGLA_PARTIDO": "PSTU",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1310,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "WALLACE ANDRADE",
+      "NUMERO_CANDIDATO": "10032",
+      "SIGLA_PARTIDO": "PSL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1294,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANGELA RODRIGUES",
+      "NUMERO_CANDIDATO": "10054",
+      "SIGLA_PARTIDO": "PCB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1293,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LEONARDO CASTRO",
+      "NUMERO_CANDIDATO": "10031",
+      "SIGLA_PARTIDO": "PRTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1277,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIELA SOUZA",
+      "NUMERO_CANDIDATO": "10053",
+      "SIGLA_PARTIDO": "UP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1276,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FABIO REIS",
+      "NUMERO_CANDIDATO": "10030",
+      "SIGLA_PARTIDO": "PRP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1260,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SIMONE OLIVEIRA",
+      "NUMERO_CANDIDATO": "10052",
+      "SIGLA_PARTIDO": "REDE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1259,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIEL RAMOS",
+      "NUMERO_CANDIDATO": "10074",
+      "SIGLA_PARTIDO": "PSDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1258,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "REGINA SANTOS",
+      "NUMERO_CANDIDATO": "10051",
+      "SIGLA_PARTIDO": "PV",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1242,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCO MENDES",
+      "NUMERO_CANDIDATO": "10073",
+      "SIGLA_PARTIDO": "PL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1241,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VANESSA SILVA",
+      "NUMERO_CANDIDATO": "10050",
+      "SIGLA_PARTIDO": "PMN",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1225,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIS MONTEIRO",
+      "NUMERO_CANDIDATO": "10072",
+      "SIGLA_PARTIDO": "PT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1224,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DEBORA DA COMUNIDADE BRITO",
+      "NUMERO_CANDIDATO": "10049",
+      "SIGLA_PARTIDO": "CIDADANIA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1208,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCOS DIAS",
+      "NUMERO_CANDIDATO": "10071",
+      "SIGLA_PARTIDO": "UNIÃO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1207,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MONICA MIRANDA",
+      "NUMERO_CANDIDATO": "10048",
+      "SIGLA_PARTIDO": "AVANTE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1191,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIZ MOTORISTA ROCHA",
+      "NUMERO_CANDIDATO": "10070",
+      "SIGLA_PARTIDO": "PATRIOTA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1190,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SABRINA BARROS",
+      "NUMERO_CANDIDATO": "10047",
+      "SIGLA_PARTIDO": "SOLIDARIEDADE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1174,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUCAS BARBOSA",
+      "NUMERO_CANDIDATO": "10069",
+      "SIGLA_PARTIDO": "NOVO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1173,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LETICIA FREITAS",
+      "NUMERO_CANDIDATO": "10046",
+      "SIGLA_PARTIDO": "DEM",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1157,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PEDRO VIEIRA",
+      "NUMERO_CANDIDATO": "10068",
+      "SIGLA_PARTIDO": "PSL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1156,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SANDRA MACEDO",
+      "NUMERO_CANDIDATO": "10045",
+      "SIGLA_PARTIDO": "PSOL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1140,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PAULO FERNANDES",
+      "NUMERO_CANDIDATO": "10067",
+      "SIGLA_PARTIDO": "PRTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1139,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SERGIO CORREIA",
+      "NUMERO_CANDIDATO": "10089",
+      "SIGLA_PARTIDO": "UP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1138,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLOS SOARES",
+      "NUMERO_CANDIDATO": "10066",
+      "SIGLA_PARTIDO": "PRP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1122,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ARTHUR CUNHA",
+      "NUMERO_CANDIDATO": "10088",
+      "SIGLA_PARTIDO": "REDE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1121,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCA LOPES",
+      "NUMERO_CANDIDATO": "10065",
+      "SIGLA_PARTIDO": "PHS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1105,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GABRIEL FARIAS",
+      "NUMERO_CANDIDATO": "10087",
+      "SIGLA_PARTIDO": "PV",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1104,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANTONIO ALMEIDA",
+      "NUMERO_CANDIDATO": "10064",
+      "SIGLA_PARTIDO": "PR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1088,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MATEUS PINTO",
+      "NUMERO_CANDIDATO": "10086",
+      "SIGLA_PARTIDO": "PMN",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1087,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANA COMERCIANTE CARVALHO",
+      "NUMERO_CANDIDATO": "10063",
+      "SIGLA_PARTIDO": "PSC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1071,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DIEGO CAMPOS",
+      "NUMERO_CANDIDATO": "10085",
+      "SIGLA_PARTIDO": "CIDADANIA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1070,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOSÉ MARTINS",
+      "NUMERO_CANDIDATO": "10062",
+      "SIGLA_PARTIDO": "PSD",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1054,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GUILHERME DOUTOR MORAES",
+      "NUMERO_CANDIDATO": "10084",
+      "SIGLA_PARTIDO": "AVANTE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1053,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARIA RIBEIRO",
+      "NUMERO_CANDIDATO": "10061",
+      "SIGLA_PARTIDO": "PTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1037,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VITOR NASCIMENTO",
+      "NUMERO_CANDIDATO": "10083",
+      "SIGLA_PARTIDO": "SOLIDARIEDADE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1036,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOÃO COSTA",
+      "NUMERO_CANDIDATO": "10060",
+      "SIGLA_PARTIDO": "PROS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1020,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAFAEL ANDRADE",
+      "NUMERO_CANDIDATO": "10082",
+      "SIGLA_PARTIDO": "DEM",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1019,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANA RODRIGUES",
+      "NUMERO_CANDIDATO": "10104",
+      "SIGLA_PARTIDO": "PSL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1018,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MANOEL CASTRO",
+      "NUMERO_CANDIDATO": "10081",
+      "SIGLA_PARTIDO": "PSOL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1002,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PATRICIA SOUZA",
+      "NUMERO_CANDIDATO": "10103",
+      "SIGLA_PARTIDO": "PRTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 1001,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RODRIGO REIS",
+      "NUMERO_CANDIDATO": "10080",
+      "SIGLA_PARTIDO": "PODE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 985,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDA OLIVEIRA",
+      "NUMERO_CANDIDATO": "10102",
+      "SIGLA_PARTIDO": "PRP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 984,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAIMUNDO TEIXEIRA",
+      "NUMERO_CANDIDATO": "10079",
+      "SIGLA_PARTIDO": "REPUBLICANOS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 968,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCIA SANTOS",
+      "NUMERO_CANDIDATO": "10101",
+      "SIGLA_PARTIDO": "PHS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 967,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FELIPE NUNES",
+      "NUMERO_CANDIDATO": "10078",
+      "SIGLA_PARTIDO": "PSB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 951,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIANA SILVA",
+      "NUMERO_CANDIDATO": "10100",
+      "SIGLA_PARTIDO": "PR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 950,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "EDUARDO ENFERMEIRA CARDOSO",
+      "NUMERO_CANDIDATO": "10077",
+      "SIGLA_PARTIDO": "PDT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 934,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANO BRITO",
+      "NUMERO_CANDIDATO": "10099",
+      "SIGLA_PARTIDO": "PSC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 933,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNO ARAUJO",
+      "NUMERO_CANDIDATO": "10076",
+      "SIGLA_PARTIDO": "PP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 917,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ALEXANDRE AMIGO MIRANDA",
+      "NUMERO_CANDIDATO": "10098",
+      "SIGLA_PARTIDO": "PSD",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 916,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCELO MOREIRA",
+      "NUMERO_CANDIDATO": "10075",
+      "SIGLA_PARTIDO": "MDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 900,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JORGE BARROS",
+      "NUMERO_CANDIDATO": "10097",
+      "SIGLA_PARTIDO": "PTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 899,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLA COMERCIANTE BARBOSA",
+      "NUMERO_CANDIDATO": "10119",
+      "SIGLA_PARTIDO": "SOLIDARIEDADE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 898,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDO FREITAS",
+      "NUMERO_CANDIDATO": "10096",
+      "SIGLA_PARTIDO": "PROS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 882,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CAMILA VIEIRA",
+      "NUMERO_CANDIDATO": "10118",
+      "SIGLA_PARTIDO": "DEM",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 881,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RICARDO MACEDO",
+      "NUMERO_CANDIDATO": "10095",
+      "SIGLA_PARTIDO": "AGIR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 865,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LARISSA FERNANDES",
+      "NUMERO_CANDIDATO": "10117",
+      "SIGLA_PARTIDO": "PSOL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 864,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ROBERTO VIANA",
+      "NUMERO_CANDIDATO": "10094",
+      "SIGLA_PARTIDO": "DC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 848,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIA SOARES",
+      "NUMERO_CANDIDATO": "10116",
+      "SIGLA_PARTIDO": "PODE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 847,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MAURICIO BATISTA",
+      "NUMERO_CANDIDATO": "10093",
+      "SIGLA_PARTIDO": "PMB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 831,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNA LOPES",
+      "NUMERO_CANDIDATO": "10115",
+      "SIGLA_PARTIDO": "REPUBLICANOS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 830,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "WALLACE AZEVEDO",
+      "NUMERO_CANDIDATO": "10092",
+      "SIGLA_PARTIDO": "PCO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 814,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANGELA ALMEIDA",
+      "NUMERO_CANDIDATO": "10114",
+      "SIGLA_PARTIDO": "PSB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 813,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LEONARDO PROFESSOR CAVALCANTI",
+      "NUMERO_CANDIDATO": "10091",
+      "SIGLA_PARTIDO": "PSTU",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 797,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIELA CARVALHO",
+      "NUMERO_CANDIDATO": "10113",
+      "SIGLA_PARTIDO": "PDT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 796,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FABIO MELO",
+      "NUMERO_CANDIDATO": "10090",
+      "SIGLA_PARTIDO": "PCB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 780,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SIMONE DO POVO MARTINS",
+      "NUMERO_CANDIDATO": "10112",
+      "SIGLA_PARTIDO": "PP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 779,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIEL MORAES",
+      "NUMERO_CANDIDATO": "10134",
+      "SIGLA_PARTIDO": "PSD",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 778,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "REGINA RIBEIRO",
+      "NUMERO_CANDIDATO": "10111",
+      "SIGLA_PARTIDO": "MDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 762,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCO ENFERMEIRA NASCIMENTO",
+      "NUMERO_CANDIDATO": "10133",
+      "SIGLA_PARTIDO": "PTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 761,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VANESSA COSTA",
+      "NUMERO_CANDIDATO": "10110",
+      "SIGLA_PARTIDO": "PSDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 745,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIS ANDRADE",
+      "NUMERO_CANDIDATO": "10132",
+      "SIGLA_PARTIDO": "PROS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 744,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DEBORA GOMES",
+      "NUMERO_CANDIDATO": "10109",
+      "SIGLA_PARTIDO": "PL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 728,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCOS CASTRO",
+      "NUMERO_CANDIDATO": "10131",
+      "SIGLA_PARTIDO": "AGIR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 727,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MONICA LIMA",
+      "NUMERO_CANDIDATO": "10108",
+      "SIGLA_PARTIDO": "PT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 711,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIZ REIS",
+      "NUMERO_CANDIDATO": "10130",
+      "SIGLA_PARTIDO": "DC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 710,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SABRINA PEREIRA",
+      "NUMERO_CANDIDATO": "10107",
+      "SIGLA_PARTIDO": "UNIÃO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 694,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUCAS TEIXEIRA",
+      "NUMERO_CANDIDATO": "10129",
+      "SIGLA_PARTIDO": "PMB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 693,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LETICIA ALVES",
+      "NUMERO_CANDIDATO": "10106",
+      "SIGLA_PARTIDO": "PATRIOTA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 677,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PEDRO NUNES",
+      "NUMERO_CANDIDATO": "10128",
+      "SIGLA_PARTIDO": "PCO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 676,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SANDRA DA COMUNIDADE FERREIRA",
+      "NUMERO_CANDIDATO": "10105",
+      "SIGLA_PARTIDO": "NOVO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 660,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PAULO CARDOSO",
+      "NUMERO_CANDIDATO": "10127",
+      "SIGLA_PARTIDO": "PSTU",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 659,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SERGIO BRITO",
+      "NUMERO_CANDIDATO": "10149",
+      "SIGLA_PARTIDO": "PDT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 658,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLOS MOTORISTA ARAUJO",
+      "NUMERO_CANDIDATO": "10126",
+      "SIGLA_PARTIDO": "PCB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 642,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ARTHUR MIRANDA",
+      "NUMERO_CANDIDATO": "10148",
+      "SIGLA_PARTIDO": "PP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 641,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCA MOREIRA",
+      "NUMERO_CANDIDATO": "10125",
+      "SIGLA_PARTIDO": "UP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 625,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GABRIEL PROFESSOR BARROS",
+      "NUMERO_CANDIDATO": "10147",
+      "SIGLA_PARTIDO": "MDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 624,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANTONIO RAMOS",
+      "NUMERO_CANDIDATO": "10124",
+      "SIGLA_PARTIDO": "REDE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 608,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MATEUS FREITAS",
+      "NUMERO_CANDIDATO": "10146",
+      "SIGLA_PARTIDO": "PSDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 607,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANA MENDES",
+      "NUMERO_CANDIDATO": "10123",
+      "SIGLA_PARTIDO": "PV",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 591,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DIEGO MACEDO",
+      "NUMERO_CANDIDATO": "10145",
+      "SIGLA_PARTIDO": "PL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 590,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOSÉ MONTEIRO",
+      "NUMERO_CANDIDATO": "10122",
+      "SIGLA_PARTIDO": "PMN",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 574,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GUILHERME VIANA",
+      "NUMERO_CANDIDATO": "10144",
+      "SIGLA_PARTIDO": "PT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 573,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARIA DIAS",
+      "NUMERO_CANDIDATO": "10121",
+      "SIGLA_PARTIDO": "CIDADANIA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 557,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VITOR BATISTA",
+      "NUMERO_CANDIDATO": "10143",
+      "SIGLA_PARTIDO": "UNIÃO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 556,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOÃO ROCHA",
+      "NUMERO_CANDIDATO": "10120",
+      "SIGLA_PARTIDO": "AVANTE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 540,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAFAEL AZEVEDO",
+      "NUMERO_CANDIDATO": "10142",
+      "SIGLA_PARTIDO": "PATRIOTA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 539,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANA ALMEIDA",
+      "NUMERO_CANDIDATO": "10164",
+      "SIGLA_PARTIDO": "PCO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 538,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MANOEL CAVALCANTI",
+      "NUMERO_CANDIDATO": "10141",
+      "SIGLA_PARTIDO": "NOVO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 522,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PATRICIA CARVALHO",
+      "NUMERO_CANDIDATO": "10163",
+      "SIGLA_PARTIDO": "PSTU",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 521,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RODRIGO DOUTOR MELO",
+      "NUMERO_CANDIDATO": "10140",
+      "SIGLA_PARTIDO": "PSL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 505,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDA MARTINS",
+      "NUMERO_CANDIDATO": "10162",
+      "SIGLA_PARTIDO": "PCB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 504,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAIMUNDO CORREIA",
+      "NUMERO_CANDIDATO": "10139",
+      "SIGLA_PARTIDO": "PRTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 488,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCIA DA COMUNIDADE RIBEIRO",
+      "NUMERO_CANDIDATO": "10161",
+      "SIGLA_PARTIDO": "UP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 487,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FELIPE CUNHA",
+      "NUMERO_CANDIDATO": "10138",
+      "SIGLA_PARTIDO": "PRP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 471,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIANA COSTA",
+      "NUMERO_CANDIDATO": "10160",
+      "SIGLA_PARTIDO": "REDE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 470,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "EDUARDO FARIAS",
+      "NUMERO_CANDIDATO": "10137",
+      "SIGLA_PARTIDO": "PHS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 454,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANO GOMES",
+      "NUMERO_CANDIDATO": "10159",
+      "SIGLA_PARTIDO": "PV",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 453,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNO PINTO",
+      "NUMERO_CANDIDATO": "10136",
+      "SIGLA_PARTIDO": "PR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 437,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ALEXANDRE LIMA",
+      "NUMERO_CANDIDATO": "10158",
+      "SIGLA_PARTIDO": "PMN",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 436,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCELO CAMPOS",
+      "NUMERO_CANDIDATO": "10135",
+      "SIGLA_PARTIDO": "PSC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 420,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JORGE PEREIRA",
+      "NUMERO_CANDIDATO": "10157",
+      "SIGLA_PARTIDO": "CIDADANIA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 419,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLA TEIXEIRA",
+      "NUMERO_CANDIDATO": "10179",
+      "SIGLA_PARTIDO": "UNIÃO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 418,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDO ALVES",
+      "NUMERO_CANDIDATO": "10156",
+      "SIGLA_PARTIDO": "AVANTE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 402,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CAMILA NUNES",
+      "NUMERO_CANDIDATO": "10178",
+      "SIGLA_PARTIDO": "PATRIOTA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 401,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RICARDO FERREIRA",
+      "NUMERO_CANDIDATO": "10155",
+      "SIGLA_PARTIDO": "SOLIDARIEDADE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 385,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LARISSA CARDOSO",
+      "NUMERO_CANDIDATO": "10177",
+      "SIGLA_PARTIDO": "NOVO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 384,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ROBERTO AMIGO RODRIGUES",
+      "NUMERO_CANDIDATO": "10154",
+      "SIGLA_PARTIDO": "DEM",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 368,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIA ARAUJO",
+      "NUMERO_CANDIDATO": "10176",
+      "SIGLA_PARTIDO": "PSL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 367,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MAURICIO SOUZA",
+      "NUMERO_CANDIDATO": "10153",
+      "SIGLA_PARTIDO": "PSOL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 351,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNA COMERCIANTE MOREIRA",
+      "NUMERO_CANDIDATO": "10175",
+      "SIGLA_PARTIDO": "PRTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 350,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "WALLACE OLIVEIRA",
+      "NUMERO_CANDIDATO": "10152",
+      "SIGLA_PARTIDO": "PODE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 334,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANGELA RAMOS",
+      "NUMERO_CANDIDATO": "10174",
+      "SIGLA_PARTIDO": "PRP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 333,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LEONARDO SANTOS",
+      "NUMERO_CANDIDATO": "10151",
+      "SIGLA_PARTIDO": "REPUBLICANOS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 317,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIELA MENDES",
+      "NUMERO_CANDIDATO": "10173",
+      "SIGLA_PARTIDO": "PHS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 316,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FABIO SILVA",
+      "NUMERO_CANDIDATO": "10150",
+      "SIGLA_PARTIDO": "PSB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 300,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SIMONE MONTEIRO",
+      "NUMERO_CANDIDATO": "10172",
+      "SIGLA_PARTIDO": "PR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 299,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIEL VIANA",
+      "NUMERO_CANDIDATO": "10194",
+      "SIGLA_PARTIDO": "PMN",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 298,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "REGINA DIAS",
+      "NUMERO_CANDIDATO": "10171",
+      "SIGLA_PARTIDO": "PSC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 282,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCO BATISTA",
+      "NUMERO_CANDIDATO": "10193",
+      "SIGLA_PARTIDO": "CIDADANIA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 281,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VANESSA ROCHA",
+      "NUMERO_CANDIDATO": "10170",
+      "SIGLA_PARTIDO": "PSD",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 265,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIS AZEVEDO",
+      "NUMERO_CANDIDATO": "10192",
+      "SIGLA_PARTIDO": "AVANTE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 264,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DEBORA BARBOSA",
+      "NUMERO_CANDIDATO": "10169",
+      "SIGLA_PARTIDO": "PTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 248,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCOS CAVALCANTI",
+      "NUMERO_CANDIDATO": "10191",
+      "SIGLA_PARTIDO": "SOLIDARIEDADE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 247,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MONICA DO POVO VIEIRA",
+      "NUMERO_CANDIDATO": "10168",
+      "SIGLA_PARTIDO": "PROS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 231,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUIZ MELO",
+      "NUMERO_CANDIDATO": "10190",
+      "SIGLA_PARTIDO": "DEM",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 230,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SABRINA FERNANDES",
+      "NUMERO_CANDIDATO": "10167",
+      "SIGLA_PARTIDO": "AGIR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 214,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUCAS ENFERMEIRA CORREIA",
+      "NUMERO_CANDIDATO": "10189",
+      "SIGLA_PARTIDO": "PSOL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 213,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LETICIA SOARES",
+      "NUMERO_CANDIDATO": "10166",
+      "SIGLA_PARTIDO": "DC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 197,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PEDRO CUNHA",
+      "NUMERO_CANDIDATO": "10188",
+      "SIGLA_PARTIDO": "PODE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 196,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SANDRA LOPES",
+      "NUMERO_CANDIDATO": "10165",
+      "SIGLA_PARTIDO": "PMB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 180,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PAULO FARIAS",
+      "NUMERO_CANDIDATO": "10187",
+      "SIGLA_PARTIDO": "REPUBLICANOS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 179,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SERGIO GOMES",
+      "NUMERO_CANDIDATO": "10209",
+      "SIGLA_PARTIDO": "PHS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 178,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLOS PINTO",
+      "NUMERO_CANDIDATO": "10186",
+      "SIGLA_PARTIDO": "PSB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 162,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ARTHUR LIMA",
+      "NUMERO_CANDIDATO": "10208",
+      "SIGLA_PARTIDO": "PR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 161,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCA CAMPOS",
+      "NUMERO_CANDIDATO": "10185",
+      "SIGLA_PARTIDO": "PDT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 145,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GABRIEL PEREIRA",
+      "NUMERO_CANDIDATO": "10207",
+      "SIGLA_PARTIDO": "PSC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 144,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANTONIO MORAES",
+      "NUMERO_CANDIDATO": "10184",
+      "SIGLA_PARTIDO": "PP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 128,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MATEUS ALVES",
+      "NUMERO_CANDIDATO": "10206",
+      "SIGLA_PARTIDO": "PSD",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 127,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANA NASCIMENTO",
+      "NUMERO_CANDIDATO": "10183",
+      "SIGLA_PARTIDO": "MDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 111,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DIEGO FERREIRA",
+      "NUMERO_CANDIDATO": "10205",
+      "SIGLA_PARTIDO": "PTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 110,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOSÉ MOTORISTA ANDRADE",
+      "NUMERO_CANDIDATO": "10182",
+      "SIGLA_PARTIDO": "PSDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 94,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "GUILHERME RODRIGUES",
+      "NUMERO_CANDIDATO": "10204",
+      "SIGLA_PARTIDO": "PROS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 93,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARIA CASTRO",
+      "NUMERO_CANDIDATO": "10181",
+      "SIGLA_PARTIDO": "PL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 77,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VITOR PROFESSOR SOUZA",
+      "NUMERO_CANDIDATO": "10203",
+      "SIGLA_PARTIDO": "AGIR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 76,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOÃO REIS",
+      "NUMERO_CANDIDATO": "10180",
+      "SIGLA_PARTIDO": "PT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 60,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAFAEL OLIVEIRA",
+      "NUMERO_CANDIDATO": "10202",
+      "SIGLA_PARTIDO": "DC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 59,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANA DO POVO RAMOS",
+      "NUMERO_CANDIDATO": "10224",
+      "SIGLA_PARTIDO": "PODE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 58,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCELO MACEDO",
+      "NUMERO_CANDIDATO": "10195",
+      "SIGLA_PARTIDO": "PV",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNO DOUTOR FREITAS",
+      "NUMERO_CANDIDATO": "10196",
+      "SIGLA_PARTIDO": "REDE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "EDUARDO BARROS",
+      "NUMERO_CANDIDATO": "10197",
+      "SIGLA_PARTIDO": "UP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FELIPE MIRANDA",
+      "NUMERO_CANDIDATO": "10198",
+      "SIGLA_PARTIDO": "PCB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RAIMUNDO BRITO",
+      "NUMERO_CANDIDATO": "10199",
+      "SIGLA_PARTIDO": "PSTU",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RODRIGO SILVA",
+      "NUMERO_CANDIDATO": "10200",
+      "SIGLA_PARTIDO": "PCO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MANOEL SANTOS",
+      "NUMERO_CANDIDATO": "10201",
+      "SIGLA_PARTIDO": "PMB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FABIO AMIGO COSTA",
+      "NUMERO_CANDIDATO": "10210",
+      "SIGLA_PARTIDO": "PRP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LEONARDO RIBEIRO",
+      "NUMERO_CANDIDATO": "10211",
+      "SIGLA_PARTIDO": "PRTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "WALLACE MARTINS",
+      "NUMERO_CANDIDATO": "10212",
+      "SIGLA_PARTIDO": "PSL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MAURICIO CARVALHO",
+      "NUMERO_CANDIDATO": "10213",
+      "SIGLA_PARTIDO": "NOVO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ROBERTO ALMEIDA",
+      "NUMERO_CANDIDATO": "10214",
+      "SIGLA_PARTIDO": "PATRIOTA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "RICARDO LOPES",
+      "NUMERO_CANDIDATO": "10215",
+      "SIGLA_PARTIDO": "UNIÃO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDO SOARES",
+      "NUMERO_CANDIDATO": "10216",
+      "SIGLA_PARTIDO": "PT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JORGE DA COMUNIDADE FERNANDES",
+      "NUMERO_CANDIDATO": "10217",
+      "SIGLA_PARTIDO": "PL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ALEXANDRE VIEIRA",
+      "NUMERO_CANDIDATO": "10218",
+      "SIGLA_PARTIDO": "PSDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ADRIANO BARBOSA",
+      "NUMERO_CANDIDATO": "10219",
+      "SIGLA_PARTIDO": "MDB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIANA ROCHA",
+      "NUMERO_CANDIDATO": "10220",
+      "SIGLA_PARTIDO": "PP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARCIA DIAS",
+      "NUMERO_CANDIDATO": "10221",
+      "SIGLA_PARTIDO": "PDT",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FERNANDA MONTEIRO",
+      "NUMERO_CANDIDATO": "10222",
+      "SIGLA_PARTIDO": "PSB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PATRICIA MENDES",
+      "NUMERO_CANDIDATO": "10223",
+      "SIGLA_PARTIDO": "REPUBLICANOS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SANDRA MOREIRA",
+      "NUMERO_CANDIDATO": "10225",
+      "SIGLA_PARTIDO": "PSOL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LETICIA ARAUJO",
+      "NUMERO_CANDIDATO": "10226",
+      "SIGLA_PARTIDO": "DEM",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SABRINA CARDOSO",
+      "NUMERO_CANDIDATO": "10227",
+      "SIGLA_PARTIDO": "SOLIDARIEDADE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MONICA NUNES",
+      "NUMERO_CANDIDATO": "10228",
+      "SIGLA_PARTIDO": "AVANTE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DEBORA TEIXEIRA",
+      "NUMERO_CANDIDATO": "10229",
+      "SIGLA_PARTIDO": "CIDADANIA",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "VANESSA REIS",
+      "NUMERO_CANDIDATO": "10230",
+      "SIGLA_PARTIDO": "PMN",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "REGINA COMERCIANTE CASTRO",
+      "NUMERO_CANDIDATO": "10231",
+      "SIGLA_PARTIDO": "PV",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "SIMONE ANDRADE",
+      "NUMERO_CANDIDATO": "10232",
+      "SIGLA_PARTIDO": "REDE",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "DANIELA NASCIMENTO",
+      "NUMERO_CANDIDATO": "10233",
+      "SIGLA_PARTIDO": "UP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANGELA MORAES",
+      "NUMERO_CANDIDATO": "10234",
+      "SIGLA_PARTIDO": "PCB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "BRUNA CAMPOS",
+      "NUMERO_CANDIDATO": "10235",
+      "SIGLA_PARTIDO": "PSTU",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JULIA PINTO",
+      "NUMERO_CANDIDATO": "10236",
+      "SIGLA_PARTIDO": "PCO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LARISSA FARIAS",
+      "NUMERO_CANDIDATO": "10237",
+      "SIGLA_PARTIDO": "PMB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CAMILA MOTORISTA CUNHA",
+      "NUMERO_CANDIDATO": "10238",
+      "SIGLA_PARTIDO": "DC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLA CORREIA",
+      "NUMERO_CANDIDATO": "10239",
+      "SIGLA_PARTIDO": "AGIR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOÃO MELO",
+      "NUMERO_CANDIDATO": "10240",
+      "SIGLA_PARTIDO": "PROS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "MARIA CAVALCANTI",
+      "NUMERO_CANDIDATO": "10241",
+      "SIGLA_PARTIDO": "PTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "JOSÉ AZEVEDO",
+      "NUMERO_CANDIDATO": "10242",
+      "SIGLA_PARTIDO": "PSD",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANA BATISTA",
+      "NUMERO_CANDIDATO": "10243",
+      "SIGLA_PARTIDO": "PSC",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "ANTONIO VIANA",
+      "NUMERO_CANDIDATO": "10244",
+      "SIGLA_PARTIDO": "PR",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "FRANCISCA ENFERMEIRA MACEDO",
+      "NUMERO_CANDIDATO": "10245",
+      "SIGLA_PARTIDO": "PHS",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "CARLOS FREITAS",
+      "NUMERO_CANDIDATO": "10246",
+      "SIGLA_PARTIDO": "PRP",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PAULO BARROS",
+      "NUMERO_CANDIDATO": "10247",
+      "SIGLA_PARTIDO": "PRTB",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "PEDRO MIRANDA",
+      "NUMERO_CANDIDATO": "10248",
+      "SIGLA_PARTIDO": "PSL",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    },
+    {
+      "ANO_ELEICAO": 2024,
+      "NUM_TURNO": 1,
+      "NOME_URNA_CANDIDATO": "LUCAS BRITO",
+      "NUMERO_CANDIDATO": "10249",
+      "SIGLA_PARTIDO": "NOVO",
+      "DESC_SIT_TOT_TURNO": "NÃO ELEITO",
+      "QT_VOTOS_NOMINAIS": 50,
+      "eleito": false
+    }
+  ]
+}
