@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2025-12-17T15:41:27.163Z
+ * Última atualização: 2025-12-21T18:38:51.836Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -453,6 +453,63 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "vw_equipe_membros"
             referencedColumns: ["equipe_id"]
+          },
+        ]
+      }
+      convites: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          expires_at: string
+          id: string
+          lideranca_id: string | null
+          nome_convidado: string | null
+          role: string
+          status: string
+          telefone: string
+          token: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          expires_at: string
+          id?: string
+          lideranca_id?: string | null
+          nome_convidado?: string | null
+          role?: string
+          status?: string
+          telefone: string
+          token: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          expires_at?: string
+          id?: string
+          lideranca_id?: string | null
+          nome_convidado?: string | null
+          role?: string
+          status?: string
+          telefone?: string
+          token?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "convites_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "convites_lideranca_id_fkey"
+            columns: ["lideranca_id"]
+            isOneToOne: false
+            referencedRelation: "lideranca"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -1140,6 +1197,7 @@ export type Database = {
           responsavel_cadastro: string | null
           rg: string | null
           status: string | null
+          status_cadastro: string | null
           telefone: string | null
           tipo_lideranca: string
         }
@@ -1177,6 +1235,7 @@ export type Database = {
           responsavel_cadastro?: string | null
           rg?: string | null
           status?: string | null
+          status_cadastro?: string | null
           telefone?: string | null
           tipo_lideranca: string
         }
@@ -1214,6 +1273,7 @@ export type Database = {
           responsavel_cadastro?: string | null
           rg?: string | null
           status?: string | null
+          status_cadastro?: string | null
           telefone?: string | null
           tipo_lideranca?: string
         }
@@ -1603,6 +1663,7 @@ export type Database = {
       profiles: {
         Row: {
           access_level: number | null
+          auth_method: string | null
           cpf: string | null
           data_atualizacao: string
           data_criacao: string
@@ -1613,6 +1674,7 @@ export type Database = {
           permissions: string[] | null
           provider_id: string | null
           roles: string[]
+          senha_hash: string | null
           status: string | null
           telefone: string | null
           ultimo_acesso: string | null
@@ -1620,6 +1682,7 @@ export type Database = {
         }
         Insert: {
           access_level?: number | null
+          auth_method?: string | null
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1630,6 +1693,7 @@ export type Database = {
           permissions?: string[] | null
           provider_id?: string | null
           roles?: string[]
+          senha_hash?: string | null
           status?: string | null
           telefone?: string | null
           ultimo_acesso?: string | null
@@ -1637,6 +1701,7 @@ export type Database = {
         }
         Update: {
           access_level?: number | null
+          auth_method?: string | null
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1647,6 +1712,7 @@ export type Database = {
           permissions?: string[] | null
           provider_id?: string | null
           roles?: string[]
+          senha_hash?: string | null
           status?: string | null
           telefone?: string | null
           ultimo_acesso?: string | null
@@ -2777,6 +2843,22 @@ export type Database = {
             }
             Returns: string
           }
+      confirmar_convite: {
+        Args: { p_senha_hash: string; p_token: string }
+        Returns: Json
+      }
+      criar_convite_lideranca: {
+        Args: {
+          p_coordenador_regional_id?: string
+          p_created_by?: string
+          p_expires_hours?: number
+          p_nome_completo: string
+          p_nome_popular?: string
+          p_telefone: string
+          p_tipo_lideranca?: string
+        }
+        Returns: Json
+      }
       disablelongtransactions: { Args: never; Returns: string }
       dropgeometrycolumn:
         | {
@@ -2810,6 +2892,7 @@ export type Database = {
         | { Args: { table_name: string }; Returns: string }
       enablelongtransactions: { Args: never; Returns: string }
       equals: { Args: { geom1: unknown; geom2: unknown }; Returns: boolean }
+      generate_invite_token: { Args: never; Returns: string }
       geometry: { Args: { "": string }; Returns: unknown }
       geometry_above: {
         Args: { geom1: unknown; geom2: unknown }
@@ -3012,6 +3095,14 @@ export type Database = {
         }[]
       }
       gettransactionid: { Args: never; Returns: unknown }
+      listar_convites_pendentes: {
+        Args: { p_created_by?: string }
+        Returns: Json
+      }
+      login_mobile: {
+        Args: { p_senha_hash: string; p_telefone: string }
+        Returns: Json
+      }
       longtransactionsenabled: { Args: never; Returns: boolean }
       populate_geometry_columns:
         | { Args: { tbl_oid: unknown; use_typmod?: boolean }; Returns: number }

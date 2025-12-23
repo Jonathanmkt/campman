@@ -143,7 +143,7 @@ const ColaboradoresPage = () => {
   return (
     <div className="space-y-6">
       <div className="border-b border-border pb-4">
-        <h1 className="text-3xl font-bold text-foreground">Gestão de Colaboradores</h1>
+        <h1 className="text-3xl font-bold text-foreground">Colaboradores</h1>
         <p className="text-muted-foreground mt-2">
           Gerencie sua equipe com hierarquia organizacional completa
         </p>

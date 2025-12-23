@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa da Jornada Mobile</title>
+  <style>
+    :root {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --bg: #05081b;
+      --panel: rgba(8,12,35,0.85);
+      --panel-light: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.1);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-soft: #0ea5e9;
+      --success: #16a34a;
+      --warning: #f59e0b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(14,165,233,0.35), rgba(5,8,27,1) 60%);
+      color: var(--text);
+      padding: 32px 18px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    }
+
+    header p {
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 320px minmax(280px, 1fr) minmax(280px, 1fr);
+      gap: 16px;
+      width: min(1400px, 100%);
+      margin: 0 auto;
+      height: 70vh;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel header {
+      text-align: left;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel header h2 {
+      margin: 0;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .panel header strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-top: 4px;
+    }
+
+    .panel main {
+      padding: 0 20px 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .entity-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(15,23,42,0.65);
+      margin-bottom: 16px;
+    }
+
+    .entity-card h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .entity-card small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: var(--panel-light);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .flow-step {
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      background: rgba(8,12,35,0.55);
+      border-radius: 12px;
+    }
+
+    .flow-step h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .flow-step p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-top: 8px;
+    }
+
+    .status-tag.ok { background: rgba(22,163,74,0.15); color: var(--success); }
+    .status-tag.todo { background: rgba(245,158,11,0.15); color: var(--warning); }
+
+    @media (max-width: 1100px) {
+      .workspace {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        height: auto;
+      }
+      .panel main { max-height: 45vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jornada Mobile – Convites & Onboarding</h1>
+    <p>Três visões paralelas: entidades envolvidas (esquerda), fluxos desejados (centro) e o que já está testado (direita). Role cada coluna para ver os detalhes.</p>
+  </header>
+
+  <section class="workspace">
+    <div class="panel" id="col-entidades">
+      <header>
+        <h2>Coluna 1</h2>
+        <strong>Entidades Supabase</strong>
+      </header>
+      <main>
+        <article class="entity-card">
+          <h3>convites</h3>
+          <small>Token + status do convite</small>
+          <div class="chips">
+            <span class="chip">id (uuid)</span>
+            <span class="chip">telefone (text)</span>
+            <span class="chip">role (text)</span>
+            <span class="chip">token (text)</span>
+            <span class="chip">status (text)</span>
+            <span class="chip">expires_at (timestamptz)</span>
+            <span class="chip">created_by (uuid)</span>
+            <span class="chip">lideranca_id (uuid)</span>
+            <span class="chip">nome_convidado (text)</span>
+            <span class="chip">created_at / updated_at</span>
+          </div>
+        </article>
+
+        <article class="entity-card">
+          <h3>lideranca</h3>
+          <small>Registro da liderança convidada</small>
+          <div class="chips">
+            <span class="chip">id</span>
+            <span class="chip">nome_completo</span>
+            <span class="chip">nome_popular</span>
+            <span class="chip">telefone</span>
+            <span class="chip">tipo_lideranca</span>
+            <span class="chip">status_cadastro</span>
+            <span class="chip">responsavel_cadastro</span>
+            <span class="chip">coordenador_regional_id</span>
+            <span class="chip">profile_id</span>
+            <span class="chip">data_criacao / data_atualizacao</span>
+          </div>
+        </article>
+
+        <article class="entity-card">
+          <h3>profiles</h3>
+          <small>Conta mobile criada no onboarding</small>
+          <div class="chips">
+            <span class="chip">id</span>
+            <span class="chip">nome_completo</span>
+            <span class="chip">telefone</span>
+            <span class="chip">roles (array)</span>
+            <span class="chip">auth_method</span>
+            <span class="chip">senha_hash</span>
+            <span class="chip">status</span>
+            <span class="chip">access_level</span>
+            <span class="chip">data_criacao / updated_at</span>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <div class="panel" id="col-planejado">
+      <header>
+        <h2>Coluna 2</h2>
+        <strong>Fluxo Planejado</strong>
+      </header>
+      <main>
+        <article class="flow-step">
+          <h4>Automação WhatsApp</h4>
+          <p>Disparo automático via Uazapi logo após criar o convite, com monitoramento de entregas.</p>
+          <span class="status-tag todo">a fazer</span>
+        </article>
+
+        <article class="flow-step">
+          <h4>Dashboard proativo</h4>
+          <p>Coordenadores recebem alertas de expiração, funil de conversão e filtros por responsável.</p>
+          <span class="status-tag todo">a fazer</span>
+        </article>
+
+        <article class="flow-step">
+          <h4>Auditoria completa</h4>
+          <p>Timeline por convite com `created_by`, reenvios, logs de WhatsApp e confirmação da liderança.</p>
+          <span class="status-tag todo">a fazer</span>
+        </article>
+
+        <article class="flow-step">
+          <h4>Onboarding guiado</h4>
+          <p>Após login, liderança vê checklist inicial, metas e instruções de atuação.</p>
+          <span class="status-tag todo">a fazer</span>
+        </article>
+      </main>
+    </div>
+
+    <div class="panel" id="col-testado">
+      <header>
+        <h2>Coluna 3</h2>
+        <strong>Fluxo Testado</strong>
+      </header>
+      <main>
+        <article class="flow-step">
+          <h4>1. Coordenador cria convite</h4>
+          <p>Formulário mobile chama RPC `criar_convite_lideranca`, vinculando liderança ao coordenador.</p>
+          <span class="status-tag ok">ok</span>
+        </article>
+        <article class="flow-step">
+          <h4>2. Link & página pendentes</h4>
+          <p>Página pública lista tokens, prazos e oferece ações rápidas (copiar, abrir, WhatsApp).</p>
+          <span class="status-tag ok">ok</span>
+        </article>
+        <article class="flow-step">
+          <h4>3. Onboarding com token</h4>
+          <p>`/mobile/onboarding` valida token, bloqueia telefone e captura senha.</p>
+          <span class="status-tag ok">ok</span>
+        </article>
+        <article class="flow-step">
+          <h4>4. Criação de usuário técnico</h4>
+          <p>API cria usuário em `auth.users` + `profiles`, evitando erro de FK.</p>
+          <span class="status-tag ok">ok</span>
+        </article>
+        <article class="flow-step">
+          <h4>5. Liderança confirmada</h4>
+          <p>`lideranca.status_cadastro` vira “confirmado” e `convites.status` passa para “aceito”.</p>
+          <span class="status-tag ok">ok</span>
+        </article>
+        <article class="flow-step">
+          <h4>6. Login Mobile</h4>
+          <p>Telefone + senha em `/mobile/login`, redirecionando por role.</p>
+          <span class="status-tag ok">ok</span>
+        </article>
+      </main>
+    </div>
+  </section>
+</body>
+</html>

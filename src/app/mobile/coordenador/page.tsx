@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Users, Search, ChevronRight, Phone, MapPin, Star } from 'lucide-react';
+import { Plus, Users, Search, ChevronRight, Phone, MapPin, Star, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { NovaLiderancaForm } from './components/NovaLiderancaForm';
 import type { Tables } from '@/types';
 
@@ -17,6 +18,11 @@ export default function CoordenadorPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isChoiceDialogOpen, setIsChoiceDialogOpen] = useState(false);
+  const [contactPickerAvailable, setContactPickerAvailable] = useState(false);
+  const [isMobileBrowser, setIsMobileBrowser] = useState(false);
+  const [prefillData, setPrefillData] = useState<{ nome?: string; telefone?: string } | null>(null);
+  const [isImportingContact, setIsImportingContact] = useState(false);
 
   const fetchLiderancas = async () => {
     try {
@@ -44,9 +50,82 @@ export default function CoordenadorPage() {
     lideranca.bairro?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleLiderancaAdded = () => {
+  const closeSheet = () => {
     setIsSheetOpen(false);
+    setPrefillData(null);
+  };
+
+  const handleSheetOpenChange = (open: boolean) => {
+    setIsSheetOpen(open);
+    if (!open) {
+      setPrefillData(null);
+    }
+  };
+
+  const handleLiderancaAdded = () => {
+    closeSheet();
     fetchLiderancas();
+  };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const nav = navigator as Navigator & {
+      contacts?: {
+        select?: (properties: string[], options?: { multiple?: boolean }) => Promise<Array<{ name?: string | string[]; tel?: string | string[] }>>;
+      };
+    };
+
+    setContactPickerAvailable(Boolean(nav?.contacts?.select));
+    setIsMobileBrowser(/android|iphone|ipad|ipod/i.test(navigator.userAgent));
+  }, []);
+
+  const openManualForm = () => {
+    setIsChoiceDialogOpen(false);
+    setPrefillData(null);
+    setIsSheetOpen(true);
+  };
+
+  const handleAddClick = () => {
+    if (contactPickerAvailable && isMobileBrowser) {
+      setIsChoiceDialogOpen(true);
+      return;
+    }
+    openManualForm();
+  };
+
+  const handleImportFromContacts = async () => {
+    const nav = navigator as Navigator & {
+      contacts?: {
+        select?: (properties: string[], options?: { multiple?: boolean }) => Promise<Array<{ name?: string | string[]; tel?: string | string[] }>>;
+      };
+    };
+
+    if (!nav?.contacts?.select) {
+      openManualForm();
+      return;
+    }
+
+    try {
+      setIsImportingContact(true);
+      const [selected] = await nav.contacts.select(['name', 'tel'], { multiple: false });
+
+      const rawName = Array.isArray(selected?.name) ? selected?.name[0] : selected?.name;
+      const rawTel = Array.isArray(selected?.tel) ? selected?.tel[0] : selected?.tel;
+
+      setPrefillData({
+        nome: rawName ?? '',
+        telefone: rawTel ?? '',
+      });
+    } catch (error) {
+      console.error('Erro ao abrir contatos do aparelho', error);
+      alert('Não foi possível acessar os contatos. Insira os dados manualmente.');
+      setPrefillData(null);
+    } finally {
+      setIsChoiceDialogOpen(false);
+      setIsImportingContact(false);
+      setIsSheetOpen(true);
+    }
   };
 
   const getTipoLiderancaLabel = (tipo: string | null) => {
@@ -166,21 +245,59 @@ export default function CoordenadorPage() {
         )}
       </main>
 
+      <Dialog open={isChoiceDialogOpen} onOpenChange={setIsChoiceDialogOpen}>
+        <DialogContent className="sm:max-w-[360px]">
+          <DialogHeader>
+            <DialogTitle>Adicionar liderança</DialogTitle>
+            <DialogDescription>
+              Escolha se prefere puxar dos contatos do aparelho ou digitar manualmente.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-2">
+            <Button
+              className="w-full h-12 bg-blue-600 hover:bg-blue-700"
+              onClick={handleImportFromContacts}
+              disabled={isImportingContact}
+            >
+              {isImportingContact ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Abrindo contatos...
+                </>
+              ) : (
+                'Escolher dos contatos'
+              )}
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full h-12"
+              onClick={openManualForm}
+              disabled={isImportingContact}
+            >
+              Digitar manualmente
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Botão flutuante para adicionar */}
-      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-        <SheetTrigger asChild>
-          <Button
-            size="icon"
-            className="fixed bottom-6 right-6 h-14 w-14 rounded-full aspect-square shadow-lg bg-blue-600 hover:bg-blue-700"
-          >
-            <Plus className="h-6 w-6" />
-          </Button>
-        </SheetTrigger>
+      <Sheet open={isSheetOpen} onOpenChange={handleSheetOpenChange}>
+        <Button
+          size="icon"
+          className="fixed bottom-6 right-6 h-14 w-14 rounded-full aspect-square shadow-lg bg-blue-600 hover:bg-blue-700"
+          onClick={handleAddClick}
+        >
+          <Plus className="h-6 w-6" />
+        </Button>
         <SheetContent side="bottom" className="h-[90vh] rounded-t-xl">
           <SheetHeader className="pb-4">
             <SheetTitle>Nova Liderança</SheetTitle>
           </SheetHeader>
-          <NovaLiderancaForm onSuccess={handleLiderancaAdded} onCancel={() => setIsSheetOpen(false)} />
+          <NovaLiderancaForm
+            prefillData={prefillData}
+            onSuccess={handleLiderancaAdded}
+            onCancel={() => setIsSheetOpen(false)}
+          />
         </SheetContent>
       </Sheet>
     </div>
