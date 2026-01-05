@@ -17,8 +17,7 @@ export async function GET() {
           nome_completo,
           telefone
         )
-      `)
-      .order('profiles->>nome_completo', { ascending: true });
+      `);
 
     if (error) {
       console.error('Erro ao buscar coordenadores:', error);
