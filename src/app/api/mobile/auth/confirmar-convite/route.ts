@@ -105,6 +105,166 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Buscar liderança criada para vincular a área
+    // Normalizar telefone removendo formatação para garantir match
+    const telefoneNormalizado = convite.telefone?.replace(/\D/g, '') || '';
+    console.log('[CONFIRMAR-CONVITE] Buscando liderança para telefone:', convite.telefone, '(normalizado:', telefoneNormalizado + ')');
+    
+    // Buscar todas as lideranças e filtrar por telefone normalizado no código
+    const { data: todasLiderancas, error: liderancaError } = await supabase
+      .from('lideranca')
+      .select('id, cidade, bairro, estado, latitude, longitude, logradouro, numero, cep, complemento, endereco_formatado, coordenador_regional_id, telefone');
+    
+    // Filtrar manualmente por telefone normalizado
+    const liderancaData = todasLiderancas?.find(l => {
+      const telLideranca = l.telefone?.replace(/\D/g, '') || '';
+      return telLideranca === telefoneNormalizado || l.telefone === convite.telefone;
+    }) || null;
+    
+    if (liderancaError) {
+      console.error('[CONFIRMAR-CONVITE] Erro ao buscar liderança:', liderancaError);
+    } else {
+      console.log('[CONFIRMAR-CONVITE] Liderança encontrada:', {
+        id: liderancaData?.id,
+        cidade: liderancaData?.cidade,
+        bairro: liderancaData?.bairro,
+        latitude: liderancaData?.latitude,
+        longitude: liderancaData?.longitude
+      });
+    }
+
+    if (liderancaData?.cidade && liderancaData?.bairro) {
+      console.log('[CONFIRMAR-CONVITE] Iniciando processo de vinculação à área');
+      
+      // Buscar município pelo nome da cidade
+      console.log('[CONFIRMAR-CONVITE] Buscando município:', liderancaData.cidade);
+      const { data: municipioData, error: municipioError } = await supabase
+        .from('municipio')
+        .select('id')
+        .ilike('nome', liderancaData.cidade)
+        .eq('ativo', true)
+        .single();
+      
+      if (municipioError) {
+        console.error('[CONFIRMAR-CONVITE] Erro ao buscar município:', municipioError);
+      } else {
+        console.log('[CONFIRMAR-CONVITE] Município encontrado:', municipioData?.id);
+      }
+
+      if (municipioData) {
+        // Buscar área existente com mesma cidade e bairro (case-insensitive)
+        console.log('[CONFIRMAR-CONVITE] Buscando área existente:', {
+          municipio_id: municipioData.id,
+          cidade: liderancaData.cidade,
+          bairro: liderancaData.bairro
+        });
+        
+        const { data: areaDataTemp, error: areaSearchError } = await supabase
+          .from('area')
+          .select('id')
+          .eq('municipio_id', municipioData.id)
+          .ilike('cidade', liderancaData.cidade)
+          .ilike('bairro', liderancaData.bairro)
+          .eq('ativo', true)
+          .maybeSingle();
+        
+        let areaData = areaDataTemp;
+        
+        if (areaSearchError) {
+          console.error('[CONFIRMAR-CONVITE] Erro ao buscar área existente:', areaSearchError);
+        } else if (areaData) {
+          console.log('[CONFIRMAR-CONVITE] ✅ Área existente encontrada:', areaData.id);
+        } else {
+          console.log('[CONFIRMAR-CONVITE] ⚠️ Nenhuma área existente encontrada, será criada nova área');
+        }
+
+        // Se não existe, criar área com dados da liderança
+        if (!areaData) {
+          console.log('[CONFIRMAR-CONVITE] Criando nova área com dados:', {
+            municipio_id: municipioData.id,
+            nome: liderancaData.bairro,
+            cidade: liderancaData.cidade,
+            bairro: liderancaData.bairro,
+            estado: liderancaData.estado || 'RJ',
+            latitude: liderancaData.latitude,
+            longitude: liderancaData.longitude,
+            needs_review: true
+          });
+          
+          const { data: novaArea, error: areaError } = await supabase
+            .from('area')
+            .insert({
+              municipio_id: municipioData.id,
+              nome: liderancaData.bairro,
+              tipo: 'bairro',
+              bairro: liderancaData.bairro,
+              cidade: liderancaData.cidade,
+              estado: liderancaData.estado || 'RJ',
+              latitude: liderancaData.latitude,
+              longitude: liderancaData.longitude,
+              logradouro: liderancaData.logradouro,
+              numero: liderancaData.numero,
+              cep: liderancaData.cep,
+              complemento: liderancaData.complemento,
+              endereco_formatado: liderancaData.endereco_formatado,
+              ativo: true,
+              needs_review: true,
+            })
+            .select('id')
+            .single();
+
+          if (areaError) {
+            console.error('[CONFIRMAR-CONVITE] ❌ ERRO ao criar área:', {
+              message: areaError.message,
+              details: areaError.details,
+              hint: areaError.hint,
+              code: areaError.code
+            });
+          } else {
+            console.log('[CONFIRMAR-CONVITE] ✅ Nova área criada com sucesso:', novaArea?.id);
+            areaData = novaArea;
+          }
+        }
+
+        // Vincular liderança à área
+        if (areaData) {
+          console.log('[CONFIRMAR-CONVITE] Vinculando liderança à área:', {
+            lideranca_id: liderancaData.id,
+            area_id: areaData.id,
+            tipo_atuacao: 'moradia'
+          });
+          
+          const { data: vinculoData, error: vinculoError } = await supabase
+            .from('lideranca_area')
+            .insert({
+              lideranca_id: liderancaData.id,
+              area_id: areaData.id,
+              tipo_atuacao: 'moradia',
+              ativo: true,
+            })
+            .select('id')
+            .single();
+
+          if (vinculoError) {
+            console.error('[CONFIRMAR-CONVITE] ❌ ERRO ao vincular liderança à área:', {
+              message: vinculoError.message,
+              details: vinculoError.details,
+              hint: vinculoError.hint,
+              code: vinculoError.code
+            });
+          } else {
+            console.log('[CONFIRMAR-CONVITE] ✅ Liderança vinculada à área com sucesso:', vinculoData?.id);
+          }
+        } else {
+          console.error('[CONFIRMAR-CONVITE] ❌ Não foi possível vincular: área não disponível');
+        }
+      } else {
+        console.error('[CONFIRMAR-CONVITE] ❌ Município não encontrado, impossível criar área');
+      }
+    } else {
+      console.log('[CONFIRMAR-CONVITE] ⚠️ Liderança sem cidade/bairro, pulando vinculação de área');
+    }
+
     // Retornar dados do usuário criado (sem a senha)
     return NextResponse.json({
       success: true,

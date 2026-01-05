@@ -4,23 +4,22 @@
  * Este arquivo contém tipos auxiliares e re-exports dos tipos do Supabase
  * para facilitar o uso em toda a aplicação.
  * 
- * Última atualização: 2025-12-21T18:38:51.848Z
+ * Última atualização: 2026-01-05T20:42:48.604Z
  */
 
 // Re-export dos tipos principais do Supabase
-import type { Database as DB } from './database.types';
 export type { Database, Json } from './database.types';
 
 // Tipos auxiliares para tabelas específicas
-export type Tables<T extends keyof DB['public']['Tables']> = DB['public']['Tables'][T]['Row'];
-export type TablesInsert<T extends keyof DB['public']['Tables']> = DB['public']['Tables'][T]['Insert'];
-export type TablesUpdate<T extends keyof DB['public']['Tables']> = DB['public']['Tables'][T]['Update'];
+export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row'];
+export type TablesInsert<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Insert'];
+export type TablesUpdate<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Update'];
 
 // Tipos para Views
-export type Views<T extends keyof DB['public']['Views']> = DB['public']['Views'][T]['Row'];
+export type Views<T extends keyof Database['public']['Views']> = Database['public']['Views'][T]['Row'];
 
 // Tipos para Enums
-export type Enums<T extends keyof DB['public']['Enums']> = DB['public']['Enums'][T];
+export type Enums<T extends keyof Database['public']['Enums']> = Database['public']['Enums'][T];
 
 // Tipos específicos do projeto (adicione conforme necessário)
 export interface ApiResponse<T = any> {

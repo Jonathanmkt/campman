@@ -43,7 +43,20 @@ export async function GET() {
 
     const { data, error: liderancasError } = await supabase
       .from('lideranca')
-      .select('*')
+      .select(`
+        *,
+        convite:convites(id, status, token),
+        eleitores_count:lideranca_eleitor(count),
+        lideranca_area(
+          area_id,
+          area:area_id(
+            latitude,
+            longitude,
+            cidade,
+            bairro
+          )
+        )
+      `)
       .eq('coordenador_regional_id', coordenadorRegional.id)
       .order('nome_completo', { ascending: true })
       .limit(100);
@@ -55,7 +68,26 @@ export async function GET() {
       );
     }
 
-    return NextResponse.json({ success: true, data });
+    // Processar dados para incluir contagem de eleitores
+    const liderancasProcessadas = data?.map((lideranca) => {
+      const conviteArray = Array.isArray(lideranca.convite) ? lideranca.convite : [lideranca.convite].filter(Boolean);
+      const convitePendente = conviteArray.find((c: { status: string }) => c?.status === 'pendente');
+      const conviteAceito = conviteArray.find((c: { status: string }) => c?.status === 'aceito');
+      
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const eleitoresCountArray = lideranca.eleitores_count as any[];
+      const totalEleitores = eleitoresCountArray?.[0]?.count || 0;
+
+      return {
+        ...lideranca,
+        convite_status: convitePendente ? 'pendente' : conviteAceito ? 'aceito' : null,
+        convite_token: convitePendente?.token || null,
+        total_eleitores: totalEleitores,
+        potencial_votos: lideranca.nivel_influencia ? lideranca.nivel_influencia * 10 : 0,
+      };
+    });
+
+    return NextResponse.json({ success: true, data: liderancasProcessadas });
   } catch (error) {
     console.error('Erro ao buscar lideranças:', error);
     return NextResponse.json(
@@ -79,6 +111,8 @@ export async function POST(request: NextRequest) {
       nome_popular,
       telefone,
       tipo_lideranca,
+      nivel_influencia = 3,
+      alcance_estimado = null,
       endereco_formatado,
       bairro,
       cidade,
@@ -116,7 +150,8 @@ export async function POST(request: NextRequest) {
         nome_popular: nome_popular?.trim() || null,
         telefone: telefone?.trim() || null,
         tipo_lideranca,
-        nivel_influencia: 3,
+        nivel_influencia: nivel_influencia,
+        alcance_estimado: alcance_estimado,
         status: 'ativo',
         ativo: true,
         coordenador_regional_id: coordenadorRegional.id,

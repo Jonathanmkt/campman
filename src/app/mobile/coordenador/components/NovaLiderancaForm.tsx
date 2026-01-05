@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Loader2, ArrowLeft, Check, Share2 } from 'lucide-react';
+import { Loader2, ArrowLeft, Check, Share2, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -33,6 +33,8 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
     nome_popular: '',
     telefone: prefillData?.telefone ? formatarTelefone(prefillData.telefone) : '',
     tipo_lideranca: '',
+    nivel_influencia: 3,
+    alcance_estimado: '',
   });
   const [selectedMunicipio, setSelectedMunicipio] = useState<MunicipioData | null>(null);
   const [selectedAddress, setSelectedAddress] = useState<AddressData | null>(null);
@@ -107,6 +109,8 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
           nome_popular: formData.nome_popular.trim() || null,
           telefone: formData.telefone,
           tipo_lideranca: formData.tipo_lideranca,
+          nivel_influencia: formData.nivel_influencia,
+          alcance_estimado: formData.alcance_estimado ? Number(formData.alcance_estimado) : null,
           cidade: selectedMunicipio.nome,
           estado: selectedMunicipio.uf,
           bairro: selectedAddress.bairro,
@@ -165,12 +169,12 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
   if (step === 'success' && conviteData) {
     return (
       <div className="flex flex-col h-full">
-        <div className="flex-1 overflow-y-auto space-y-4 pb-4">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
-            <Check className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+        <div className="flex-1 overflow-y-auto space-y-6 pb-6">
+          <div className="bg-green-50 border border-green-200 rounded-xl p-5 flex items-start gap-4">
+            <Check className="h-6 w-6 text-green-600 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="font-medium text-green-900">Liderança cadastrada com sucesso!</h3>
-              <p className="text-sm text-green-700 mt-1">
+              <h3 className="font-semibold text-base text-green-900">Liderança cadastrada com sucesso!</h3>
+              <p className="text-sm text-green-700 mt-2">
                 {formData.nome_completo} foi adicionado(a) à sua equipe.
               </p>
             </div>
@@ -178,7 +182,7 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
 
           <Button
             type="button"
-            className="w-full h-14 bg-green-600 hover:bg-green-700 text-base"
+            className="w-full h-14 bg-green-600 hover:bg-green-700 active:bg-green-800 text-base font-medium"
             onClick={handleEnviarConvite}
           >
             <Share2 className="mr-2 h-5 w-5" />
@@ -186,11 +190,11 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
           </Button>
         </div>
 
-        <div className="sticky bottom-0 bg-white pt-4 border-t">
+        <div className="sticky bottom-0 bg-white pt-5 pb-6 border-t">
           <Button
             type="button"
             onClick={onSuccess}
-            className="w-full h-12"
+            className="w-full h-14 text-base font-medium"
           >
             Finalizar
           </Button>
@@ -203,9 +207,9 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
   if (step === 1) {
     return (
       <form onSubmit={(e) => { e.preventDefault(); handleContinueToStep2(); }} className="flex flex-col h-full">
-        <div className="flex-1 overflow-y-auto space-y-4 pb-4">
-          <div className="space-y-2">
-            <Label htmlFor="nome_completo" className="text-sm font-medium">
+        <div className="flex-1 overflow-y-auto space-y-5 pb-6">
+          <div className="space-y-2.5">
+            <Label htmlFor="nome_completo" className="text-base font-medium">
               Nome Completo <span className="text-red-500">*</span>
             </Label>
             <Input
@@ -213,13 +217,13 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
               placeholder="Digite o nome completo"
               value={formData.nome_completo}
               onChange={(e) => handleChange('nome_completo', e.target.value)}
-              className="h-12"
+              className="h-14 text-base"
               autoComplete="off"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="nome_popular" className="text-sm font-medium">
+          <div className="space-y-2.5">
+            <Label htmlFor="nome_popular" className="text-base font-medium">
               Nome Popular (Apelido)
             </Label>
             <Input
@@ -227,13 +231,13 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
               placeholder="Como é conhecido"
               value={formData.nome_popular}
               onChange={(e) => handleChange('nome_popular', e.target.value)}
-              className="h-12"
+              className="h-14 text-base"
               autoComplete="off"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="telefone" className="text-sm font-medium">
+          <div className="space-y-2.5">
+            <Label htmlFor="telefone" className="text-base font-medium">
               Telefone <span className="text-red-500">*</span>
             </Label>
             <Input
@@ -242,48 +246,48 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
               placeholder="(21) 99999-9999"
               value={formData.telefone}
               onChange={handleTelefoneChange}
-              className="h-12"
+              className="h-14 text-base"
               autoComplete="off"
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="tipo_lideranca" className="text-sm font-medium">
+          <div className="space-y-2.5">
+            <Label htmlFor="tipo_lideranca" className="text-base font-medium">
               Tipo de Liderança <span className="text-red-500">*</span>
             </Label>
             <Select
               value={formData.tipo_lideranca}
               onValueChange={(value) => handleChange('tipo_lideranca', value)}
             >
-              <SelectTrigger className="h-12">
+              <SelectTrigger className="h-14 text-base">
                 <SelectValue placeholder="Selecione o tipo..." />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="comunitaria">Comunitária</SelectItem>
-                <SelectItem value="religiosa">Religiosa</SelectItem>
-                <SelectItem value="sindical">Sindical</SelectItem>
-                <SelectItem value="empresarial">Empresarial</SelectItem>
-                <SelectItem value="politica">Política</SelectItem>
-                <SelectItem value="social">Social</SelectItem>
-                <SelectItem value="esportiva">Esportiva</SelectItem>
-                <SelectItem value="cultural">Cultural</SelectItem>
+                <SelectItem value="comunitaria" className="text-base py-3">Comunitária</SelectItem>
+                <SelectItem value="religiosa" className="text-base py-3">Religiosa</SelectItem>
+                <SelectItem value="sindical" className="text-base py-3">Sindical</SelectItem>
+                <SelectItem value="empresarial" className="text-base py-3">Empresarial</SelectItem>
+                <SelectItem value="politica" className="text-base py-3">Política</SelectItem>
+                <SelectItem value="social" className="text-base py-3">Social</SelectItem>
+                <SelectItem value="esportiva" className="text-base py-3">Esportiva</SelectItem>
+                <SelectItem value="cultural" className="text-base py-3">Cultural</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
 
-        <div className="sticky bottom-0 bg-white pt-4 border-t flex gap-3">
+        <div className="sticky bottom-0 bg-white pt-5 pb-6 border-t flex gap-3">
           <Button
             type="button"
             variant="outline"
             onClick={onCancel}
-            className="flex-1 h-12"
+            className="flex-1 h-14 text-base font-medium"
           >
             Cancelar
           </Button>
           <Button
             type="submit"
-            className="flex-1 h-12 bg-blue-600 hover:bg-blue-700"
+            className="flex-1 h-14 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-base font-medium"
           >
             Continuar
           </Button>
@@ -292,12 +296,12 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
     );
   }
 
-  // Etapa 2: Seleção de município e bairro
+  // Etapa 2: Seleção de município, bairro, influência e alcance
   return (
     <form onSubmit={handleSubmit} className="flex flex-col h-full">
-      <div className="flex-1 overflow-y-auto space-y-4 pb-4">
-        <div className="space-y-2">
-          <Label className="text-sm font-medium">
+      <div className="flex-1 overflow-y-auto space-y-5 pb-6">
+        <div className="space-y-2.5">
+          <Label className="text-base font-medium">
             Município <span className="text-red-500">*</span>
           </Label>
           <MunicipioSearch
@@ -306,8 +310,8 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
           />
         </div>
 
-        <div className="space-y-2">
-          <Label className="text-sm font-medium">
+        <div className="space-y-2.5">
+          <Label className="text-base font-medium">
             Bairro <span className="text-red-500">*</span>
           </Label>
           <AddressSearch
@@ -317,36 +321,86 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
             disabled={!selectedMunicipio}
           />
           {!selectedMunicipio && (
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground mt-2">
               Selecione o município primeiro
             </p>
           )}
         </div>
+
+        <div className="space-y-2.5">
+          <Label className="text-base font-medium">
+            Nível de Influência
+          </Label>
+          <div className="flex gap-2">
+            {[1, 2, 3, 4, 5].map((nivel) => (
+              <button
+                key={nivel}
+                type="button"
+                onClick={() => handleChange('nivel_influencia', String(nivel))}
+                className="flex-1 h-14 rounded-lg border-2 transition-all active:scale-95"
+                style={{
+                  borderColor: formData.nivel_influencia >= nivel ? '#3b82f6' : '#e5e7eb',
+                  backgroundColor: formData.nivel_influencia >= nivel ? '#eff6ff' : 'white',
+                }}
+              >
+                <Star
+                  className="mx-auto"
+                  size={24}
+                  fill={formData.nivel_influencia >= nivel ? '#3b82f6' : 'none'}
+                  color={formData.nivel_influencia >= nivel ? '#3b82f6' : '#9ca3af'}
+                />
+              </button>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            Avalie o nível de influência da liderança na comunidade
+          </p>
+        </div>
+
+        <div className="space-y-2.5">
+          <Label htmlFor="alcance_estimado" className="text-base font-medium">
+            Alcance Estimado
+          </Label>
+          <Input
+            id="alcance_estimado"
+            type="number"
+            inputMode="numeric"
+            placeholder="Ex: 150"
+            value={formData.alcance_estimado}
+            onChange={(e) => handleChange('alcance_estimado', e.target.value)}
+            className="h-14 text-base"
+            min="0"
+            autoComplete="off"
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            Quantidade aproximada de eleitores que esta liderança pode alcançar
+          </p>
+        </div>
       </div>
 
-      <div className="sticky bottom-0 bg-white pt-4 border-t flex gap-3">
+      <div className="sticky bottom-0 bg-white pt-5 pb-6 border-t flex gap-3">
         <Button
           type="button"
           variant="outline"
           onClick={() => setStep(1)}
-          className="flex-1 h-12"
+          className="flex-1 h-14 text-base font-medium"
           disabled={isSubmitting}
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="mr-2 h-5 w-5" />
           Voltar
         </Button>
         <Button
           type="submit"
-          className="flex-1 h-12 bg-blue-600 hover:bg-blue-700"
+          className="flex-1 h-14 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-base font-medium"
           disabled={isSubmitting || !selectedMunicipio || !selectedAddress}
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               Salvando...
             </>
           ) : (
-            'Cadastrar Liderança'
+            'Cadastrar'
           )}
         </Button>
       </div>

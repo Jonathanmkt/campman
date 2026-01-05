@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2025-12-21T18:38:51.836Z
+ * Última atualização: 2026-01-05T20:42:48.590Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -46,6 +46,7 @@ export type Database = {
           logradouro: string | null
           longitude: number | null
           municipio_id: string
+          needs_review: boolean | null
           nome: string
           numero: string | null
           populacao_estimada: number | null
@@ -74,6 +75,7 @@ export type Database = {
           logradouro?: string | null
           longitude?: number | null
           municipio_id: string
+          needs_review?: boolean | null
           nome: string
           numero?: string | null
           populacao_estimada?: number | null
@@ -102,6 +104,7 @@ export type Database = {
           logradouro?: string | null
           longitude?: number | null
           municipio_id?: string
+          needs_review?: boolean | null
           nome?: string
           numero?: string | null
           populacao_estimada?: number | null
@@ -1583,6 +1586,7 @@ export type Database = {
           data_criacao: string
           has_areas: boolean | null
           id: string
+          multi_areas: boolean | null
           nome: string
           populacao: number | null
           regiao: string | null
@@ -1596,6 +1600,7 @@ export type Database = {
           data_criacao?: string
           has_areas?: boolean | null
           id?: string
+          multi_areas?: boolean | null
           nome: string
           populacao?: number | null
           regiao?: string | null
@@ -1609,6 +1614,7 @@ export type Database = {
           data_criacao?: string
           has_areas?: boolean | null
           id?: string
+          multi_areas?: boolean | null
           nome?: string
           populacao?: number | null
           regiao?: string | null
@@ -2844,7 +2850,7 @@ export type Database = {
             Returns: string
           }
       confirmar_convite: {
-        Args: { p_senha_hash: string; p_token: string }
+        Args: { p_auth_user_id: string; p_senha_hash: string; p_token: string }
         Returns: Json
       }
       criar_convite_lideranca: {
