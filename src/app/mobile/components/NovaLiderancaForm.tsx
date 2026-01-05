@@ -19,7 +19,6 @@ export function NovaLiderancaForm({ onSuccess, onCancel }: NovaLiderancaFormProp
     nome_completo: '',
     nome_popular: '',
     telefone: '',
-    email: '',
     bairro: '',
     cidade: '',
     tipo_lideranca: '',
@@ -115,22 +114,6 @@ export function NovaLiderancaForm({ onSuccess, onCancel }: NovaLiderancaFormProp
             placeholder="(21) 99999-9999"
             value={formData.telefone}
             onChange={(e) => handleChange('telefone', e.target.value)}
-            className="h-12"
-            autoComplete="off"
-          />
-        </div>
-
-        {/* Email */}
-        <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium">
-            Email
-          </Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="email@exemplo.com"
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
             className="h-12"
             autoComplete="off"
           />

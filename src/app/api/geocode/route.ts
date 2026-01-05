@@ -7,6 +7,8 @@ export async function GET(request: NextRequest) {
     const lat = searchParams.get('lat');
     const lng = searchParams.get('lng');
     const reverse = searchParams.get('reverse');
+    const city = searchParams.get('city');
+    const resultTypes = searchParams.get('result_types');
     
     // Verificar se é geocoding reverso
     if (reverse === 'true' && lat && lng) {
@@ -30,11 +32,24 @@ export async function GET(request: NextRequest) {
       );
     }
     
-    // Fazer geocoding usando Google Maps API (apenas Rio de Janeiro)
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}&region=br&components=administrative_area:Rio de Janeiro|country:BR`
-    );
-    
+    const url = new URL('https://maps.googleapis.com/maps/api/geocode/json');
+    url.searchParams.set('address', address);
+    url.searchParams.set('key', apiKey);
+    url.searchParams.set('region', 'br');
+    url.searchParams.set('language', 'pt-BR');
+
+    if (resultTypes) {
+      url.searchParams.set('result_type', resultTypes);
+    }
+
+    const componentFilters = ['country:BR'];
+    if (city) {
+      componentFilters.push(`administrative_area_level_2:${city}`);
+    }
+    url.searchParams.set('components', componentFilters.join('|'));
+
+    const response = await fetch(url.toString());
+
     const data = await response.json();
     
     if (data.status === 'OK') {

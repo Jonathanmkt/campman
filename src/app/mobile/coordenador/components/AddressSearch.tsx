@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Input } from '@/components/ui/input';
 import { Search, MapPin, X, Loader2 } from 'lucide-react';
 
-interface AddressData {
+export interface AddressData {
   endereco_formatado: string;
   logradouro: string;
   numero: string;
@@ -31,12 +31,31 @@ interface SearchResult {
   address_components?: AddressComponent[];
 }
 
+interface GoogleGeocodeResult {
+  place_id?: string;
+  formatted_address: string;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  address_components?: AddressComponent[];
+}
+
 interface AddressSearchProps {
   onAddressSelect: (address: AddressData) => void;
   placeholder?: string;
+  cityFilter?: string | null;
+  disabled?: boolean;
 }
 
-export function AddressSearch({ onAddressSelect, placeholder = "Digite o endereço da liderança..." }: AddressSearchProps) {
+export function AddressSearch({
+  onAddressSelect,
+  placeholder = "Digite o endereço da liderança...",
+  cityFilter,
+  disabled = false,
+}: AddressSearchProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -45,8 +64,130 @@ export function AddressSearch({ onAddressSelect, placeholder = "Digite o endere�
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
+  const getComponentValue = (
+    components: AddressComponent[] | undefined,
+    types: string[]
+  ): string => {
+    if (!components) return '';
+    const component = components.find((comp) =>
+      comp.types.some((type) => types.includes(type))
+    );
+    return component?.long_name || '';
+  };
+
+  const getComponentShortValue = (
+    components: AddressComponent[] | undefined,
+    types: string[]
+  ): string => {
+    if (!components) return '';
+    const component = components.find((comp) =>
+      comp.types.some((type) => types.includes(type))
+    );
+    return component?.short_name || '';
+  };
+
+  const searchAddresses = useCallback(async (searchQuery: string) => {
+    if (disabled) return;
+    if (!cityFilter?.trim()) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const context = `${searchQuery}, ${cityFilter.trim()}, RJ, Brasil`;
+      const params = new URLSearchParams({
+        address: context,
+        city: cityFilter.trim(),
+        result_types: 'neighborhood|sublocality|sublocality_level_1|sublocality_level_2|administrative_area_level_3|administrative_area_level_4'
+      });
+
+      const response = await fetch(`/api/geocode?${params.toString()}`);
+
+      if (!response.ok) {
+        throw new Error('Erro na busca de endereços');
+      }
+
+      const data = await response.json();
+
+      if (data.success && data.results) {
+        const convertedResults: SearchResult[] = (data.results as GoogleGeocodeResult[])
+          .map((result, index) => {
+            const bairroOuDistrito =
+              getComponentValue(result.address_components, ['sublocality_level_1']) ||
+              getComponentValue(result.address_components, ['sublocality_level_2']) ||
+              getComponentValue(result.address_components, ['neighborhood']) ||
+              getComponentValue(result.address_components, ['administrative_area_level_3']) ||
+              getComponentValue(result.address_components, ['administrative_area_level_4']) ||
+              getComponentValue(result.address_components, ['sublocality']);
+
+            if (!bairroOuDistrito) {
+              return null;
+            }
+
+            const cidade =
+              getComponentValue(result.address_components, ['administrative_area_level_2']) ||
+              getComponentValue(result.address_components, ['locality']);
+
+            return {
+              place_id: result.place_id || `result-${index}`,
+              display_name: cidade ? `${bairroOuDistrito} - ${cidade}` : bairroOuDistrito,
+              lat: result.geometry.location.lat.toString(),
+              lon: result.geometry.location.lng.toString(),
+              address_components: result.address_components
+            } as SearchResult;
+          })
+          .filter((result): result is SearchResult => Boolean(result));
+
+        const normalizeText = (text: string) =>
+          text
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .trim()
+            .toLowerCase();
+
+        const filteredResults = cityFilter?.trim()
+          ? convertedResults.filter((result) => {
+              const components = result.address_components;
+              if (!components) return false;
+
+              const getComponent = (types: string[]) => {
+                const component = components.find((comp) => comp.types.some((t) => types.includes(t)));
+                return component?.long_name || null;
+              };
+
+              const cidadeDetectada =
+                getComponent(['administrative_area_level_2']) ||
+                getComponent(['locality']) ||
+                getComponent(['administrative_area_level_3']);
+
+              if (!cidadeDetectada) return false;
+
+              return normalizeText(cidadeDetectada) === normalizeText(cityFilter);
+            })
+          : convertedResults;
+
+        setResults(filteredResults);
+        setShowResults(filteredResults.length > 0);
+      } else {
+        setResults([]);
+        setShowResults(false);
+      }
+    } catch (err) {
+      setError('Erro ao buscar endereços. Tente novamente.');
+      console.error('Erro na busca de endereços:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [cityFilter, disabled]);
+
   // Debounce para busca
   useEffect(() => {
+    if (disabled) {
+      setResults([]);
+      setShowResults(false);
+      return;
+    }
+
     if (!query.trim() || selectedAddress === query) {
       setResults([]);
       setShowResults(false);
@@ -58,7 +199,7 @@ export function AddressSearch({ onAddressSelect, placeholder = "Digite o endere�
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [query, selectedAddress]);
+  }, [query, selectedAddress, searchAddresses, disabled]);
 
   // Fechar dropdown ao clicar fora
   useEffect(() => {
@@ -72,87 +213,37 @@ export function AddressSearch({ onAddressSelect, placeholder = "Digite o endere�
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const searchAddresses = async (searchQuery: string) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      // Usar Google Geocoding API via nossa API route (apenas Rio de Janeiro)
-      const response = await fetch(
-        `/api/geocode?address=${encodeURIComponent(searchQuery + ', Rio de Janeiro, RJ, Brasil')}`
-      );
-
-      if (!response.ok) {
-        throw new Error('Erro na busca de endereços');
-      }
-
-      const data = await response.json();
-      
-      if (data.success && data.results) {
-        // Converter resultados do Google para o formato esperado
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const convertedResults: SearchResult[] = data.results.map((result: any, index: number) => ({
-          place_id: result.place_id || `result-${index}`,
-          display_name: result.formatted_address,
-          lat: result.geometry.location.lat.toString(),
-          lon: result.geometry.location.lng.toString(),
-          address_components: result.address_components
-        }));
-
-        setResults(convertedResults);
-        setShowResults(convertedResults.length > 0);
-      } else {
-        setResults([]);
-        setShowResults(false);
-      }
-    } catch (err) {
-      setError('Erro ao buscar endereços. Tente novamente.');
-      console.error('Erro na busca de endereços:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const extractAddressComponent = (
-    components: AddressComponent[] | undefined,
-    type: string
-  ): string => {
-    if (!components) return '';
-    const component = components.find(c => c.types.includes(type));
-    return component?.long_name || '';
-  };
-
-  const extractAddressComponentShort = (
-    components: AddressComponent[] | undefined,
-    type: string
-  ): string => {
-    if (!components) return '';
-    const component = components.find(c => c.types.includes(type));
-    return component?.short_name || '';
-  };
-
   const handleResultClick = (result: SearchResult) => {
     const lat = parseFloat(result.lat);
     const lng = parseFloat(result.lon);
     
     // Extrair componentes do endereço
+    const bairroOuDistrito =
+      getComponentValue(result.address_components, ['sublocality_level_1']) ||
+      getComponentValue(result.address_components, ['sublocality_level_2']) ||
+      getComponentValue(result.address_components, ['neighborhood']) ||
+      getComponentValue(result.address_components, ['administrative_area_level_3']) ||
+      getComponentValue(result.address_components, ['administrative_area_level_4']) ||
+      getComponentValue(result.address_components, ['sublocality']) ||
+      result.display_name;
+
     const addressData: AddressData = {
-      endereco_formatado: result.display_name,
-      logradouro: extractAddressComponent(result.address_components, 'route'),
-      numero: extractAddressComponent(result.address_components, 'street_number'),
+      endereco_formatado: bairroOuDistrito,
+      logradouro: '',
+      numero: '',
       complemento: '',
-      bairro: extractAddressComponent(result.address_components, 'sublocality_level_1') || 
-              extractAddressComponent(result.address_components, 'neighborhood'),
-      cidade: extractAddressComponent(result.address_components, 'administrative_area_level_2') ||
-              extractAddressComponent(result.address_components, 'locality'),
-      estado: extractAddressComponentShort(result.address_components, 'administrative_area_level_1'),
-      cep: extractAddressComponent(result.address_components, 'postal_code'),
+      bairro: bairroOuDistrito,
+      cidade:
+        getComponentValue(result.address_components, ['administrative_area_level_2']) ||
+        getComponentValue(result.address_components, ['locality']),
+      estado: getComponentShortValue(result.address_components, ['administrative_area_level_1']),
+      cep: '',
       latitude: lat,
       longitude: lng,
     };
     
-    setQuery(result.display_name);
-    setSelectedAddress(result.display_name);
+    setQuery(addressData.endereco_formatado);
+    setSelectedAddress(addressData.endereco_formatado);
     setShowResults(false);
     onAddressSelect(addressData);
   };
@@ -178,6 +269,7 @@ export function AddressSearch({ onAddressSelect, placeholder = "Digite o endere�
             if (selectedAddress) setSelectedAddress(null);
           }}
           className="pl-10 pr-10 h-12"
+          disabled={disabled || !cityFilter}
         />
         {query && (
           <button
