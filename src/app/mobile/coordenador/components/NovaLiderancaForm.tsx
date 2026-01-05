@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Loader2, ArrowLeft } from 'lucide-react';
+import { Loader2, ArrowLeft, Check, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -18,8 +18,15 @@ interface NovaLiderancaFormProps {
   } | null;
 }
 
+interface ConviteData {
+  token: string;
+  link_onboarding: string;
+  mensagem_whatsapp: string;
+  telefone: string;
+}
+
 export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLiderancaFormProps) {
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2 | 'success'>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     nome_completo: prefillData?.nome || '',
@@ -29,6 +36,7 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
   });
   const [selectedMunicipio, setSelectedMunicipio] = useState<MunicipioData | null>(null);
   const [selectedAddress, setSelectedAddress] = useState<AddressData | null>(null);
+  const [conviteData, setConviteData] = useState<ConviteData | null>(null);
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -111,8 +119,13 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
       const result = await response.json();
 
       if (result.success) {
-        alert('Liderança cadastrada com sucesso!');
-        onSuccess();
+        if (result.data?.convite) {
+          setConviteData(result.data.convite);
+          setStep('success');
+        } else {
+          alert('Liderança cadastrada, mas não foi possível gerar o convite.');
+          onSuccess();
+        }
       } else {
         alert(result.error || 'Erro ao cadastrar liderança');
       }
@@ -124,6 +137,67 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
     }
   };
 
+
+  const handleEnviarConvite = () => {
+    if (!conviteData) return;
+
+    const telefoneNumeros = conviteData.telefone.replace(/\D/g, '');
+    const telefoneFormatado = telefoneNumeros.startsWith('55') ? telefoneNumeros : `55${telefoneNumeros}`;
+    const mensagemCodificada = encodeURIComponent(conviteData.mensagem_whatsapp);
+    
+    // Usar Web Share API se disponível (melhor UX em mobile)
+    if (navigator.share) {
+      navigator.share({
+        title: 'Convite de Liderança',
+        text: conviteData.mensagem_whatsapp,
+      }).catch((error) => {
+        console.log('Erro ao compartilhar:', error);
+        // Fallback para WhatsApp direto
+        window.open(`https://wa.me/${telefoneFormatado}?text=${mensagemCodificada}`, '_blank');
+      });
+    } else {
+      // Fallback para WhatsApp direto
+      window.open(`https://wa.me/${telefoneFormatado}?text=${mensagemCodificada}`, '_blank');
+    }
+  };
+
+  // Tela de sucesso
+  if (step === 'success' && conviteData) {
+    return (
+      <div className="flex flex-col h-full">
+        <div className="flex-1 overflow-y-auto space-y-4 pb-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
+            <Check className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <h3 className="font-medium text-green-900">Liderança cadastrada com sucesso!</h3>
+              <p className="text-sm text-green-700 mt-1">
+                {formData.nome_completo} foi adicionado(a) à sua equipe.
+              </p>
+            </div>
+          </div>
+
+          <Button
+            type="button"
+            className="w-full h-14 bg-green-600 hover:bg-green-700 text-base"
+            onClick={handleEnviarConvite}
+          >
+            <Share2 className="mr-2 h-5 w-5" />
+            Enviar Convite
+          </Button>
+        </div>
+
+        <div className="sticky bottom-0 bg-white pt-4 border-t">
+          <Button
+            type="button"
+            onClick={onSuccess}
+            className="w-full h-12"
+          >
+            Finalizar
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   // Etapa 1: Dados básicos
   if (step === 1) {

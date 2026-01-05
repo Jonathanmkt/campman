@@ -78,19 +78,11 @@ export async function POST(request: NextRequest) {
       nome_completo,
       nome_popular,
       telefone,
-      email,
       tipo_lideranca,
-      nivel_influencia,
-      observacoes,
-      // Campos de endereço (novos)
       endereco_formatado,
-      logradouro,
-      numero,
-      complemento,
       bairro,
       cidade,
       estado,
-      cep,
       latitude,
       longitude,
     } = body;
@@ -109,28 +101,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!telefone?.trim()) {
+      return NextResponse.json(
+        { success: false, error: 'Telefone é obrigatório' },
+        { status: 400 }
+      );
+    }
+
+    // Criar liderança com dados completos
     const { data: lideranca, error: liderancaError } = await supabase
       .from('lideranca')
       .insert({
         nome_completo: nome_completo.trim(),
         nome_popular: nome_popular?.trim() || null,
         telefone: telefone?.trim() || null,
-        email: email?.trim() || null,
         tipo_lideranca,
-        nivel_influencia: nivel_influencia || 3,
-        observacoes: observacoes?.trim() || null,
+        nivel_influencia: 3,
         status: 'ativo',
         ativo: true,
         coordenador_regional_id: coordenadorRegional.id,
-        // Campos de endereço
-        endereco_formatado: endereco_formatado?.trim() || null,
-        logradouro: logradouro?.trim() || null,
-        numero: numero?.trim() || null,
-        complemento: complemento?.trim() || null,
-        bairro: bairro?.trim() || null,
         cidade: cidade?.trim() || null,
         estado: estado?.trim() || null,
-        cep: cep?.trim() || null,
+        bairro: bairro?.trim() || null,
+        endereco_formatado: endereco_formatado?.trim() || null,
         latitude: latitude || null,
         longitude: longitude || null,
       })
@@ -145,7 +138,77 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true, data: lideranca });
+    // Gerar token e convite para a liderança já criada
+    const telefoneNormalizado = telefone.replace(/\D/g, '');
+    
+    // Gerar token aleatório
+    const generateToken = () => {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let token = '';
+      for (let i = 0; i < 32; i++) {
+        token += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return token;
+    };
+
+    const token = generateToken();
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 48);
+
+    // Criar convite vinculado à liderança existente
+    const { data: conviteData, error: conviteError } = await supabase
+      .from('convites')
+      .insert({
+        telefone: telefoneNormalizado,
+        role: 'lideranca',
+        token: token,
+        status: 'pendente',
+        expires_at: expiresAt.toISOString(),
+        lideranca_id: lideranca.id,
+        nome_convidado: nome_completo.trim(),
+      })
+      .select()
+      .single();
+
+    if (conviteError) {
+      console.error('Erro ao criar convite:', conviteError);
+    }
+
+    // Gerar link de onboarding
+    const requestUrl = new URL(request.url);
+    const envAppUrl = process.env.NEXT_PUBLIC_APP_URL;
+    let baseOrigin: string;
+
+    if (envAppUrl) {
+      try {
+        baseOrigin = new URL(envAppUrl).origin;
+      } catch {
+        baseOrigin = requestUrl.origin;
+      }
+    } else {
+      baseOrigin = requestUrl.origin;
+    }
+
+    const linkOnboarding = conviteData?.token 
+      ? `${baseOrigin}/mobile/onboarding?token=${conviteData.token}`
+      : null;
+
+    const mensagemWhatsapp = linkOnboarding
+      ? `Olá ${nome_completo.split(' ')[0]}! Você foi convidado(a) para fazer parte da equipe de campanha. Clique no link abaixo para criar sua senha e acessar o app:\n\n${linkOnboarding}`
+      : null;
+
+    return NextResponse.json({
+      success: true,
+      data: {
+        lideranca,
+        convite: conviteData ? {
+          token: conviteData.token,
+          link_onboarding: linkOnboarding,
+          mensagem_whatsapp: mensagemWhatsapp,
+          telefone: telefone,
+        } : null,
+      },
+    });
   } catch (error) {
     console.error('Erro ao criar liderança:', error);
     return NextResponse.json(
