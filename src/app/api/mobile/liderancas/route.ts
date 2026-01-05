@@ -1,24 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { createClient as createServerClient } from '@/lib/supabase/server';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+async function getCoordenadorLogado() {
+  const supabaseAuth = await createServerClient();
+  const {
+    data: { user },
+    error: userError,
+  } = await supabaseAuth.auth.getUser();
+
+  if (userError || !user) {
+    return { error: 'Usuário não autenticado', status: 401 as const };
+  }
+
+  const { data: coordenadorRegional, error: coordenadorError } = await supabase
+    .from('coordenador_regional')
+    .select('id')
+    .eq('profile_id', user.id)
+    .single();
+
+  if (coordenadorError || !coordenadorRegional) {
+    return {
+      error: 'Coordenador regional não encontrado para o usuário logado',
+      status: 403 as const,
+    };
+  }
+
+  return { coordenadorRegional };
+}
+
 export async function GET() {
   try {
-    // Por enquanto, retorna todas as lideranças para testes
-    // Em produção, filtrar pelo coordenador logado
-    const { data, error } = await supabase
+    const { coordenadorRegional, error, status } = await getCoordenadorLogado();
+    if (error || !coordenadorRegional) {
+      return NextResponse.json({ success: false, error }, { status });
+    }
+
+    const { data, error: liderancasError } = await supabase
       .from('lideranca')
       .select('*')
+      .eq('coordenador_regional_id', coordenadorRegional.id)
       .order('nome_completo', { ascending: true })
       .limit(100);
 
-    if (error) {
+    if (liderancasError) {
       return NextResponse.json(
-        { success: false, error: error.message },
+        { success: false, error: liderancasError.message },
         { status: 500 }
       );
     }
@@ -35,6 +67,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    const { coordenadorRegional, error, status } = await getCoordenadorLogado();
+    if (error || !coordenadorRegional) {
+      return NextResponse.json({ success: false, error }, { status });
+    }
+
     const body = await request.json();
 
     const {
@@ -72,7 +109,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Criar a liderança com todos os campos de endereço
     const { data: lideranca, error: liderancaError } = await supabase
       .from('lideranca')
       .insert({
@@ -85,6 +121,7 @@ export async function POST(request: NextRequest) {
         observacoes: observacoes?.trim() || null,
         status: 'ativo',
         ativo: true,
+        coordenador_regional_id: coordenadorRegional.id,
         // Campos de endereço
         endereco_formatado: endereco_formatado?.trim() || null,
         logradouro: logradouro?.trim() || null,
@@ -107,8 +144,6 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-
-    // TODO: Em produção, vincular ao coordenador logado via coordenador_regional_id
 
     return NextResponse.json({ success: true, data: lideranca });
   } catch (error) {

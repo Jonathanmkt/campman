@@ -27,12 +27,30 @@ export async function GET() {
       );
     }
 
-    const lista = (Array.isArray(data) ? data : []).map((coord: any) => ({
-      id: coord.id,
-      profile_id: coord.profile_id,
-      nome: coord.profiles?.nome_completo || 'Sem nome',
-      telefone: coord.profiles?.telefone || null,
-    }));
+    type ProfileInfo = {
+      nome_completo?: string | null;
+      telefone?: string | null;
+    };
+
+    type CoordenadorQuery = {
+      id: string;
+      profile_id: string;
+      profiles?: ProfileInfo | ProfileInfo[] | null;
+    };
+
+    const lista = (Array.isArray(data) ? data : []).map((coord) => {
+      const typed = coord as CoordenadorQuery;
+      const profileData = Array.isArray(typed.profiles)
+        ? typed.profiles[0]
+        : typed.profiles;
+
+      return {
+        id: typed.id,
+        profile_id: typed.profile_id,
+        nome: profileData?.nome_completo || 'Sem nome',
+        telefone: profileData?.telefone || null,
+      };
+    });
 
     return NextResponse.json({ success: true, data: lista });
   } catch (error) {
