@@ -7,6 +7,7 @@ export async function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/convites-pendentes') ||
     pathname.startsWith('/mobile/onboarding') ||
+    pathname.startsWith('/mobile/login') ||
     pathname === '/fluxo-convites.html'
   ) {
     return NextResponse.next()
@@ -24,6 +25,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!_next/static|_next/image|favicon.ico|convites-pendentes|mobile/onboarding|fluxo-convites\\.html|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|convites-pendentes|mobile/onboarding|mobile/login|fluxo-convites\\.html|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
