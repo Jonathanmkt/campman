@@ -288,27 +288,18 @@ export default function CoordenadorPage() {
            (filtros.percentualMax !== null ? 1 : 0);
   };
 
-  const handleCompartilharConvite = async (lideranca: Lideranca) => {
-    if (!lideranca.convite_token) return;
+  const handleCompartilharConvite = (lideranca: Lideranca) => {
+    if (!lideranca.convite_token || !lideranca.telefone) return;
 
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin;
     const linkConvite = `${appUrl}/mobile/onboarding?token=${lideranca.convite_token}`;
-    const telefoneFormatado = lideranca.telefone?.replace(/\D/g, '') || '';
-    const mensagem = `Olá ${lideranca.nome_completo}! 🎯\n\nVocê foi convidado(a) para fazer parte da nossa equipe de campanha.\n\nClique no link abaixo para completar seu cadastro:\n${linkConvite}\n\nSeu apoio é muito importante! 💪`;
+    const telefoneNumeros = lideranca.telefone.replace(/\D/g, '');
+    const telefoneComDDI = telefoneNumeros.startsWith('55') ? telefoneNumeros : `55${telefoneNumeros}`;
+    const primeiroNome = (lideranca.nome_completo || '').trim().split(/\s+/)[0] || lideranca.nome_completo;
+    const mensagem = `Oi ${primeiroNome}, tudo bem?\nEstou participando da Campanha de Deputado Estadual do meu amigo Thiago Moura e gostaria de lhe convidar pra fazer parte.\nPra aceitar basta clicar no link abaixo e cadastrar tua senha.\n\n${linkConvite}`;
     const mensagemCodificada = encodeURIComponent(mensagem);
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Convite de Liderança',
-          text: mensagem,
-        });
-      } catch (error) {
-        console.log('Compartilhamento cancelado', error);
-      }
-    } else {
-      window.open(`https://wa.me/${telefoneFormatado}?text=${mensagemCodificada}`, '_blank');
-    }
+    window.open(`https://wa.me/${telefoneComDDI}?text=${mensagemCodificada}`, '_blank');
   };
 
   useEffect(() => {
