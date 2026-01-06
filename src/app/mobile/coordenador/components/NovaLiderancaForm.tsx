@@ -45,7 +45,10 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
   };
 
   function formatarTelefone(valor: string) {
-    const numeros = valor.replace(/\D/g, '');
+    let numeros = valor.replace(/\D/g, '');
+    if (numeros.length > 11 && numeros.startsWith('55')) {
+      numeros = numeros.slice(2);
+    }
     if (numeros.length <= 2) return numeros;
     if (numeros.length <= 7) return `(${numeros.slice(0, 2)}) ${numeros.slice(2)}`;
     if (numeros.length <= 11) return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 7)}-${numeros.slice(7)}`;
