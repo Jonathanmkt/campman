@@ -296,7 +296,7 @@ export default function CoordenadorPage() {
     const telefoneNumeros = lideranca.telefone.replace(/\D/g, '');
     const telefoneComDDI = telefoneNumeros.startsWith('55') ? telefoneNumeros : `55${telefoneNumeros}`;
     const primeiroNome = (lideranca.nome_completo || '').trim().split(/\s+/)[0] || lideranca.nome_completo;
-    const mensagem = `Oi ${primeiroNome}, tudo bem?\nEstou participando da Campanha de Deputado Estadual do meu amigo Thiago Moura e gostaria de lhe convidar pra fazer parte.\nPra aceitar basta clicar no link abaixo e cadastrar tua senha.\n\n${linkConvite}`;
+    const mensagem = `Oi ${primeiroNome}, tudo bem?\n\nEstou participando da Campanha de Deputado Estadual do meu amigo Thiago Moura e gostaria de lhe convidar pra fazer parte.\n\nPra aceitar basta clicar no link abaixo e cadastrar tua senha.\n\n${linkConvite}`;
     const mensagemCodificada = encodeURIComponent(mensagem);
 
     window.open(`https://wa.me/${telefoneComDDI}?text=${mensagemCodificada}`, '_blank');

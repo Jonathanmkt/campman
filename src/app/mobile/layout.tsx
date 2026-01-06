@@ -1,8 +1,8 @@
 import { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Mobile - Campanha Thiago Moura',
-  description: 'Área mobile para lideranças e coordenadores',
+  title: 'Convite para Campanha Thiago Moura',
+  description: 'Convite Especial',
 };
 
 export const viewport: Viewport = {
