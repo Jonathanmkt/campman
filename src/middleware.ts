@@ -4,6 +4,15 @@ import { updateSession } from '@/lib/supabase/middleware'
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
+  const userAgent = request.headers.get('user-agent')?.toLowerCase() ?? ''
+  const isMobileDevice = /android|iphone|ipad|ipod|mobile/.test(userAgent)
+
+  if (pathname.startsWith('/auth/login') && isMobileDevice) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/mobile/login'
+    return NextResponse.redirect(url)
+  }
+
   if (
     pathname.startsWith('/convites-pendentes') ||
     pathname.startsWith('/mobile/onboarding') ||

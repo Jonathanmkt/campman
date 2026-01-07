@@ -66,9 +66,9 @@ export default function LoginMobilePage() {
         // Redirecionar baseado no role
         const role = result.data.role_principal;
         if (role === 'coordenador') {
-          router.push('/mobile/coordenador');
+          router.push('/mobile/liderancas');
         } else if (role === 'lideranca') {
-          router.push('/mobile/lideranca');
+          router.push('/mobile/eleitores');
         } else {
           router.push('/mobile');
         }

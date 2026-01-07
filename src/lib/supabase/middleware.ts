@@ -16,9 +16,9 @@ function getPrimaryRole(roles: string[] | null): UserRole {
 function getRouteForRole(role: UserRole): string {
   switch (role) {
     case 'coordenador':
-      return '/mobile/coordenador';
+      return '/mobile/liderancas';
     case 'lideranca':
-      return '/mobile/lideranca';
+      return '/mobile/eleitores';
     case 'colaborador':
       return '/dashboard';
     default:
@@ -27,11 +27,16 @@ function getRouteForRole(role: UserRole): string {
 }
 
 function isAllowedRoute(pathname: string, role: UserRole): boolean {
+  // Rotas comuns a todos os usuários mobile
+  if (pathname.startsWith('/mobile/perfil')) {
+    return role === 'coordenador' || role === 'lideranca';
+  }
+  
   if (role === 'coordenador') {
-    return pathname.startsWith('/mobile/coordenador');
+    return pathname.startsWith('/mobile/liderancas') || pathname.startsWith('/mobile/eleitores');
   }
   if (role === 'lideranca') {
-    return pathname.startsWith('/mobile/lideranca');
+    return pathname.startsWith('/mobile/eleitores');
   }
   if (role === 'colaborador') {
     return pathname.startsWith('/dashboard');
