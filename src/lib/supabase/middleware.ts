@@ -44,7 +44,7 @@ function isAllowedRoute(pathname: string, role: UserRole): boolean {
   return pathname === '/sem-acesso';
 }
 
-const PUBLIC_ROUTES = ['/auth', '/sem-acesso', '/_next', '/api', '/favicon.ico'];
+const PUBLIC_ROUTES = ['/auth', '/sem-acesso', '/_next', '/api', '/favicon.ico', '/mobile/login', '/mobile/onboarding'];
 
 function isPublicRoute(pathname: string): boolean {
   return PUBLIC_ROUTES.some(route => pathname.startsWith(route));

@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Loader2, Phone, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,6 +20,28 @@ export default function LoginMobilePage() {
     telefone: '',
     senha: '',
   });
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/mobile/auth/check');
+        const result = await response.json();
+        
+        if (result.authenticated) {
+          const role = result.role;
+          if (role === 'coordenador') {
+            router.replace('/mobile/liderancas');
+          } else if (role === 'lideranca') {
+            router.replace('/mobile/eleitores');
+          }
+        }
+      } catch (err) {
+        console.error('Erro ao verificar autenticação:', err);
+      }
+    };
+    
+    checkAuth();
+  }, [router]);
 
   const formatarTelefone = (valor: string) => {
     const numeros = valor.replace(/\D/g, '');
@@ -84,17 +106,26 @@ export default function LoginMobilePage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Phone className="h-8 w-8 text-blue-600" />
-          </div>
-          <CardTitle>Entrar no App</CardTitle>
-          <CardDescription>
-            Use seu telefone e senha para acessar
-          </CardDescription>
-        </CardHeader>
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+      {/* Hero Section */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-white mb-3">
+            Bem-vindo!
+          </h1>
+          <p className="text-blue-100 text-lg">
+            Campanha Thiago Moura 2026
+          </p>
+        </div>
+
+        {/* Login Card */}
+        <Card className="w-full max-w-md shadow-2xl">
+          <CardHeader className="text-center pb-4">
+            <CardTitle className="text-2xl">Entrar no App</CardTitle>
+            <CardDescription>
+              Use seu telefone e senha para acessar
+            </CardDescription>
+          </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Telefone */}
@@ -174,6 +205,7 @@ export default function LoginMobilePage() {
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

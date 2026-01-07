@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Loader2, CheckCircle, AlertCircle, Lock, Eye, EyeOff } from 'lucide-react';
+import { Loader2, CheckCircle, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -117,10 +117,12 @@ export function OnboardingClient() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-muted-foreground">Validando convite...</p>
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+          <div className="text-center">
+            <Loader2 className="h-8 w-8 animate-spin text-white mx-auto mb-4" />
+            <p className="text-blue-100">Validando convite...</p>
+          </div>
         </div>
       </div>
     );
@@ -128,8 +130,17 @@ export function OnboardingClient() {
 
   if (error && !conviteData) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <Card className="w-full max-w-md">
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-white mb-3">
+              Ops!
+            </h1>
+            <p className="text-blue-100 text-lg">
+              Campanha Thiago Moura 2026
+            </p>
+          </div>
+        <Card className="w-full max-w-md shadow-2xl">
           <CardHeader className="text-center">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-2" />
             <CardTitle className="text-red-600">Convite Inválido</CardTitle>
@@ -144,14 +155,24 @@ export function OnboardingClient() {
             </Button>
           </CardContent>
         </Card>
+        </div>
       </div>
     );
   }
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <Card className="w-full max-w-md">
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-white mb-3">
+              Sucesso!
+            </h1>
+            <p className="text-blue-100 text-lg">
+              Campanha Thiago Moura 2026
+            </p>
+          </div>
+        <Card className="w-full max-w-md shadow-2xl">
           <CardHeader className="text-center">
             <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-2" />
             <CardTitle className="text-green-600">Cadastro Confirmado!</CardTitle>
@@ -170,18 +191,26 @@ export function OnboardingClient() {
             </Button>
           </CardContent>
         </Card>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Lock className="h-8 w-8 text-blue-600" />
-          </div>
-          <CardTitle>Bem-vindo(a), {conviteData?.nome?.split(' ')[0]}!</CardTitle>
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-white mb-3">
+            Bem-vindo(a)!
+          </h1>
+          <p className="text-blue-100 text-lg">
+            Campanha Thiago Moura 2026
+          </p>
+        </div>
+
+      <Card className="w-full max-w-md shadow-2xl">
+        <CardHeader className="text-center pb-4">
+          <CardTitle className="text-2xl">Olá, {conviteData?.nome?.split(' ')[0]}!</CardTitle>
           <CardDescription>Crie uma senha para acessar o app da campanha</CardDescription>
         </CardHeader>
         <CardContent>
@@ -260,6 +289,7 @@ export function OnboardingClient() {
           </form>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { Metadata, Viewport } from 'next';
-import { MobileHeader } from './components/MobileHeader';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
   title: 'Thiago Moura 2026',
   description: 'Campanha Thiago Moura 2026',
   openGraph: {
@@ -36,12 +36,5 @@ export default function MobileLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <MobileHeader />
-      <div className="flex-1 overflow-hidden">
-        {children}
-      </div>
-    </div>
-  );
+  return <>{children}</>;
 }
