@@ -45,7 +45,10 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
   };
 
   function formatarTelefone(valor: string) {
-    const numeros = valor.replace(/\D/g, '');
+    let numeros = valor.replace(/\D/g, '');
+    if (numeros.length > 11 && numeros.startsWith('55')) {
+      numeros = numeros.slice(2);
+    }
     if (numeros.length <= 2) return numeros;
     if (numeros.length <= 7) return `(${numeros.slice(0, 2)}) ${numeros.slice(2)}`;
     if (numeros.length <= 11) return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 7)}-${numeros.slice(7)}`;
@@ -143,26 +146,17 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
 
 
   const handleEnviarConvite = () => {
-    if (!conviteData) return;
+    if (!conviteData?.token || !conviteData?.telefone || !formData.nome_completo) return;
 
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || window.location.origin;
+    const linkConvite = `${appUrl}/mobile/onboarding?token=${conviteData.token}`;
     const telefoneNumeros = conviteData.telefone.replace(/\D/g, '');
-    const telefoneFormatado = telefoneNumeros.startsWith('55') ? telefoneNumeros : `55${telefoneNumeros}`;
-    const mensagemCodificada = encodeURIComponent(conviteData.mensagem_whatsapp);
-    
-    // Usar Web Share API se disponível (melhor UX em mobile)
-    if (navigator.share) {
-      navigator.share({
-        title: 'Convite de Liderança',
-        text: conviteData.mensagem_whatsapp,
-      }).catch((error) => {
-        console.log('Erro ao compartilhar:', error);
-        // Fallback para WhatsApp direto
-        window.open(`https://wa.me/${telefoneFormatado}?text=${mensagemCodificada}`, '_blank');
-      });
-    } else {
-      // Fallback para WhatsApp direto
-      window.open(`https://wa.me/${telefoneFormatado}?text=${mensagemCodificada}`, '_blank');
-    }
+    const telefoneComDDI = telefoneNumeros.startsWith('55') ? telefoneNumeros : `55${telefoneNumeros}`;
+    const primeiroNome = formData.nome_completo.trim().split(/\s+/)[0] || formData.nome_completo;
+    const mensagem = `Oi ${primeiroNome}, tudo bem?\n\nEstou participando da Campanha de Deputado Estadual do meu amigo Thiago Moura e gostaria de lhe convidar pra fazer parte.\n\nPra aceitar basta clicar no link abaixo e cadastrar tua senha.\n\n${linkConvite}`;
+    const mensagemCodificada = encodeURIComponent(mensagem);
+
+    window.open(`https://wa.me/${telefoneComDDI}?text=${mensagemCodificada}`, '_blank');
   };
 
   // Tela de sucesso

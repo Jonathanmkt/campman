@@ -106,74 +106,26 @@ export function Sidebar({ links }: SidebarProps) {
       </div>
 
       {/* Navegação - Todos os cards padronizados */}
-      <div className="flex-grow flex flex-col px-3 pt-4 space-y-3">
+      <div className="flex-grow flex flex-col px-3 pt-4 space-y-[1.125rem]">
         {links.map((link, index) => {
-          // Definir cores com base na propriedade color do link
-          const colorScheme = {
-            default: {
-              gradient: 'from-white/20 to-white/10',
-              border: 'border-white/30',
-              hover: 'hover:from-white/25 hover:to-white/15',
-              iconBg: 'bg-white/30',
-              iconColor: 'text-white',
-              textColor: 'text-white',
-              subtextColor: 'text-white/80'
-            },
-            amber: {
-              gradient: 'from-amber-500/20 to-amber-600/20',
-              border: 'border-amber-500/30',
-              hover: 'hover:from-amber-500/25 hover:to-amber-600/25',
-              iconBg: 'bg-amber-500/30',
-              iconColor: 'text-amber-400',
-              textColor: 'text-amber-100',
-              subtextColor: 'text-amber-200/80'
-            },
-            blue: {
-              gradient: 'from-blue-500/20 to-blue-600/20',
-              border: 'border-blue-500/30',
-              hover: 'hover:from-blue-500/25 hover:to-blue-600/25',
-              iconBg: 'bg-blue-500/30',
-              iconColor: 'text-blue-400',
-              textColor: 'text-blue-100',
-              subtextColor: 'text-blue-200/80'
-            },
-            yellow: {
-              gradient: '',
-              border: 'border-primary-foreground',
-              hover: 'hover:bg-white/10',
-              iconBg: 'bg-primary-foreground/30',
-              iconColor: 'text-primary-foreground',
-              textColor: 'text-primary-foreground',
-              subtextColor: 'text-primary-foreground'
-            }
-          };
-          
-          const colors = colorScheme[link.color || 'default'];
-          
           return (
             <motion.div
               key={index}
               className={cn(
-                'p-3 rounded-lg',
-                `border ${colors.border}`,
-                `cursor-pointer ${colors.hover}`,
+                'p-3 rounded-lg cursor-pointer',
+                'hover:bg-white/40',
                 'transition-colors duration-200',
                 'flex items-center',
                 currentPathname === link.href && 'bg-white/15'
               )}
             >
               <Link href={link.href} className="flex items-center w-full">
-                <div className={`flex items-center ${collapsed ? 'justify-center w-full' : ''}`}>
-                  <div className={`flex items-center justify-center w-6 h-6 ${colors.iconBg} rounded-lg`}>
-                    <link.icon className={`w-4 h-4 ${colors.iconColor}`} />
-                  </div>
+                <div className={`flex items-center ${collapsed ? 'justify-center w-full' : 'gap-3'}`}>
+                  <link.icon className="w-5 h-5 text-white" />
                   {!collapsed && (
-                    <div className="ml-3">
-                      <p className={`text-xs font-medium ${colors.textColor}`}>{link.title}</p>
-                      {link.description && (
-                        <p className={`text-[10px] ${colors.subtextColor}`}>{link.description}</p>
-                      )}
-                    </div>
+                    <p className="text-base font-semibold text-white tracking-wide">
+                      {link.title}
+                    </p>
                   )}
                 </div>
               </Link>

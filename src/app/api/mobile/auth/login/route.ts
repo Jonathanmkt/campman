@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import bcrypt from 'bcryptjs';
+import { createClient as createServerClient } from '@/lib/supabase/server';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -71,6 +72,67 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Buscar o auth user ID vinculado a este profile
+    const { data: authUser, error: authError } = await supabase.auth.admin.getUserById(profile.id);
+    
+    if (authError || !authUser) {
+      console.error('[LOGIN] Erro ao buscar auth user:', authError);
+      return NextResponse.json(
+        { success: false, error: 'Erro ao criar sessão. Entre em contato com o suporte.' },
+        { status: 500 }
+      );
+    }
+
+    console.log('[LOGIN] Auth user encontrado:', authUser.user.email);
+
+    // Gerar link de recuperação que contém tokens válidos
+    const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
+      type: 'recovery',
+      email: authUser.user.email!,
+    });
+
+    if (linkError || !linkData) {
+      console.error('[LOGIN] Erro ao gerar link:', linkError);
+      return NextResponse.json(
+        { success: false, error: 'Erro ao gerar sessão.' },
+        { status: 500 }
+      );
+    }
+
+    console.log('[LOGIN] Link gerado com sucesso');
+
+    // O hashed_token é o que precisamos para verificar
+    const hashedToken = linkData.properties.hashed_token;
+
+    if (!hashedToken) {
+      console.error('[LOGIN] Hashed token não encontrado');
+      return NextResponse.json(
+        { success: false, error: 'Erro ao gerar token de autenticação.' },
+        { status: 500 }
+      );
+    }
+
+    console.log('[LOGIN] Hashed token extraído');
+
+    // Criar cliente server para configurar cookies
+    const supabaseServer = await createServerClient();
+    
+    // Verificar o token de recovery para obter a sessão
+    const { data: sessionData, error: sessionError } = await supabaseServer.auth.verifyOtp({
+      token_hash: hashedToken,
+      type: 'recovery',
+    });
+
+    if (sessionError || !sessionData.session) {
+      console.error('[LOGIN] Erro ao verificar token:', sessionError);
+      return NextResponse.json(
+        { success: false, error: 'Erro ao configurar sessão.' },
+        { status: 500 }
+      );
+    }
+
+    console.log('[LOGIN] Sessão configurada com sucesso');
+
     // Atualizar último acesso
     await supabase
       .from('profiles')
@@ -86,7 +148,7 @@ export async function POST(request: NextRequest) {
       rolePrincipal = 'colaborador';
     }
 
-    // Retornar dados do usuário (sem senha)
+    // Retornar dados do usuário (sessão já foi criada)
     return NextResponse.json({
       success: true,
       data: {

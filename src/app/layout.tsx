@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import favicon from "./favicon.png";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: "CampMan",
   description: "Sistema de gestão de campanha política",
   icons: {
-    icon: '/favicon.ico',
+    icon: favicon.src,
   },
 };
 
