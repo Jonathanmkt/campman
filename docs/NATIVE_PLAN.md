@@ -1,7 +1,7 @@
 # Plano Adaptado – Módulo Mobile Web (src/app/mobile + src/app/api/mobile)
 
 ## 1. Contexto e Escopo
-- O mobile deixa de ser um app nativo separado e passa a viver **dentro do próprio monorepo `campanha-thiago-moura`**, reaproveitando Next.js, shadcn/ui e convenções já estabelecidas.
+- O mobile deixa de ser um app nativo separado e passa a viver **dentro do próprio monorepo `campman`**, reaproveitando Next.js, shadcn/ui e convenções já estabelecidas.
 - As páginas mobile ficarão em `src/app/mobile` (interface) e a camada de APIs específicas para onboarding/login em `src/app/api/mobile`.
 - Objetivo geral: entregar experiência mobile-first para a campanha – incluindo criação de usuários via WhatsApp, onboarding simplificado e dashboards resumidos – sem alterar o fluxo atual do dashboard desktop.
 - Continuamos usando Supabase para todo o CRUD, mantendo o RLS. O mobile **nunca comunica Supabase diretamente**: todas as operações passam por rotas em `src/app/api/mobile` (ou Edge Functions equivalentes) executando com `service_role`.

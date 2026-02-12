@@ -1,7 +1,7 @@
 version: '3'
 services:
-  campanha-thiago-moura:
-    image: ghcr.io/jonathanmkt/campanha-thiago-moura:latest
+  campman:
+    image: ghcr.io/jonathanmkt/campman:latest
     networks:
       - Singanet
     deploy:
@@ -14,13 +14,13 @@ services:
           memory: 256M
       labels:
         - traefik.enable=1
-        - traefik.http.routers.campanha-thiago-moura.rule=Host(`app.thiagomoura.com.br`)
-        - traefik.http.routers.campanha-thiago-moura.entrypoints=websecure
-        - traefik.http.routers.campanha-thiago-moura.priority=1
-        - traefik.http.routers.campanha-thiago-moura.tls.certresolver=letsencryptresolver
-        - traefik.http.routers.campanha-thiago-moura.service=campanha-thiago-moura
-        - traefik.http.services.campanha-thiago-moura.loadbalancer.server.port=3000
-        - traefik.http.services.campanha-thiago-moura.loadbalancer.passHostHeader=true
+        - traefik.http.routers.campman.rule=Host(`app.campman.com.br`)
+        - traefik.http.routers.campman.entrypoints=websecure
+        - traefik.http.routers.campman.priority=1
+        - traefik.http.routers.campman.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.campman.service=campman
+        - traefik.http.services.campman.loadbalancer.server.port=3000
+        - traefik.http.services.campman.loadbalancer.passHostHeader=true
       placement:
         constraints:
           - node.role == manager

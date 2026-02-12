@@ -1,12 +1,12 @@
-# Guia de Deploy - Campanha Thiago Moura no Portainer via Docker Swarm
+# Guia de Deploy - CampMan no Portainer via Docker Swarm
 
-Este guia detalha como configurar e publicar o projeto **Campanha Thiago Moura** (Next.js + Supabase) no Portainer usando Docker Swarm.
+Este guia detalha como configurar e publicar o projeto **CampMan** (Next.js + Supabase) no Portainer usando Docker Swarm.
 
 ## 📋 Visão Geral
 
 O projeto será containerizado e publicado automaticamente via GitHub Actions no GitHub Container Registry (GHCR), depois deployado no Portainer com Traefik para roteamento HTTPS.
 
-**Domínio de produção:** `app.thiagomoura.com.br`
+**Domínio de produção:** `app.campman.com.br`
 
 ## 🏗️ Arquivos de Configuração
 
@@ -75,7 +75,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: jonathanmkt/campanha-thiago-moura
+  IMAGE_NAME: jonathanmkt/campman
 
 jobs:
   build-and-push:
@@ -135,8 +135,8 @@ Arquivo `docker-compose.yml`:
 ```yaml
 version: '3'
 services:
-  campanha-thiago-moura:
-    image: ghcr.io/jonathanmkt/campanha-thiago-moura:latest
+  campman:
+    image: ghcr.io/jonathanmkt/campman:latest
     networks:
       - Singanet
     deploy:
@@ -149,13 +149,13 @@ services:
           memory: 256M
       labels:
         - traefik.enable=1
-        - traefik.http.routers.campanha-thiago-moura.rule=Host(`app.thiagomoura.com.br`)
-        - traefik.http.routers.campanha-thiago-moura.entrypoints=websecure
-        - traefik.http.routers.campanha-thiago-moura.priority=1
-        - traefik.http.routers.campanha-thiago-moura.tls.certresolver=letsencryptresolver
-        - traefik.http.routers.campanha-thiago-moura.service=campanha-thiago-moura
-        - traefik.http.services.campanha-thiago-moura.loadbalancer.server.port=3000
-        - traefik.http.services.campanha-thiago-moura.loadbalancer.passHostHeader=true
+        - traefik.http.routers.campman.rule=Host(`app.campman.com.br`)
+        - traefik.http.routers.campman.entrypoints=websecure
+        - traefik.http.routers.campman.priority=1
+        - traefik.http.routers.campman.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.campman.service=campman
+        - traefik.http.services.campman.loadbalancer.server.port=3000
+        - traefik.http.services.campman.loadbalancer.passHostHeader=true
       placement:
         constraints:
           - node.role == manager
@@ -203,7 +203,7 @@ No GitHub, vá em **Settings > Secrets and variables > Actions** e adicione:
 
 | Secret | Descrição |
 |--------|-----------|
-| `NEXT_PUBLIC_SITE_URL` | `https://app.thiagomoura.com.br` |
+| `NEXT_PUBLIC_SITE_URL` | `https://app.campman.com.br` |
 | `NEXT_PUBLIC_SUPABASE_URL` | URL do seu projeto Supabase |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Chave anônima do Supabase |
 
@@ -219,20 +219,20 @@ O `GITHUB_TOKEN` já tem permissões para escrever no GHCR. Certifique-se de que
 
 - Rede `Singanet` existente no Docker Swarm
 - Traefik configurado com Let's Encrypt
-- DNS do domínio `app.thiagomoura.com.br` apontando para o servidor
+- DNS do domínio `app.campman.com.br` apontando para o servidor
 
 ### 2. Deploy via Stack
 
 1. Acesse **Stacks** no Portainer
 2. Clique em **Add stack**
-3. Nome: `campanha-thiago-moura`
+3. Nome: `campman`
 4. Cole o conteúdo do `docker-compose.yml`
 5. Deploy
 
 ### 3. Configuração do Traefik
 
 Certifique-se de que:
-- O domínio `app.thiagomoura.com.br` aponta para seu servidor (registro A no DNS)
+- O domínio `app.campman.com.br` aponta para seu servidor (registro A no DNS)
 - O Traefik está configurado com Let's Encrypt (`letsencryptresolver`)
 - A rede `Singanet` existe e está configurada como overlay
 
@@ -259,16 +259,16 @@ Certifique-se de que:
 
 ```bash
 # Build da imagem
-docker build -t campanha-thiago-moura .
+docker build -t campman .
 
 # Executar localmente
-docker run -p 3000:3000 campanha-thiago-moura
+docker run -p 3000:3000 campman
 ```
 
 ### Verificar logs no Portainer
 
 1. Acesse **Services** ou **Containers**
-2. Clique no serviço `campanha-thiago-moura`
+2. Clique no serviço `campman`
 3. Aba **Logs**
 
 ## 🔍 Troubleshooting
@@ -287,7 +287,7 @@ docker run -p 3000:3000 campanha-thiago-moura
 - [ ] Dockerfile na raiz do projeto
 - [ ] .dockerignore na raiz do projeto
 - [ ] GitHub Actions workflow configurado
-- [ ] Docker-compose.yml com domínio correto (`app.thiagomoura.com.br`)
+- [ ] Docker-compose.yml com domínio correto (`app.campman.com.br`)
 - [ ] DNS apontando para o servidor
 - [ ] Rede `Singanet` existe no Docker Swarm
 - [ ] Traefik configurado com Let's Encrypt
@@ -313,7 +313,7 @@ docker run -p 3000:3000 campanha-thiago-moura
 
 ---
 
-**Projeto**: Campanha Thiago Moura  
-**Domínio**: app.thiagomoura.com.br  
-**Repositório**: jonathanmkt/campanha-thiago-moura  
+**Projeto**: CampMan  
+**Domínio**: app.campman.com.br  
+**Repositório**: jonathanmkt/campman  
 **Data**: Dezembro 2024

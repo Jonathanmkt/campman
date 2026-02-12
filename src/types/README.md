@@ -1,4 +1,4 @@
-# Sistema de Tipos - Campanha Thiago Moura 2026
+# Sistema de Tipos - CampMan
 
 Este diretório contém o sistema de tipos TypeScript para o projeto, garantindo type safety e sincronização automática com o banco de dados Supabase.
 

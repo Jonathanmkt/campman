@@ -1,6 +1,6 @@
 /**
  * Tipos TypeScript gerados automaticamente do Supabase
- * Projeto: Campanha Thiago Moura 2026
+ * Projeto: CampMan
  * 
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.

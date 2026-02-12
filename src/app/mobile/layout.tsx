@@ -1,7 +1,7 @@
 import { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Mobile - Campanha Thiago Moura',
+  title: 'Mobile - CampMan',
   description: 'Área mobile para lideranças e coordenadores',
 };
 

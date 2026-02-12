@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: jonathanmkt/campanha-thiago-moura
+  IMAGE_NAME: jonathanmkt/campman
 
 jobs:
   build-and-push:

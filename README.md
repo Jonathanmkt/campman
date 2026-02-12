@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CampMan
+
+Sistema de gestão de campanha política construído com [Next.js](https://nextjs.org) + Supabase.
 
 ## Getting Started
 

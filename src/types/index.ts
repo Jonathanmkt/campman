@@ -1,5 +1,5 @@
 /**
- * Tipos auxiliares para o projeto Campanha Thiago Moura 2026
+ * Tipos auxiliares para o projeto CampMan
  * 
  * Este arquivo contém tipos auxiliares e re-exports dos tipos do Supabase
  * para facilitar o uso em toda a aplicação.

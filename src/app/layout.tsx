@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Campanha Thiago Moura",
-  description: "Sistema de campanha política para Thiago Moura",
+  title: "CampMan",
+  description: "Sistema de gestão de campanha política",
   icons: {
     icon: '/favicon.ico',
   },
