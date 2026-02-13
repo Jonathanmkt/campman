@@ -1,12 +1,12 @@
-# Guia de Deploy - CampMan no Portainer via Docker Swarm
+# Guia de Deploy - Idealis Core no Portainer via Docker Swarm
 
-Este guia detalha como configurar e publicar o projeto **CampMan** (Next.js + Supabase) no Portainer usando Docker Swarm.
+Este guia detalha como configurar e publicar o projeto **Idealis Core** (Next.js + Supabase) no Portainer usando Docker Swarm.
 
 ## 📋 Visão Geral
 
 O projeto será containerizado e publicado automaticamente via GitHub Actions no GitHub Container Registry (GHCR), depois deployado no Portainer com Traefik para roteamento HTTPS.
 
-**Domínio de produção:** `app.campman.com.br`
+**Domínio de produção:** `app.idealiscore.com.br`
 
 ## 🏗️ Arquivos de Configuração
 
@@ -75,7 +75,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: jonathanmkt/campman
+  IMAGE_NAME: jonathanmkt/idealiscore
 
 jobs:
   build-and-push:
@@ -135,8 +135,8 @@ Arquivo `docker-compose.yml`:
 ```yaml
 version: '3'
 services:
-  campman:
-    image: ghcr.io/jonathanmkt/campman:latest
+  idealiscore:
+    image: ghcr.io/jonathanmkt/idealiscore:latest
     networks:
       - Singanet
     deploy:
@@ -149,13 +149,13 @@ services:
           memory: 256M
       labels:
         - traefik.enable=1
-        - traefik.http.routers.campman.rule=Host(`app.campman.com.br`)
-        - traefik.http.routers.campman.entrypoints=websecure
-        - traefik.http.routers.campman.priority=1
-        - traefik.http.routers.campman.tls.certresolver=letsencryptresolver
-        - traefik.http.routers.campman.service=campman
-        - traefik.http.services.campman.loadbalancer.server.port=3000
-        - traefik.http.services.campman.loadbalancer.passHostHeader=true
+        - traefik.http.routers.idealiscore.rule=Host(`app.idealiscore.com.br`)
+        - traefik.http.routers.idealiscore.entrypoints=websecure
+        - traefik.http.routers.idealiscore.priority=1
+        - traefik.http.routers.idealiscore.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.idealiscore.service=idealiscore
+        - traefik.http.services.idealiscore.loadbalancer.server.port=3000
+        - traefik.http.services.idealiscore.loadbalancer.passHostHeader=true
       placement:
         constraints:
           - node.role == manager
@@ -203,7 +203,7 @@ No GitHub, vá em **Settings > Secrets and variables > Actions** e adicione:
 
 | Secret | Descrição |
 |--------|-----------|
-| `NEXT_PUBLIC_SITE_URL` | `https://app.campman.com.br` |
+| `NEXT_PUBLIC_SITE_URL` | `https://app.idealiscore.com.br` |
 | `NEXT_PUBLIC_SUPABASE_URL` | URL do seu projeto Supabase |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Chave anônima do Supabase |
 
@@ -219,20 +219,20 @@ O `GITHUB_TOKEN` já tem permissões para escrever no GHCR. Certifique-se de que
 
 - Rede `Singanet` existente no Docker Swarm
 - Traefik configurado com Let's Encrypt
-- DNS do domínio `app.campman.com.br` apontando para o servidor
+- DNS do domínio `app.idealiscore.com.br` apontando para o servidor
 
 ### 2. Deploy via Stack
 
 1. Acesse **Stacks** no Portainer
 2. Clique em **Add stack**
-3. Nome: `campman`
+3. Nome: `idealiscore`
 4. Cole o conteúdo do `docker-compose.yml`
 5. Deploy
 
 ### 3. Configuração do Traefik
 
 Certifique-se de que:
-- O domínio `app.campman.com.br` aponta para seu servidor (registro A no DNS)
+- O domínio `app.idealiscore.com.br` aponta para seu servidor (registro A no DNS)
 - O Traefik está configurado com Let's Encrypt (`letsencryptresolver`)
 - A rede `Singanet` existe e está configurada como overlay
 
@@ -259,16 +259,16 @@ Certifique-se de que:
 
 ```bash
 # Build da imagem
-docker build -t campman .
+docker build -t idealiscore .
 
 # Executar localmente
-docker run -p 3000:3000 campman
+docker run -p 3000:3000 idealiscore
 ```
 
 ### Verificar logs no Portainer
 
 1. Acesse **Services** ou **Containers**
-2. Clique no serviço `campman`
+2. Clique no serviço `idealiscore`
 3. Aba **Logs**
 
 ## 🔍 Troubleshooting
@@ -287,7 +287,7 @@ docker run -p 3000:3000 campman
 - [ ] Dockerfile na raiz do projeto
 - [ ] .dockerignore na raiz do projeto
 - [ ] GitHub Actions workflow configurado
-- [ ] Docker-compose.yml com domínio correto (`app.campman.com.br`)
+- [ ] Docker-compose.yml com domínio correto (`app.idealiscore.com.br`)
 - [ ] DNS apontando para o servidor
 - [ ] Rede `Singanet` existe no Docker Swarm
 - [ ] Traefik configurado com Let's Encrypt
@@ -313,7 +313,7 @@ docker run -p 3000:3000 campman
 
 ---
 
-**Projeto**: CampMan  
-**Domínio**: app.campman.com.br  
-**Repositório**: jonathanmkt/campman  
+**Projeto**: Idealis Core  
+**Domínio**: app.idealiscore.com.br  
+**Repositório**: jonathanmkt/idealiscore  
 **Data**: Dezembro 2024

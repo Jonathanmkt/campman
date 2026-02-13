@@ -1,5 +1,5 @@
 {
-  "name": "campman",
+  "name": "idealiscore",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,8 +13,8 @@
     "validate-endpoints": "node src/types/validate-endpoints.js",
     "check-api": "npm run validate-endpoints",
     "clean": "rm -rf .next out dist",
-    "docker:build": "docker build -t campman .",
-    "docker:run": "docker run -p 3000:3000 campman",
+    "docker:build": "docker build -t idealiscore .",
+    "docker:run": "docker run -p 3000:3000 idealiscore",
     "prepare": "husky"
   },
   "dependencies": {

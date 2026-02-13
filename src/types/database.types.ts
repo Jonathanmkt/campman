@@ -1,6 +1,6 @@
 /**
  * Tipos TypeScript gerados automaticamente do Supabase
- * Projeto: CampMan
+ * Projeto: Idealis Core
  * 
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.

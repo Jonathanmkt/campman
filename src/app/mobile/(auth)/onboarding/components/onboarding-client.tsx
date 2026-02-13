@@ -137,7 +137,7 @@ export function OnboardingClient() {
               Ops!
             </h1>
             <p className="text-blue-100 text-lg">
-              CampMan
+              Idealis Core
             </p>
           </div>
         <Card className="w-full max-w-md shadow-2xl">
@@ -169,7 +169,7 @@ export function OnboardingClient() {
               Sucesso!
             </h1>
             <p className="text-blue-100 text-lg">
-              CampMan
+              Idealis Core
             </p>
           </div>
         <Card className="w-full max-w-md shadow-2xl">
@@ -204,7 +204,7 @@ export function OnboardingClient() {
             Bem-vindo(a)!
           </h1>
           <p className="text-blue-100 text-lg">
-            CampMan
+            Idealis Core
           </p>
         </div>
 

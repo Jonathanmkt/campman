@@ -9,7 +9,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: jonathanmkt/campman
+  IMAGE_NAME: jonathanmkt/idealiscore
 
 jobs:
   build-and-push:

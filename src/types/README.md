@@ -1,4 +1,4 @@
-# Sistema de Tipos - CampMan
+# Sistema de Tipos - Idealis Core
 
 Este diretório contém o sistema de tipos TypeScript para o projeto, garantindo type safety e sincronização automática com o banco de dados Supabase.
 

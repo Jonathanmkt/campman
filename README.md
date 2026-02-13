@@ -1,6 +1,6 @@
-# CampMan
+# Idealis Core
 
-Sistema de gestão de campanha política construído com [Next.js](https://nextjs.org) + Supabase.
+Plataforma SaaS multi-tenant de gestão de campanha política construída com [Next.js](https://nextjs.org) + Supabase.
 
 ## Getting Started
 

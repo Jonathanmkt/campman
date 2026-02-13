@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CampMan",
-  description: "Sistema de gestão de campanha política",
+  title: "Idealis Core",
+  description: "Idealis Core - Plataforma de gestão de campanha política",
   icons: {
     icon: favicon.src,
   },

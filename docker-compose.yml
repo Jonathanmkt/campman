@@ -1,7 +1,7 @@
 version: '3'
 services:
-  campman:
-    image: ghcr.io/jonathanmkt/campman:latest
+  idealiscore:
+    image: ghcr.io/jonathanmkt/idealiscore:latest
     networks:
       - Singanet
     deploy:
@@ -14,13 +14,13 @@ services:
           memory: 256M
       labels:
         - traefik.enable=1
-        - traefik.http.routers.campman.rule=Host(`app.campman.com.br`)
-        - traefik.http.routers.campman.entrypoints=websecure
-        - traefik.http.routers.campman.priority=1
-        - traefik.http.routers.campman.tls.certresolver=letsencryptresolver
-        - traefik.http.routers.campman.service=campman
-        - traefik.http.services.campman.loadbalancer.server.port=3000
-        - traefik.http.services.campman.loadbalancer.passHostHeader=true
+        - traefik.http.routers.idealiscore.rule=Host(`app.idealiscore.com.br`)
+        - traefik.http.routers.idealiscore.entrypoints=websecure
+        - traefik.http.routers.idealiscore.priority=1
+        - traefik.http.routers.idealiscore.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.idealiscore.service=idealiscore
+        - traefik.http.services.idealiscore.loadbalancer.server.port=3000
+        - traefik.http.services.idealiscore.loadbalancer.passHostHeader=true
       placement:
         constraints:
           - node.role == manager

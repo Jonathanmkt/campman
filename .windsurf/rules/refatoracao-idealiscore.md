@@ -1,15 +1,17 @@
-# CAMPMAN — Plano Macro de Refatoração para Multi-Tenant SaaS
+# IDEALIS CORE — Plano Macro de Refatoração para Multi-Tenant SaaS
 
 > **Início:** 12 de fevereiro de 2026
-> **Projeto Supabase:** `xkqtrwbnionpbjziilgy` (nome atual: "Thiago Moura")
-> **Repositório atual:** `campanha-thiago-moura` → será renomeado para `campman`
+> **Projeto Supabase:** `xkqtrwbnionpbjziilgy` (nome atual: "Thiago Moura" → será renomeado para "Idealis Core")
+> **Repositório atual:** `campanha-thiago-moura` → será renomeado para `IdealisCore`
+> **URL de produção:** `app.idealiscore.com.br`
+> **Nome na interface:** Idealis Core
 > **Status:** EM ANDAMENTO
 
 ---
 
 ## Contexto
 
-O CampMan nasceu como ferramenta de gestão de campanha política para um único candidato (Thiago Moura, RJ). Após validação, outros candidatos a deputado estadual e federal de diversos estados do Brasil demonstraram interesse. O projeto será transformado em um **SaaS multi-tenant** (multi-inquilino), onde cada "tenant" é uma **campanha** com seu próprio admin, equipe, configurações visuais e restrição geográfica por estado.
+O Idealis Core nasceu como ferramenta de gestão de campanha política para um único candidato (Thiago Moura, RJ). Após validação, outros candidatos a deputado estadual e federal de diversos estados do Brasil demonstraram interesse. O projeto será transformado em um **SaaS multi-tenant** (multi-inquilino), onde cada "tenant" é uma **campanha** com seu próprio admin, equipe, configurações visuais e restrição geográfica por estado.
 
 **Termo técnico correto:** O modelo é **Multi-Tenant SaaS** (Software as a Service com múltiplos inquilinos). Cada "tenant" = uma campanha. O isolamento de dados entre campanhas será feito via **tenant_id** (coluna `campanha_id`) em todas as tabelas, usando **Row Level Security (RLS)** do Supabase para garantir que cada usuário só veja dados da sua campanha.
 
@@ -39,18 +41,19 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 ### FASE 1 — FUNDAÇÃO (Pré-requisitos para tudo)
 
 #### ETAPA 1.1 — Renomeação e Desacoplamento de Identidade
-- [ ] **1.1.1** Renomear diretório do projeto de `campanha-thiago-moura` para `campman`
-- [ ] **1.1.2** Atualizar remote do Git para o novo nome do repositório
-- [ ] **1.1.3** Remover referências hardcoded a "Thiago Moura" no código-fonte:
+- [x] **1.1.1** Renomear referências no código de `campman`/`CampMan` para `idealiscore`/`Idealis Core`
+- [ ] **1.1.2** Renomear diretório do projeto de `campanha-thiago-moura` para `IdealisCore`
+- [ ] **1.1.3** Atualizar remote do Git para o novo nome do repositório (`IdealisCore`)
+- [ ] **1.1.4** Remover referências hardcoded a "Thiago Moura" no código-fonte:
   - `src/components/layout/Sidebar.tsx` (linha 98: "Thiago Moura", linha 100: "Campanha 2026")
   - `src/app/mobile/(app)/liderancas/components/NovaLiderancaForm.tsx`
   - `src/app/mobile/(app)/liderancas/hooks/useLiderancas.ts`
   - `src/components/gestao-projetos/analytics/ProjectAnalytics.tsx`
   - `src/components/gestao-projetos/gantt/SimpleGanttChart.tsx`
   - `src/components/layout/UserProfile.tsx`
-- [ ] **1.1.4** Substituir textos estáticos por dados dinâmicos vindos da tabela `campanha` (será criada na Etapa 1.2)
-- [ ] **1.1.5** Renomear projeto no Supabase de "Thiago Moura" para "CampMan"
-- [ ] **1.1.6** Limpar arquivos de debug/teste da raiz do projeto (`.html`, `.json` de Araruama, `.ps1`, `.py`)
+- [ ] **1.1.5** Substituir textos estáticos por dados dinâmicos vindos da tabela `campanha` (será criada na Etapa 1.2)
+- [ ] **1.1.6** Renomear projeto no Supabase de "Thiago Moura" para "Idealis Core"
+- [ ] **1.1.7** Limpar arquivos de debug/teste da raiz do projeto (`.html`, `.json` de Araruama, `.ps1`, `.py`)
 
 > **Dependência:** Nenhuma. Esta é a primeira etapa.
 
@@ -61,7 +64,7 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
   ```
   campanha {
     id: uuid (PK)
-    nome: text (nome da campanha, ex: "Campanha Thiago Moura 2026")
+    nome: text (nome da campanha)
     nome_candidato: text
     cargo_pretendido: text (enum: deputado_estadual, deputado_federal, vereador, prefeito, senador, governador)
     partido: text
@@ -106,7 +109,7 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
   - `departamento`
   - `pesquisa_quantitativa`
   - `projects`, `tasks`, `sprints`, `milestones` (gestão de projetos)
-- [ ] **1.2.4** Criar migration para popular dados existentes com uma `campanha_id` default (campanha legada do Thiago Moura)
+- [ ] **1.2.4** Criar migration para popular dados existentes com uma `campanha_id` default (campanha legada)
 - [ ] **1.2.5** Tornar `campanha_id` NOT NULL em todas as tabelas após migração de dados
 - [ ] **1.2.6** Implementar **RLS (Row Level Security)** em todas as tabelas:
   - Policy: `SELECT/INSERT/UPDATE/DELETE WHERE campanha_id = (SELECT campanha_id FROM campanha_membro WHERE profile_id = auth.uid() LIMIT 1)`
@@ -196,10 +199,10 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 #### ETAPA 4.1 — Convites via Telefone para Todos os Roles
 - [ ] **4.1.1** Configurar Supabase Auth para login via telefone (Phone OTP) — verificar se já está habilitado
 - [ ] **4.1.2** Implementar fluxo de convite do Admin:
-  - Admin convida Colaborador → via telefone → SMS/WhatsApp com link de onboarding
-  - Admin convida Coordenador → via telefone → SMS/WhatsApp com link de onboarding
-  - Admin convida Liderança → via telefone → SMS/WhatsApp com link de onboarding
-  - Admin convida Eleitor → via telefone → SMS/WhatsApp com link de cadastro
+  - Admin convida Colaborador → via telefone → WhatsApp com link de onboarding
+  - Admin convida Coordenador → via telefone → WhatsApp com link de onboarding
+  - Admin convida Liderança → via telefone → WhatsApp com link de onboarding
+  - Admin convida Eleitor → via telefone → WhatsApp com link de cadastro
 - [ ] **4.1.3** Atualizar tabela `convites` para suportar todos os roles e incluir `campanha_id`
 - [ ] **4.1.4** Criar tela de gestão de convites no dashboard do admin (`/dashboard/convites`)
 - [ ] **4.1.5** Integrar a **WhatsApp Business Platform (API oficial do WhatsApp)**: estudar autenticação (Bearer Token), configuração de Cloud API no Facebook Business Manager, e registrar os números oficiais da campanha.
@@ -246,7 +249,7 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 ### FASE 5 — APLICATIVO NATIVO (React Native)
 
 #### ETAPA 5.1 — Criação do Projeto React Native
-- [ ] **5.1.1** Criar novo repositório `campman-mobile` usando **React Native com Expo** (workflow padrão Expo para acelerar builds e publicação)
+- [ ] **5.1.1** Criar novo repositório `idealiscore-mobile` usando **React Native com Expo** (workflow padrão Expo para acelerar builds e publicação)
 - [ ] **5.1.2** Configurar integração com Supabase (auth, database, storage)
 - [ ] **5.1.3** Migrar telas mobile existentes de Next.js (`src/app/mobile/`) para React Native:
   - Tela de login (Phone OTP)
@@ -288,11 +291,15 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 3. **Aplicativo nativo:** Projeto React Native será desenvolvido com **Expo**.
 4. **Cobrança futura:** Já criaremos campos/tabelas para suportar planos, limites e datas de expiração, mesmo sem cobrar agora (Etapa 1.2.8).
 
+## Decisões Registradas em 13/02/2026
+
+5. **Rebranding:** Projeto renomeado de CampMan para **Idealis Core**. URL: `app.idealiscore.com.br`. Repositório: `IdealisCore`. Nome na interface: "Idealis Core". Repositório mobile: `idealiscore-mobile`.
+
 ---
 
 ## Regras para Agentes de IA durante a Refatoração
 
-1. **Sempre consultar este arquivo** antes de iniciar qualquer tarefa relacionada ao CampMan
+1. **Sempre consultar este arquivo** antes de iniciar qualquer tarefa relacionada ao Idealis Core
 2. **Nunca alterar tabelas do banco** sem antes verificar o checklist acima e confirmar que a etapa anterior está concluída
 3. **Sempre usar `campanha_id`** em qualquer nova query, insert, update ou delete
 4. **Nunca hardcodar** nomes de candidatos, estados, coordenadas ou cores
@@ -302,6 +309,9 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 8. **Marcar checkbox** neste arquivo ao concluir cada sub-etapa
 9. **O projeto Supabase é:** `xkqtrwbnionpbjziilgy`
 10. **Stack obrigatória:** Next.js 15, React 19, TypeScript, Supabase, shadcn/ui, Tailwind CSS 3.4, TanStack Query, Zustand, react-hook-form, Zod
+11. **Nome do projeto na interface:** Idealis Core (sempre com espaço, duas palavras)
+12. **Nome técnico (repos, Docker, configs):** idealiscore (tudo junto, minúsculo)
+13. **URL de produção:** app.idealiscore.com.br
 
 ---
 
@@ -310,5 +320,5 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 | Data | Etapa | Status | Observações |
 |---|---|---|---|
 | 2026-02-12 | Planejamento | ✅ Concluído | Plano macro criado e persistido como workspace rule |
+| 2026-02-13 | Rebranding CampMan → Idealis Core | ✅ Concluído | Todas as referências no código atualizadas (package.json, docker-compose, GH Actions, layouts, mobile, dashboard, roadmap, types, docs) |
 | | | | |
-

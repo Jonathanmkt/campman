@@ -2,7 +2,7 @@
 
 /**
  * Script para geração automática de tipos TypeScript do Supabase
- * Projeto: CampMan
+ * Projeto: Idealis Core
  * 
  * Este script gera TODOS os tipos TypeScript do Supabase diretamente
  * usando o token de acesso do Supabase e o ID do projeto
@@ -62,7 +62,7 @@ function getSupabaseConfig() {
 }
 
 function generateTypes() {
-  logInfo('Gerando tipos TypeScript do Supabase para CampMan...');
+  logInfo('Gerando tipos TypeScript do Supabase para Idealis Core...');
   
   try {
     // Obter configurações do Supabase
@@ -94,7 +94,7 @@ function generateTypes() {
         // Salvar resultado do CLI
         const header = `/**
  * Tipos TypeScript gerados automaticamente do Supabase
- * Projeto: CampMan
+ * Projeto: Idealis Core
  * 
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
@@ -187,7 +187,7 @@ function generateHelperTypes() {
   const helperTypesPath = path.join(__dirname, 'index.ts');
   
   const helperContent = `/**
- * Tipos auxiliares para o projeto CampMan
+ * Tipos auxiliares para o projeto Idealis Core
  * 
  * Este arquivo contém tipos auxiliares e re-exports dos tipos do Supabase
  * para facilitar o uso em toda a aplicação.
@@ -288,7 +288,7 @@ export interface Notification {
 
 function main() {
   log('\n🚀 Iniciando geração de tipos TypeScript do Supabase', 'bright');
-  log('📋 Projeto: CampMan\n', 'cyan');
+  log('📋 Projeto: Idealis Core\n', 'cyan');
   
   try {
     // Verificar se arquivo de tipos existe (backup de segurança)

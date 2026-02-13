@@ -114,7 +114,7 @@ export default function LoginMobilePage() {
             Bem-vindo!
           </h1>
           <p className="text-blue-100 text-lg">
-            CampMan
+            Idealis Core
           </p>
         </div>
 

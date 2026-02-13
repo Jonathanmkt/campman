@@ -1,5 +1,5 @@
 /**
- * Tipos auxiliares para o projeto CampMan
+ * Tipos auxiliares para o projeto Idealis Core
  * 
  * Este arquivo contém tipos auxiliares e re-exports dos tipos do Supabase
  * para facilitar o uso em toda a aplicação.

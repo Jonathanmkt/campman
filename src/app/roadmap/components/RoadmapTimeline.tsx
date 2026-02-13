@@ -128,13 +128,13 @@ const roadmapPhases: RoadmapPhase[] = [
     id: 'fase-5',
     title: 'Fase 5 — Aplicativo Nativo Expo',
     description:
-      'Criação do repositório `campman-mobile` via Expo, migração das telas críticas e preparação para builds nas lojas.',
+      'Criação do repositório `idealiscore-mobile` via Expo, migração das telas críticas e preparação para builds nas lojas.',
     startDate: '2026-02-25',
     endDate: '2026-02-26',
     tasks: [
       {
         code: '5.1',
-        title: 'CampMan Mobile (Expo)',
+        title: 'Idealis Core Mobile (Expo)',
         description:
           'Inicializar projeto Expo, integrar Supabase, portar telas de login, onboarding, lideranças e eleitores, além do mapa nativo.',
         dueDate: '2026-02-26',
@@ -272,7 +272,6 @@ export default function RoadmapTimeline() {
     return { state: scheduleStates.delayed, variant: 'delayed' as const };
   })();
 
-  const NextIcon = scheduleStatus.state.icon;
   const nextTask = allTasks.find((task) => task.status !== 'done');
 
   return (
@@ -294,7 +293,7 @@ export default function RoadmapTimeline() {
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-            CampMan
+            Idealis Core
           </h1>
           <p className="mt-3 text-lg text-white/70">
             Roadmap de Implementações
@@ -418,7 +417,7 @@ export default function RoadmapTimeline() {
             })}
           </div>
           <p className="text-[11px] text-gray-400 text-center mt-6">
-            &copy; 2026 CampMan &mdash; Atualizado em tempo real pela equipe de desenvolvimento.
+            &copy; 2026 Idealis Core &mdash; Atualizado em tempo real pela equipe de desenvolvimento.
           </p>
         </div>
       </footer>
