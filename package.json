@@ -10,6 +10,8 @@
     "lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
     "type-check": "tsc --noEmit",
     "generate-types": "node src/types/generate-types.js",
+    "generate-schema": "node src/types/generate-schema.js",
+    "update-types": "node src/types/generate-types.js && node src/types/generate-schema.js",
     "validate-endpoints": "node src/types/validate-endpoints.js",
     "check-api": "npm run validate-endpoints",
     "clean": "rm -rf .next out dist",

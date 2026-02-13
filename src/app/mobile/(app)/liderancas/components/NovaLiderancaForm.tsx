@@ -153,7 +153,9 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
     const telefoneNumeros = conviteData.telefone.replace(/\D/g, '');
     const telefoneComDDI = telefoneNumeros.startsWith('55') ? telefoneNumeros : `55${telefoneNumeros}`;
     const primeiroNome = formData.nome_completo.trim().split(/\s+/)[0] || formData.nome_completo;
-    const mensagem = `Oi ${primeiroNome}, tudo bem?\n\nEstou participando da Campanha de Deputado Estadual do meu amigo Thiago Moura e gostaria de lhe convidar pra fazer parte.\n\nPra aceitar basta clicar no link abaixo e cadastrar tua senha.\n\n${linkConvite}`;
+    // TODO: buscar nome do candidato e cargo da tabela campanha (Etapa 1.2)
+    const nomeCandidato = 'nosso candidato';
+    const mensagem = `Oi ${primeiroNome}, tudo bem?\n\nEstou participando da campanha de ${nomeCandidato} e gostaria de lhe convidar pra fazer parte.\n\nPra aceitar basta clicar no link abaixo e cadastrar tua senha.\n\n${linkConvite}`;
     const mensagemCodificada = encodeURIComponent(mensagem);
 
     window.open(`https://wa.me/${telefoneComDDI}?text=${mensagemCodificada}`, '_blank');

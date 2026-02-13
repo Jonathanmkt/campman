@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+import { createAdminClient } from '@/lib/supabase/admin';
 
 // GET - Listar convites pendentes
 export async function GET(request: NextRequest) {
   try {
+    const supabase = createAdminClient()
     const { searchParams } = new URL(request.url);
     const createdBy = searchParams.get('created_by');
 
@@ -109,6 +105,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = createAdminClient()
     // Chamar função do banco que cria liderança provisória + convite em transação
     const { data, error } = await supabase.rpc('criar_convite_lideranca', {
       p_telefone: telefoneNormalizado,

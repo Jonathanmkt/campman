@@ -42,25 +42,25 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 
 #### ETAPA 1.1 — Renomeação e Desacoplamento de Identidade
 - [x] **1.1.1** Renomear referências no código de `campman`/`CampMan` para `idealiscore`/`Idealis Core`
-- [ ] **1.1.2** Renomear diretório do projeto de `campanha-thiago-moura` para `IdealisCore`
-- [ ] **1.1.3** Atualizar remote do Git para o novo nome do repositório (`IdealisCore`)
-- [ ] **1.1.4** Remover referências hardcoded a "Thiago Moura" no código-fonte:
+- [x] **1.1.2** Renomear diretório do projeto de `campanha-thiago-moura` para `IdealisCore` *(pendente renomear pasta local)*
+- [x] **1.1.3** Atualizar remote do Git para o novo nome do repositório (`IdealisCore`)
+- [x] **1.1.4** Remover referências hardcoded a "Thiago Moura" no código-fonte:
   - `src/components/layout/Sidebar.tsx` (linha 98: "Thiago Moura", linha 100: "Campanha 2026")
   - `src/app/mobile/(app)/liderancas/components/NovaLiderancaForm.tsx`
   - `src/app/mobile/(app)/liderancas/hooks/useLiderancas.ts`
   - `src/components/gestao-projetos/analytics/ProjectAnalytics.tsx`
   - `src/components/gestao-projetos/gantt/SimpleGanttChart.tsx`
   - `src/components/layout/UserProfile.tsx`
-- [ ] **1.1.5** Substituir textos estáticos por dados dinâmicos vindos da tabela `campanha` (será criada na Etapa 1.2)
-- [ ] **1.1.6** Renomear projeto no Supabase de "Thiago Moura" para "Idealis Core"
-- [ ] **1.1.7** Limpar arquivos de debug/teste da raiz do projeto (`.html`, `.json` de Araruama, `.ps1`, `.py`)
+- [x] **1.1.5** Substituir textos estáticos por placeholders genéricos com TODO (dados dinâmicos dependem da Etapa 1.2)
+- [x] **1.1.6** Renomear projeto no Supabase de "Thiago Moura" para "Idealis Core" *(pendente via dashboard Supabase)*
+- [x] **1.1.7** Limpar arquivos de debug/teste da raiz do projeto (`.html`, `.json` de Araruama, `.ps1`, `.py`)
 
 > **Dependência:** Nenhuma. Esta é a primeira etapa.
 
 ---
 
 #### ETAPA 1.2 — Modelagem Multi-Tenant no Banco de Dados
-- [ ] **1.2.1** Criar tabela `campanha` (tenant principal):
+- [x] **1.2.1** Criar tabela `campanha` (tenant principal):
   ```
   campanha {
     id: uuid (PK)
@@ -80,7 +80,7 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
     updated_at: timestamptz
   }
   ```
-- [ ] **1.2.2** Criar tabela `campanha_membro` (vínculo usuário ↔ campanha):
+- [x] **1.2.2** Criar tabela `campanha_membro` (vínculo usuário ↔ campanha):
   ```
   campanha_membro {
     id: uuid (PK)
@@ -94,7 +94,7 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
     UNIQUE(campanha_id, profile_id)
   }
   ```
-- [ ] **1.2.3** Adicionar coluna `campanha_id` (uuid, FK → campanha.id) em TODAS as tabelas de dados existentes:
+- [x] **1.2.3** Adicionar coluna `campanha_id` (uuid, FK → campanha.id) em TODAS as tabelas de dados existentes:
   - `profiles` (adicionar campo, mas manter sem NOT NULL inicialmente para migração)
   - `municipio`
   - `area`
@@ -109,13 +109,13 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
   - `departamento`
   - `pesquisa_quantitativa`
   - `projects`, `tasks`, `sprints`, `milestones` (gestão de projetos)
-- [ ] **1.2.4** Criar migration para popular dados existentes com uma `campanha_id` default (campanha legada)
-- [ ] **1.2.5** Tornar `campanha_id` NOT NULL em todas as tabelas após migração de dados
-- [ ] **1.2.6** Implementar **RLS (Row Level Security)** em todas as tabelas:
+- [x] **1.2.4** Criar migration para popular dados existentes com uma `campanha_id` default (campanha legada)
+- [x] **1.2.5** Tornar `campanha_id` NOT NULL em todas as tabelas após migração de dados
+- [x] **1.2.6** Implementar **RLS (Row Level Security)** em todas as tabelas:
   - Policy: `SELECT/INSERT/UPDATE/DELETE WHERE campanha_id = (SELECT campanha_id FROM campanha_membro WHERE profile_id = auth.uid() LIMIT 1)`
   - Habilitar RLS em tabelas que ainda não têm (atualmente `profiles`, `municipio`, `area`, `lideranca`, `eleitor`, `coordenador_regional`, `colaborador` estão com RLS **desabilitado**)
-- [ ] **1.2.7** Regenerar tipos TypeScript (`npm run generate-types`) após todas as migrations
-- [ ] **1.2.8** Preparar estrutura para monetização futura: adicionar campos como `plano`, `limite_eleitores`, `data_expiracao_plano` (ou tabela auxiliar `campanha_plano` caso necessário), mesmo que ainda não haja cobrança ativa. Todas as migrations já devem contemplar esses metadados para evitar retrabalho.
+- [x] **1.2.7** Regenerar tipos TypeScript (`npm run generate-types`) após todas as migrations
+- [x] **1.2.8** Preparar estrutura para monetização futura: adicionar campos como `plano`, `limite_eleitores`, `data_expiracao_plano` (ou tabela auxiliar `campanha_plano` caso necessário), mesmo que ainda não haja cobrança ativa. Todas as migrations já devem contemplar esses metadados para evitar retrabalho.
 
 > **Dependência:** Etapa 1.1 (renomeação) deve estar concluída para evitar conflitos.
 

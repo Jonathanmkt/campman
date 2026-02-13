@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createAdminClient } from '@/lib/supabase/admin';
 import bcrypt from 'bcryptjs';
 import { randomUUID } from 'crypto';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 // POST - Confirmar convite e criar senha
 export async function POST(request: NextRequest) {
@@ -29,6 +24,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = createAdminClient()
     // Buscar convite antes de criar usuário
     const { data: convite, error: conviteError } = await supabase
       .from('convites')
@@ -298,6 +294,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const supabase = createAdminClient()
     // Buscar convite pelo token
     const { data: convite, error } = await supabase
       .from('convites')

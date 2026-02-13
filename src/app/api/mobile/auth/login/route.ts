@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createAdminClient } from '@/lib/supabase/admin';
 import bcrypt from 'bcryptjs';
 import { createClient as createServerClient } from '@/lib/supabase/server';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 // POST - Login mobile (telefone + senha)
 export async function POST(request: NextRequest) {
@@ -32,6 +27,7 @@ export async function POST(request: NextRequest) {
     // Normalizar telefone
     const telefoneNormalizado = telefone.replace(/\D/g, '');
 
+    const supabase = createAdminClient()
     // Buscar usuário por telefone
     const { data: profile, error } = await supabase
       .from('profiles')

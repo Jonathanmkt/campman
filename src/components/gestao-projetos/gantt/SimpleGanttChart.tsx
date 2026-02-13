@@ -87,7 +87,7 @@ export function SimpleGanttChart({ tasks = [], projects = [], loading = false }:
       endDate: '2025-11-25',
       progress: 80,
       priority: 'HIGH',
-      assignee: 'Thiago Moura',
+      assignee: 'Admin',
       type: 'EPIC'
     },
     {

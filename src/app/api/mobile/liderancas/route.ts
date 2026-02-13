@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient as createServerClient } from '@/lib/supabase/server';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 async function getCoordenadorLogado() {
   const supabaseAuth = await createServerClient();
@@ -18,6 +13,7 @@ async function getCoordenadorLogado() {
     return { error: 'Usuário não autenticado', status: 401 as const };
   }
 
+  const supabase = createAdminClient()
   const { data: coordenadorRegional, error: coordenadorError } = await supabase
     .from('coordenador_regional')
     .select('id')
@@ -41,6 +37,7 @@ export async function GET() {
       return NextResponse.json({ success: false, error }, { status });
     }
 
+    const supabase = createAdminClient()
     const { data, error: liderancasError } = await supabase
       .from('lideranca')
       .select(`
@@ -142,6 +139,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = createAdminClient()
     // Criar liderança com dados completos
     const { data: lideranca, error: liderancaError } = await supabase
       .from('lideranca')

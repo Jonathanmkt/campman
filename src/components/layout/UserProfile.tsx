@@ -24,8 +24,8 @@ export function UserProfile({ collapsed = false }: { collapsed?: boolean }) {
     }
   };
   
-  // Dados fictícios para desenvolvimento
-  const fullName = 'Thiago Moura';
+  // TODO: substituir por dados dinâmicos do perfil/campanha (Etapa 1.2)
+  const fullName = 'Administrador';
 
   return (
     <DropdownMenu>

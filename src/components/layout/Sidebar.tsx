@@ -94,8 +94,9 @@ export function Sidebar({ links }: SidebarProps) {
                 )}
               >
                 <div className="w-[180px] flex flex-col whitespace-nowrap">
+                  {/* TODO: substituir por dados dinâmicos da tabela campanha (Etapa 1.2) */}
                   <h1 className='text-2xl font-bold text-primary-foreground leading-tight mb-1'>
-                    Thiago Moura
+                    Minha Campanha
                   </h1>
                   <span className='text-sm text-primary-foreground leading-tight'>Campanha 2026</span>
                 </div>

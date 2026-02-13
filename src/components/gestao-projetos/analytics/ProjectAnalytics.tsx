@@ -80,7 +80,7 @@ export function ProjectAnalytics({ analytics, loading = false }: ProjectAnalytic
   ]
 
   const teamPerformance = [
-    { name: 'Thiago Moura', completed: 8, assigned: 10, efficiency: 80 },
+    { name: 'Admin', completed: 8, assigned: 10, efficiency: 80 },
     { name: 'Maria Silva', completed: 9, assigned: 12, efficiency: 75 },
     { name: 'João Santos', completed: 7, assigned: 10, efficiency: 70 },
     { name: 'Ana Costa', completed: 4, assigned: 6, efficiency: 67 },

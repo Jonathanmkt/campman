@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2026-01-05T20:42:48.590Z
+ * Última atualização: 2026-02-13T23:30:56.267Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -29,6 +29,7 @@ export type Database = {
         Row: {
           ativo: boolean | null
           bairro: string | null
+          campanha_id: string
           cep: string | null
           cidade: string | null
           codigo: string | null
@@ -58,6 +59,7 @@ export type Database = {
         Insert: {
           ativo?: boolean | null
           bairro?: string | null
+          campanha_id: string
           cep?: string | null
           cidade?: string | null
           codigo?: string | null
@@ -87,6 +89,7 @@ export type Database = {
         Update: {
           ativo?: boolean | null
           bairro?: string | null
+          campanha_id?: string
           cep?: string | null
           cidade?: string | null
           codigo?: string | null
@@ -115,6 +118,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "area_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "area_municipio_id_fkey"
             columns: ["municipio_id"]
             isOneToOne: false
@@ -123,8 +133,184 @@ export type Database = {
           },
         ]
       }
+      assinatura: {
+        Row: {
+          campanha_id: string
+          cancelado_em: string | null
+          ciclo: string
+          created_at: string
+          data_fim: string | null
+          data_inicio: string
+          data_proximo_pagamento: string | null
+          id: string
+          motivo_cancelamento: string | null
+          motivo_cortesia: string | null
+          plano_id: string
+          status: string
+          updated_at: string
+          valor_atual: number | null
+        }
+        Insert: {
+          campanha_id: string
+          cancelado_em?: string | null
+          ciclo?: string
+          created_at?: string
+          data_fim?: string | null
+          data_inicio: string
+          data_proximo_pagamento?: string | null
+          id?: string
+          motivo_cancelamento?: string | null
+          motivo_cortesia?: string | null
+          plano_id: string
+          status?: string
+          updated_at?: string
+          valor_atual?: number | null
+        }
+        Update: {
+          campanha_id?: string
+          cancelado_em?: string | null
+          ciclo?: string
+          created_at?: string
+          data_fim?: string | null
+          data_inicio?: string
+          data_proximo_pagamento?: string | null
+          id?: string
+          motivo_cancelamento?: string | null
+          motivo_cortesia?: string | null
+          plano_id?: string
+          status?: string
+          updated_at?: string
+          valor_atual?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assinatura_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assinatura_plano_id_fkey"
+            columns: ["plano_id"]
+            isOneToOne: false
+            referencedRelation: "plano"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      campanha: {
+        Row: {
+          cargo_pretendido: string
+          cidade: string | null
+          created_at: string
+          foto_candidato_url: string | null
+          foto_capa_desktop_url: string | null
+          foto_capa_mobile_url: string | null
+          id: string
+          nome: string
+          nome_candidato: string
+          numero_candidato: string | null
+          partido: string | null
+          status: string
+          tema_cores: string | null
+          uf: string
+          updated_at: string
+        }
+        Insert: {
+          cargo_pretendido: string
+          cidade?: string | null
+          created_at?: string
+          foto_candidato_url?: string | null
+          foto_capa_desktop_url?: string | null
+          foto_capa_mobile_url?: string | null
+          id?: string
+          nome: string
+          nome_candidato: string
+          numero_candidato?: string | null
+          partido?: string | null
+          status?: string
+          tema_cores?: string | null
+          uf: string
+          updated_at?: string
+        }
+        Update: {
+          cargo_pretendido?: string
+          cidade?: string | null
+          created_at?: string
+          foto_candidato_url?: string | null
+          foto_capa_desktop_url?: string | null
+          foto_capa_mobile_url?: string | null
+          id?: string
+          nome?: string
+          nome_candidato?: string
+          numero_candidato?: string | null
+          partido?: string | null
+          status?: string
+          tema_cores?: string | null
+          uf?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      campanha_membro: {
+        Row: {
+          campanha_id: string
+          convidado_por: string | null
+          created_at: string
+          id: string
+          profile_id: string
+          role: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          campanha_id: string
+          convidado_por?: string | null
+          created_at?: string
+          id?: string
+          profile_id: string
+          role: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          campanha_id?: string
+          convidado_por?: string | null
+          created_at?: string
+          id?: string
+          profile_id?: string
+          role?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "campanha_membro_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "campanha_membro_convidado_por_fkey"
+            columns: ["convidado_por"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "campanha_membro_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       categoria_projeto: {
         Row: {
+          campanha_id: string
           cor: string | null
           created_at: string
           descricao: string | null
@@ -133,6 +319,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          campanha_id: string
           cor?: string | null
           created_at?: string
           descricao?: string | null
@@ -141,6 +328,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          campanha_id?: string
           cor?: string | null
           created_at?: string
           descricao?: string | null
@@ -148,12 +336,21 @@ export type Database = {
           nome?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "categoria_projeto_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       colaborador: {
         Row: {
           area_responsavel_id: string | null
           ativo: boolean | null
+          campanha_id: string
           comissao: number | null
           data_atualizacao: string
           data_criacao: string
@@ -183,6 +380,7 @@ export type Database = {
         Insert: {
           area_responsavel_id?: string | null
           ativo?: boolean | null
+          campanha_id: string
           comissao?: number | null
           data_atualizacao?: string
           data_criacao?: string
@@ -212,6 +410,7 @@ export type Database = {
         Update: {
           area_responsavel_id?: string | null
           ativo?: boolean | null
+          campanha_id?: string
           comissao?: number | null
           data_atualizacao?: string
           data_criacao?: string
@@ -247,6 +446,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "colaborador_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "colaborador_profile_id_fkey"
             columns: ["profile_id"]
             isOneToOne: false
@@ -279,6 +485,7 @@ export type Database = {
       colaborador_departamento: {
         Row: {
           ativo: boolean | null
+          campanha_id: string
           colaborador_id: string
           data_atualizacao: string
           data_criacao: string
@@ -294,6 +501,7 @@ export type Database = {
         }
         Insert: {
           ativo?: boolean | null
+          campanha_id: string
           colaborador_id: string
           data_atualizacao?: string
           data_criacao?: string
@@ -309,6 +517,7 @@ export type Database = {
         }
         Update: {
           ativo?: boolean | null
+          campanha_id?: string
           colaborador_id?: string
           data_atualizacao?: string
           data_criacao?: string
@@ -323,6 +532,13 @@ export type Database = {
           status?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "colaborador_departamento_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "colaborador_departamento_colaborador_id_fkey"
             columns: ["colaborador_id"]
@@ -363,6 +579,7 @@ export type Database = {
       colaborador_equipe: {
         Row: {
           ativo: boolean | null
+          campanha_id: string
           carga_horaria_semanal: number | null
           colaborador_id: string
           data_atualizacao: string
@@ -383,6 +600,7 @@ export type Database = {
         }
         Insert: {
           ativo?: boolean | null
+          campanha_id: string
           carga_horaria_semanal?: number | null
           colaborador_id: string
           data_atualizacao?: string
@@ -403,6 +621,7 @@ export type Database = {
         }
         Update: {
           ativo?: boolean | null
+          campanha_id?: string
           carga_horaria_semanal?: number | null
           colaborador_id?: string
           data_atualizacao?: string
@@ -422,6 +641,13 @@ export type Database = {
           status?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "colaborador_equipe_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "colaborador_equipe_colaborador_id_fkey"
             columns: ["colaborador_id"]
@@ -461,6 +687,7 @@ export type Database = {
       }
       convites: {
         Row: {
+          campanha_id: string
           created_at: string | null
           created_by: string | null
           expires_at: string
@@ -474,6 +701,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          campanha_id: string
           created_at?: string | null
           created_by?: string | null
           expires_at: string
@@ -487,6 +715,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          campanha_id?: string
           created_at?: string | null
           created_by?: string | null
           expires_at?: string
@@ -500,6 +729,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "convites_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "convites_created_by_fkey"
             columns: ["created_by"]
@@ -518,24 +754,34 @@ export type Database = {
       }
       coordenador_regional: {
         Row: {
+          campanha_id: string
           data_atualizacao: string
           data_criacao: string
           id: string
           profile_id: string
         }
         Insert: {
+          campanha_id: string
           data_atualizacao?: string
           data_criacao?: string
           id?: string
           profile_id: string
         }
         Update: {
+          campanha_id?: string
           data_atualizacao?: string
           data_criacao?: string
           id?: string
           profile_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "coordenador_regional_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "coordenador_regional_profile_id_fkey"
             columns: ["profile_id"]
@@ -547,24 +793,34 @@ export type Database = {
       }
       coordenador_regional_municipio: {
         Row: {
+          campanha_id: string
           coordenador_regional_id: string
           data_criacao: string
           id: string
           municipio_id: string
         }
         Insert: {
+          campanha_id: string
           coordenador_regional_id: string
           data_criacao?: string
           id?: string
           municipio_id: string
         }
         Update: {
+          campanha_id?: string
           coordenador_regional_id?: string
           data_criacao?: string
           id?: string
           municipio_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "coordenador_regional_municipio_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "coordenador_regional_municipio_coordenador_regional_id_fkey"
             columns: ["coordenador_regional_id"]
@@ -585,6 +841,7 @@ export type Database = {
         Row: {
           area_id: string | null
           ativo: boolean | null
+          campanha_id: string
           codigo: string | null
           coordenador_id: string | null
           data_atualizacao: string
@@ -603,6 +860,7 @@ export type Database = {
         Insert: {
           area_id?: string | null
           ativo?: boolean | null
+          campanha_id: string
           codigo?: string | null
           coordenador_id?: string | null
           data_atualizacao?: string
@@ -621,6 +879,7 @@ export type Database = {
         Update: {
           area_id?: string | null
           ativo?: boolean | null
+          campanha_id?: string
           codigo?: string | null
           coordenador_id?: string | null
           data_atualizacao?: string
@@ -642,6 +901,13 @@ export type Database = {
             columns: ["area_id"]
             isOneToOne: false
             referencedRelation: "area"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "departamento_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
             referencedColumns: ["id"]
           },
           {
@@ -686,6 +952,7 @@ export type Database = {
           area_id: string
           ativo: boolean | null
           bairro: string | null
+          campanha_id: string
           cep: string | null
           complemento: string | null
           cpf: string | null
@@ -720,6 +987,7 @@ export type Database = {
           area_id: string
           ativo?: boolean | null
           bairro?: string | null
+          campanha_id: string
           cep?: string | null
           complemento?: string | null
           cpf?: string | null
@@ -754,6 +1022,7 @@ export type Database = {
           area_id?: string
           ativo?: boolean | null
           bairro?: string | null
+          campanha_id?: string
           cep?: string | null
           complemento?: string | null
           cpf?: string | null
@@ -793,6 +1062,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "eleitor_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "eleitor_responsavel_cadastro_fkey"
             columns: ["responsavel_cadastro"]
             isOneToOne: false
@@ -804,6 +1080,7 @@ export type Database = {
       equipamento: {
         Row: {
           ativo: boolean | null
+          campanha_id: string
           data_aquisicao: string | null
           data_atualizacao: string
           data_criacao: string
@@ -828,6 +1105,7 @@ export type Database = {
         }
         Insert: {
           ativo?: boolean | null
+          campanha_id: string
           data_aquisicao?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -852,6 +1130,7 @@ export type Database = {
         }
         Update: {
           ativo?: boolean | null
+          campanha_id?: string
           data_aquisicao?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -875,6 +1154,13 @@ export type Database = {
           valor_aquisicao?: number | null
         }
         Relationships: [
+          {
+            foreignKeyName: "equipamento_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "equipamento_responsavel_atual_fkey"
             columns: ["responsavel_atual"]
@@ -902,6 +1188,7 @@ export type Database = {
         Row: {
           area_id: string | null
           ativo: boolean | null
+          campanha_id: string
           capacidade_maxima: number | null
           codigo: string | null
           data_atualizacao: string
@@ -922,6 +1209,7 @@ export type Database = {
         Insert: {
           area_id?: string | null
           ativo?: boolean | null
+          campanha_id: string
           capacidade_maxima?: number | null
           codigo?: string | null
           data_atualizacao?: string
@@ -942,6 +1230,7 @@ export type Database = {
         Update: {
           area_id?: string | null
           ativo?: boolean | null
+          campanha_id?: string
           capacidade_maxima?: number | null
           codigo?: string | null
           data_atualizacao?: string
@@ -965,6 +1254,13 @@ export type Database = {
             columns: ["area_id"]
             isOneToOne: false
             referencedRelation: "area"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "equipe_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
             referencedColumns: ["id"]
           },
           {
@@ -1022,6 +1318,7 @@ export type Database = {
         Row: {
           area_id: string | null
           ativo: boolean | null
+          campanha_id: string
           cep: string | null
           criado_por: string | null
           data_atualizacao: string
@@ -1048,6 +1345,7 @@ export type Database = {
         Insert: {
           area_id?: string | null
           ativo?: boolean | null
+          campanha_id: string
           cep?: string | null
           criado_por?: string | null
           data_atualizacao?: string
@@ -1074,6 +1372,7 @@ export type Database = {
         Update: {
           area_id?: string | null
           ativo?: boolean | null
+          campanha_id?: string
           cep?: string | null
           criado_por?: string | null
           data_atualizacao?: string
@@ -1106,6 +1405,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "evento_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "evento_criado_por_fkey"
             columns: ["criado_por"]
             isOneToOne: false
@@ -1123,6 +1429,7 @@ export type Database = {
       }
       labels: {
         Row: {
+          campanha_id: string
           color: string
           created_at: string | null
           created_by: string | null
@@ -1134,6 +1441,7 @@ export type Database = {
           updated_by: string | null
         }
         Insert: {
+          campanha_id: string
           color: string
           created_at?: string | null
           created_by?: string | null
@@ -1145,6 +1453,7 @@ export type Database = {
           updated_by?: string | null
         }
         Update: {
+          campanha_id?: string
           color?: string
           created_at?: string | null
           created_by?: string | null
@@ -1156,6 +1465,13 @@ export type Database = {
           updated_by?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "labels_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "labels_project_id_fkey"
             columns: ["project_id"]
@@ -1170,6 +1486,7 @@ export type Database = {
           alcance_estimado: number | null
           ativo: boolean | null
           bairro: string | null
+          campanha_id: string
           cep: string | null
           cidade: string | null
           complemento: string | null
@@ -1208,6 +1525,7 @@ export type Database = {
           alcance_estimado?: number | null
           ativo?: boolean | null
           bairro?: string | null
+          campanha_id: string
           cep?: string | null
           cidade?: string | null
           complemento?: string | null
@@ -1246,6 +1564,7 @@ export type Database = {
           alcance_estimado?: number | null
           ativo?: boolean | null
           bairro?: string | null
+          campanha_id?: string
           cep?: string | null
           cidade?: string | null
           complemento?: string | null
@@ -1282,6 +1601,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "lideranca_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "lideranca_coordenador_regional_id_fkey"
             columns: ["coordenador_regional_id"]
             isOneToOne: false
@@ -1308,6 +1634,7 @@ export type Database = {
         Row: {
           area_id: string
           ativo: boolean | null
+          campanha_id: string
           data_atualizacao: string
           data_criacao: string
           data_inicio_atuacao: string | null
@@ -1320,6 +1647,7 @@ export type Database = {
         Insert: {
           area_id: string
           ativo?: boolean | null
+          campanha_id: string
           data_atualizacao?: string
           data_criacao?: string
           data_inicio_atuacao?: string | null
@@ -1332,6 +1660,7 @@ export type Database = {
         Update: {
           area_id?: string
           ativo?: boolean | null
+          campanha_id?: string
           data_atualizacao?: string
           data_criacao?: string
           data_inicio_atuacao?: string | null
@@ -1350,6 +1679,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "lideranca_area_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "lideranca_area_lideranca_id_fkey"
             columns: ["lideranca_id"]
             isOneToOne: false
@@ -1361,6 +1697,7 @@ export type Database = {
       lideranca_eleitor: {
         Row: {
           ativo: boolean | null
+          campanha_id: string
           data_atualizacao: string
           data_criacao: string
           data_inicio_relacao: string | null
@@ -1373,6 +1710,7 @@ export type Database = {
         }
         Insert: {
           ativo?: boolean | null
+          campanha_id: string
           data_atualizacao?: string
           data_criacao?: string
           data_inicio_relacao?: string | null
@@ -1385,6 +1723,7 @@ export type Database = {
         }
         Update: {
           ativo?: boolean | null
+          campanha_id?: string
           data_atualizacao?: string
           data_criacao?: string
           data_inicio_relacao?: string | null
@@ -1396,6 +1735,13 @@ export type Database = {
           tipo_relacao?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "lideranca_eleitor_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "lideranca_eleitor_eleitor_id_fkey"
             columns: ["eleitor_id"]
@@ -1415,6 +1761,7 @@ export type Database = {
       material: {
         Row: {
           ativo: boolean | null
+          campanha_id: string
           categoria: string | null
           codigo_produto: string | null
           data_atualizacao: string
@@ -1438,6 +1785,7 @@ export type Database = {
         }
         Insert: {
           ativo?: boolean | null
+          campanha_id: string
           categoria?: string | null
           codigo_produto?: string | null
           data_atualizacao?: string
@@ -1461,6 +1809,7 @@ export type Database = {
         }
         Update: {
           ativo?: boolean | null
+          campanha_id?: string
           categoria?: string | null
           codigo_produto?: string | null
           data_atualizacao?: string
@@ -1483,6 +1832,13 @@ export type Database = {
           valor_unitario?: number | null
         }
         Relationships: [
+          {
+            foreignKeyName: "material_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "material_responsavel_estoque_fkey"
             columns: ["responsavel_estoque"]
@@ -1508,6 +1864,7 @@ export type Database = {
       }
       milestones: {
         Row: {
+          campanha_id: string
           color: string | null
           created_at: string | null
           created_by: string | null
@@ -1521,6 +1878,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          campanha_id: string
           color?: string | null
           created_at?: string | null
           created_by?: string | null
@@ -1534,6 +1892,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          campanha_id?: string
           color?: string | null
           created_at?: string | null
           created_by?: string | null
@@ -1547,6 +1906,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "milestones_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "milestones_created_by_fkey"
             columns: ["created_by"]
@@ -1581,6 +1947,7 @@ export type Database = {
         Row: {
           area_km2: number | null
           ativo: boolean | null
+          campanha_id: string
           codigo_ibge: string | null
           data_atualizacao: string
           data_criacao: string
@@ -1595,6 +1962,7 @@ export type Database = {
         Insert: {
           area_km2?: number | null
           ativo?: boolean | null
+          campanha_id: string
           codigo_ibge?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1609,6 +1977,7 @@ export type Database = {
         Update: {
           area_km2?: number | null
           ativo?: boolean | null
+          campanha_id?: string
           codigo_ibge?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1620,12 +1989,100 @@ export type Database = {
           regiao?: string | null
           uf?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "municipio_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pagamento: {
+        Row: {
+          assinatura_id: string
+          campanha_id: string
+          codigo: string
+          comprovante_url: string | null
+          created_at: string
+          data_pagamento: string
+          id: string
+          meio_pagamento: string
+          observacao: string | null
+          origem: string
+          pagarme_charge_id: string | null
+          pagarme_order_id: string | null
+          pagarme_status: string | null
+          pix_id: string | null
+          updated_at: string
+          valor_pago: number
+        }
+        Insert: {
+          assinatura_id: string
+          campanha_id: string
+          codigo: string
+          comprovante_url?: string | null
+          created_at?: string
+          data_pagamento?: string
+          id?: string
+          meio_pagamento: string
+          observacao?: string | null
+          origem?: string
+          pagarme_charge_id?: string | null
+          pagarme_order_id?: string | null
+          pagarme_status?: string | null
+          pix_id?: string | null
+          updated_at?: string
+          valor_pago: number
+        }
+        Update: {
+          assinatura_id?: string
+          campanha_id?: string
+          codigo?: string
+          comprovante_url?: string | null
+          created_at?: string
+          data_pagamento?: string
+          id?: string
+          meio_pagamento?: string
+          observacao?: string | null
+          origem?: string
+          pagarme_charge_id?: string | null
+          pagarme_order_id?: string | null
+          pagarme_status?: string | null
+          pix_id?: string | null
+          updated_at?: string
+          valor_pago?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pagamento_assinatura_id_fkey"
+            columns: ["assinatura_id"]
+            isOneToOne: false
+            referencedRelation: "assinatura"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pagamento_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pagamento_pix_id_fkey"
+            columns: ["pix_id"]
+            isOneToOne: false
+            referencedRelation: "pix"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       pesquisa_quantitativa: {
         Row: {
           area_id: string
           atualizado_em: string
+          campanha_id: string
           criado_em: string
           data_pesquisa: string
           fonte: string | null
@@ -1637,6 +2094,7 @@ export type Database = {
         Insert: {
           area_id: string
           atualizado_em?: string
+          campanha_id: string
           criado_em?: string
           data_pesquisa: string
           fonte?: string | null
@@ -1648,6 +2106,7 @@ export type Database = {
         Update: {
           area_id?: string
           atualizado_em?: string
+          campanha_id?: string
           criado_em?: string
           data_pesquisa?: string
           fonte?: string | null
@@ -1664,12 +2123,173 @@ export type Database = {
             referencedRelation: "area"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "pesquisa_quantitativa_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
         ]
+      }
+      pix: {
+        Row: {
+          assinatura_id: string
+          campanha_id: string
+          codpag: string
+          created_at: string
+          end_to_end_id: string | null
+          expires_at: string | null
+          id: string
+          observacao: string | null
+          pagador_documento: string | null
+          pagador_nome: string | null
+          pagarme_charge_id: string | null
+          pagarme_gateway_id: string | null
+          pagarme_order_code: string | null
+          pagarme_order_id: string | null
+          pagarme_transaction_id: string | null
+          paid_at: string | null
+          qr_code: string | null
+          qr_code_url: string | null
+          status: string
+          updated_at: string
+          valor: number
+          valor_pago: number | null
+          webhook_payload: Json | null
+          webhook_recebido_em: string | null
+        }
+        Insert: {
+          assinatura_id: string
+          campanha_id: string
+          codpag: string
+          created_at?: string
+          end_to_end_id?: string | null
+          expires_at?: string | null
+          id?: string
+          observacao?: string | null
+          pagador_documento?: string | null
+          pagador_nome?: string | null
+          pagarme_charge_id?: string | null
+          pagarme_gateway_id?: string | null
+          pagarme_order_code?: string | null
+          pagarme_order_id?: string | null
+          pagarme_transaction_id?: string | null
+          paid_at?: string | null
+          qr_code?: string | null
+          qr_code_url?: string | null
+          status?: string
+          updated_at?: string
+          valor: number
+          valor_pago?: number | null
+          webhook_payload?: Json | null
+          webhook_recebido_em?: string | null
+        }
+        Update: {
+          assinatura_id?: string
+          campanha_id?: string
+          codpag?: string
+          created_at?: string
+          end_to_end_id?: string | null
+          expires_at?: string | null
+          id?: string
+          observacao?: string | null
+          pagador_documento?: string | null
+          pagador_nome?: string | null
+          pagarme_charge_id?: string | null
+          pagarme_gateway_id?: string | null
+          pagarme_order_code?: string | null
+          pagarme_order_id?: string | null
+          pagarme_transaction_id?: string | null
+          paid_at?: string | null
+          qr_code?: string | null
+          qr_code_url?: string | null
+          status?: string
+          updated_at?: string
+          valor?: number
+          valor_pago?: number | null
+          webhook_payload?: Json | null
+          webhook_recebido_em?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pix_assinatura_id_fkey"
+            columns: ["assinatura_id"]
+            isOneToOne: false
+            referencedRelation: "assinatura"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pix_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plano: {
+        Row: {
+          ativo: boolean
+          created_at: string
+          descricao: string | null
+          funcionalidades: Json | null
+          id: string
+          limite_colaboradores: number | null
+          limite_eleitores: number | null
+          limite_liderancas: number | null
+          limite_storage_mb: number | null
+          nome: string
+          ordem_exibicao: number | null
+          slug: string
+          tipo: string
+          updated_at: string
+          valor_anual: number | null
+          valor_mensal: number | null
+        }
+        Insert: {
+          ativo?: boolean
+          created_at?: string
+          descricao?: string | null
+          funcionalidades?: Json | null
+          id?: string
+          limite_colaboradores?: number | null
+          limite_eleitores?: number | null
+          limite_liderancas?: number | null
+          limite_storage_mb?: number | null
+          nome: string
+          ordem_exibicao?: number | null
+          slug: string
+          tipo?: string
+          updated_at?: string
+          valor_anual?: number | null
+          valor_mensal?: number | null
+        }
+        Update: {
+          ativo?: boolean
+          created_at?: string
+          descricao?: string | null
+          funcionalidades?: Json | null
+          id?: string
+          limite_colaboradores?: number | null
+          limite_eleitores?: number | null
+          limite_liderancas?: number | null
+          limite_storage_mb?: number | null
+          nome?: string
+          ordem_exibicao?: number | null
+          slug?: string
+          tipo?: string
+          updated_at?: string
+          valor_anual?: number | null
+          valor_mensal?: number | null
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
           access_level: number | null
           auth_method: string | null
+          campanha_id: string
           cpf: string | null
           data_atualizacao: string
           data_criacao: string
@@ -1689,6 +2309,7 @@ export type Database = {
         Insert: {
           access_level?: number | null
           auth_method?: string | null
+          campanha_id: string
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1708,6 +2329,7 @@ export type Database = {
         Update: {
           access_level?: number | null
           auth_method?: string | null
+          campanha_id?: string
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -1724,10 +2346,19 @@ export type Database = {
           ultimo_acesso?: string | null
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       project_baselines: {
         Row: {
+          campanha_id: string
           created_at: string | null
           created_by: string | null
           description: string | null
@@ -1737,6 +2368,7 @@ export type Database = {
           project_id: string
         }
         Insert: {
+          campanha_id: string
           created_at?: string | null
           created_by?: string | null
           description?: string | null
@@ -1746,6 +2378,7 @@ export type Database = {
           project_id: string
         }
         Update: {
+          campanha_id?: string
           created_at?: string | null
           created_by?: string | null
           description?: string | null
@@ -1755,6 +2388,13 @@ export type Database = {
           project_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "project_baselines_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "project_baselines_created_by_fkey"
             columns: ["created_by"]
@@ -1788,6 +2428,7 @@ export type Database = {
       projects: {
         Row: {
           archived: boolean | null
+          campanha_id: string
           categoria_id: string | null
           color: string | null
           created_at: string | null
@@ -1806,6 +2447,7 @@ export type Database = {
         }
         Insert: {
           archived?: boolean | null
+          campanha_id: string
           categoria_id?: string | null
           color?: string | null
           created_at?: string | null
@@ -1824,6 +2466,7 @@ export type Database = {
         }
         Update: {
           archived?: boolean | null
+          campanha_id?: string
           categoria_id?: string | null
           color?: string | null
           created_at?: string | null
@@ -1841,6 +2484,13 @@ export type Database = {
           updated_by?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "projects_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "projects_categoria_id_fkey"
             columns: ["categoria_id"]
@@ -1916,6 +2566,7 @@ export type Database = {
       projeto_equipe: {
         Row: {
           ativo: boolean | null
+          campanha_id: string
           created_at: string | null
           data_fim: string | null
           data_inicio: string
@@ -1928,6 +2579,7 @@ export type Database = {
         }
         Insert: {
           ativo?: boolean | null
+          campanha_id: string
           created_at?: string | null
           data_fim?: string | null
           data_inicio?: string
@@ -1940,6 +2592,7 @@ export type Database = {
         }
         Update: {
           ativo?: boolean | null
+          campanha_id?: string
           created_at?: string | null
           data_fim?: string | null
           data_inicio?: string
@@ -1951,6 +2604,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "projeto_equipe_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "projeto_equipe_equipe_id_fkey"
             columns: ["equipe_id"]
@@ -1970,6 +2630,66 @@ export type Database = {
             columns: ["projeto_id"]
             isOneToOne: false
             referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      qr_code_campanha: {
+        Row: {
+          ativo: boolean
+          campanha_id: string
+          codigo: string
+          created_at: string
+          created_by: string | null
+          descricao: string | null
+          id: string
+          nome_origem: string | null
+          tipo_origem: string
+          total_cadastros: number
+          total_escaneamentos: number
+          url_destino: string | null
+        }
+        Insert: {
+          ativo?: boolean
+          campanha_id: string
+          codigo: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          nome_origem?: string | null
+          tipo_origem: string
+          total_cadastros?: number
+          total_escaneamentos?: number
+          url_destino?: string | null
+        }
+        Update: {
+          ativo?: boolean
+          campanha_id?: string
+          codigo?: string
+          created_at?: string
+          created_by?: string | null
+          descricao?: string | null
+          id?: string
+          nome_origem?: string | null
+          tipo_origem?: string
+          total_cadastros?: number
+          total_escaneamentos?: number
+          url_destino?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "qr_code_campanha_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "qr_code_campanha_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -2001,6 +2721,7 @@ export type Database = {
       sprints: {
         Row: {
           archived: boolean | null
+          campanha_id: string
           created_at: string | null
           created_by: string | null
           end_date: string | null
@@ -2016,6 +2737,7 @@ export type Database = {
         }
         Insert: {
           archived?: boolean | null
+          campanha_id: string
           created_at?: string | null
           created_by?: string | null
           end_date?: string | null
@@ -2031,6 +2753,7 @@ export type Database = {
         }
         Update: {
           archived?: boolean | null
+          campanha_id?: string
           created_at?: string | null
           created_by?: string | null
           end_date?: string | null
@@ -2045,6 +2768,13 @@ export type Database = {
           updated_by?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "sprints_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "sprints_created_by_fkey"
             columns: ["created_by"]
@@ -2099,6 +2829,7 @@ export type Database = {
       task_baseline_snapshots: {
         Row: {
           baseline_id: string
+          campanha_id: string
           created_at: string | null
           due_date: string | null
           estimated_hours: number | null
@@ -2110,6 +2841,7 @@ export type Database = {
         }
         Insert: {
           baseline_id: string
+          campanha_id: string
           created_at?: string | null
           due_date?: string | null
           estimated_hours?: number | null
@@ -2121,6 +2853,7 @@ export type Database = {
         }
         Update: {
           baseline_id?: string
+          campanha_id?: string
           created_at?: string | null
           due_date?: string | null
           estimated_hours?: number | null
@@ -2139,6 +2872,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "task_baseline_snapshots_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "task_baseline_snapshots_task_id_fkey"
             columns: ["task_id"]
             isOneToOne: false
@@ -2149,6 +2889,7 @@ export type Database = {
       }
       task_dependencies: {
         Row: {
+          campanha_id: string
           created_at: string | null
           created_by: string | null
           dependency_type: string
@@ -2158,6 +2899,7 @@ export type Database = {
           task_id: string
         }
         Insert: {
+          campanha_id: string
           created_at?: string | null
           created_by?: string | null
           dependency_type?: string
@@ -2167,6 +2909,7 @@ export type Database = {
           task_id: string
         }
         Update: {
+          campanha_id?: string
           created_at?: string | null
           created_by?: string | null
           dependency_type?: string
@@ -2176,6 +2919,13 @@ export type Database = {
           task_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "task_dependencies_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "task_dependencies_created_by_fkey"
             columns: ["created_by"]
@@ -2216,6 +2966,7 @@ export type Database = {
       task_resources: {
         Row: {
           allocation_percentage: number | null
+          campanha_id: string
           colaborador_id: string
           created_at: string | null
           hours_allocated: number | null
@@ -2227,6 +2978,7 @@ export type Database = {
         }
         Insert: {
           allocation_percentage?: number | null
+          campanha_id: string
           colaborador_id: string
           created_at?: string | null
           hours_allocated?: number | null
@@ -2238,6 +2990,7 @@ export type Database = {
         }
         Update: {
           allocation_percentage?: number | null
+          campanha_id?: string
           colaborador_id?: string
           created_at?: string | null
           hours_allocated?: number | null
@@ -2248,6 +3001,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "task_resources_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "task_resources_colaborador_id_fkey"
             columns: ["colaborador_id"]
@@ -2285,6 +3045,7 @@ export type Database = {
           archived_by: string | null
           baseline_end_date: string | null
           baseline_start_date: string | null
+          campanha_id: string
           colaborador_responsavel_id: string | null
           completed_at: string | null
           created_at: string | null
@@ -2321,6 +3082,7 @@ export type Database = {
           archived_by?: string | null
           baseline_end_date?: string | null
           baseline_start_date?: string | null
+          campanha_id: string
           colaborador_responsavel_id?: string | null
           completed_at?: string | null
           created_at?: string | null
@@ -2357,6 +3119,7 @@ export type Database = {
           archived_by?: string | null
           baseline_end_date?: string | null
           baseline_start_date?: string | null
+          campanha_id?: string
           colaborador_responsavel_id?: string | null
           completed_at?: string | null
           created_at?: string | null
@@ -2408,6 +3171,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "vw_equipe_membros"
             referencedColumns: ["colaborador_id"]
+          },
+          {
+            foreignKeyName: "tasks_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "tasks_colaborador_responsavel_id_fkey"
@@ -2511,6 +3281,7 @@ export type Database = {
       }
       time_entries: {
         Row: {
+          campanha_id: string
           created_at: string | null
           created_by: string | null
           date: string | null
@@ -2525,6 +3296,7 @@ export type Database = {
           user_id: string | null
         }
         Insert: {
+          campanha_id: string
           created_at?: string | null
           created_by?: string | null
           date?: string | null
@@ -2539,6 +3311,7 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
+          campanha_id?: string
           created_at?: string | null
           created_by?: string | null
           date?: string | null
@@ -2554,6 +3327,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "time_entries_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "time_entries_task_id_fkey"
             columns: ["task_id"]
             isOneToOne: false
@@ -2564,6 +3344,7 @@ export type Database = {
       }
       workflows: {
         Row: {
+          campanha_id: string
           created_at: string | null
           created_by: string | null
           description: string | null
@@ -2574,6 +3355,7 @@ export type Database = {
           updated_by: string | null
         }
         Insert: {
+          campanha_id: string
           created_at?: string | null
           created_by?: string | null
           description?: string | null
@@ -2584,6 +3366,7 @@ export type Database = {
           updated_by?: string | null
         }
         Update: {
+          campanha_id?: string
           created_at?: string | null
           created_by?: string | null
           description?: string | null
@@ -2593,7 +3376,15 @@ export type Database = {
           updated_at?: string | null
           updated_by?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "workflows_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

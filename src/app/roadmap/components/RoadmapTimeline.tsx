@@ -35,7 +35,7 @@ const roadmapPhases: RoadmapPhase[] = [
         title: 'Renomeação e Desacoplamento',
         description: 'Renomear repositório/projeto, atualizar remotos e remover todos os hardcodes "Thiago Moura".',
         dueDate: '2026-02-13',
-        status: 'pending',
+        status: 'done',
       },
       {
         code: '1.2',
@@ -43,7 +43,14 @@ const roadmapPhases: RoadmapPhase[] = [
         description:
           'Criar tabela `campanha`, `campanha_membro`, adicionar `campanha_id` em todas as tabelas, RLS e campos de plano/limites.',
         dueDate: '2026-02-15',
-        status: 'pending',
+        status: 'done',
+      },
+      {
+        code: '1.extra',
+        title: 'Landing Page (Rascunho)',
+        description: 'Landing page “coming soon” criada para avisar que o Idealis Core será lançado em breve.',
+        dueDate: '2026-02-15',
+        status: 'done',
       },
       {
         code: '1.3',

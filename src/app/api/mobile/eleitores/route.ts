@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+import { createAdminClient } from '@/lib/supabase/admin';
 
 export async function GET() {
   try {
+    const supabase = createAdminClient()
     // Por enquanto, retorna todos os eleitores para testes
     // Em produção, filtrar pela liderança logada
     const { data, error } = await supabase
@@ -54,6 +50,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = createAdminClient()
     // Buscar uma área padrão para o eleitor (necessário pelo schema)
     const { data: areaData } = await supabase
       .from('area')
