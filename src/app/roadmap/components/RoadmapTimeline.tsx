@@ -1,79 +1,164 @@
 'use client';
 
-import { CheckCircle2, Clock, AlertTriangle, Rocket } from 'lucide-react';
+import { CheckCircle2, Clock, AlertTriangle, Rocket, Activity, TrendingUp, Zap } from 'lucide-react';
 
-// ============================================================
-// STATUS DE CADA ITEM DO ROADMAP
-// Para alterar o status, basta trocar o valor de "status":
-//   "pending"  → cinza  (pendente)
-//   "done"     → verde  (concluído)
-//   "delayed"  → vermelho (atrasado)
-// ============================================================
 type Status = 'pending' | 'done' | 'delayed';
 
-interface RoadmapItem {
-  date: string;
+interface RoadmapTask {
+  code: string;
   title: string;
   description: string;
+  dueDate: string; // Formato ISO (YYYY-MM-DD)
   status: Status;
 }
 
-const roadmapItems: RoadmapItem[] = [
+interface RoadmapPhase {
+  id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  tasks: RoadmapTask[];
+}
+
+const roadmapPhases: RoadmapPhase[] = [
   {
-    date: '13/02',
-    title: 'Banco de Dados Multi-Campanhas',
+    id: 'fase-1',
+    title: 'Fase 1 — Fundação Multi-Tenant',
     description:
-      'Reestruturação completa do banco de dados para suportar múltiplos candidatos com isolamento de dados por campanha.',
-    status: 'pending',
+      'Renomeação do projeto, criação das tabelas `campanha`/`campanha_membro`, RLS completo e RBAC com perfil admin.',
+    startDate: '2026-02-13',
+    endDate: '2026-02-16',
+    tasks: [
+      {
+        code: '1.1',
+        title: 'Renomeação e Desacoplamento',
+        description: 'Renomear repositório/projeto, atualizar remotos e remover todos os hardcodes "Thiago Moura".',
+        dueDate: '2026-02-13',
+        status: 'pending',
+      },
+      {
+        code: '1.2',
+        title: 'Modelagem Multi-Tenant + Monetização',
+        description:
+          'Criar tabela `campanha`, `campanha_membro`, adicionar `campanha_id` em todas as tabelas, RLS e campos de plano/limites.',
+        dueDate: '2026-02-15',
+        status: 'pending',
+      },
+      {
+        code: '1.3',
+        title: 'RBAC e Hierarquia de Convites',
+        description:
+          'Atualizar middleware, incluir role admin, hierarquia de convites e Sidebar dinâmica para dados da campanha.',
+        dueDate: '2026-02-16',
+        status: 'pending',
+      },
+    ],
   },
   {
-    date: '15/02',
-    title: 'Sistema de Autenticação e Convites',
+    id: 'fase-2',
+    title: 'Fase 2 — Onboarding e Configuração',
     description:
-      'Novo fluxo de convites controlado por administradores, com papéis de acesso e expiração automática.',
-    status: 'pending',
+      'Fluxo completo de onboarding do admin, assets de campanha e preparação do módulo de temas (pós-Fase 3).',
+    startDate: '2026-02-17',
+    endDate: '2026-02-24',
+    tasks: [
+      {
+        code: '2.1',
+        title: 'Onboarding do Admin',
+        description: 'Signup dedicado, onboarding multi-step (incluindo escolha de UF irreversível) e tela de configurações.',
+        dueDate: '2026-02-18',
+        status: 'pending',
+      },
+      {
+        code: '2.2',
+        title: 'Temas e Cores (Modo Híbrido)',
+        description:
+          'Após o georreferenciamento, implementar presets + ajustes manuais com variáveis CSS aplicadas ao dashboard e convites.',
+        dueDate: '2026-02-24',
+        status: 'pending',
+      },
+    ],
   },
   {
-    date: '17/02',
-    title: 'Suporte Multi-Estados',
+    id: 'fase-3',
+    title: 'Fase 3 — Georreferenciamento Dinâmico',
     description:
-      'Geolocalização configurável por campanha, permitindo buscas de endereço otimizadas para qualquer estado do Brasil.',
-    status: 'pending',
+      'Parametrizar mapas, geocode e filtros por estado escolhido no onboarding, removendo qualquer referência fixa ao RJ.',
+    startDate: '2026-02-19',
+    endDate: '2026-02-20',
+    tasks: [
+      {
+        code: '3.1',
+        title: 'Mapa, Busca e API por UF',
+        description:
+          'Centralizar coordenadas por estado, atualizar GoogleMap/MapSearch/Geocode e coluna `area.estado` para ser dinâmica.',
+        dueDate: '2026-02-20',
+        status: 'pending',
+      },
+    ],
   },
   {
-    date: '19/02',
-    title: 'Aplicativo Nativo (Base Compartilhada)',
+    id: 'fase-4',
+    title: 'Fase 4 — Convites e Engajamento',
     description:
-      'Migração do módulo mobile web para aplicativo nativo com base de código compartilhada, preparando para publicação nas lojas.',
-    status: 'pending',
+      'Convites via telefone usando a API oficial do WhatsApp Business e QR Codes rastreáveis para campanhas e eventos.',
+    startDate: '2026-02-21',
+    endDate: '2026-02-23',
+    tasks: [
+      {
+        code: '4.1',
+        title: 'Convites com WhatsApp Oficial',
+        description:
+          'Integração com a Cloud API do WhatsApp, templates aprovados e dashboard de convites com Phone OTP do Supabase.',
+        dueDate: '2026-02-22',
+        status: 'pending',
+      },
+      {
+        code: '4.2',
+        title: 'QR Codes com Analytics',
+        description:
+          'Tabela `qr_code_campanha`, rota pública /convite/[codigo], métricas de origem e dashboard para download dos QR Codes.',
+        dueDate: '2026-02-23',
+        status: 'pending',
+      },
+    ],
   },
   {
-    date: '21/02',
-    title: 'QR Codes com Rastreamento de Origem',
+    id: 'fase-5',
+    title: 'Fase 5 — Aplicativo Nativo Expo',
     description:
-      'Geração de QR Codes vinculados a campanhas publicitárias ou eventos, com registro de origem, local e data para analytics.',
-    status: 'pending',
+      'Criação do repositório `campman-mobile` via Expo, migração das telas críticas e preparação para builds nas lojas.',
+    startDate: '2026-02-25',
+    endDate: '2026-02-26',
+    tasks: [
+      {
+        code: '5.1',
+        title: 'CampMan Mobile (Expo)',
+        description:
+          'Inicializar projeto Expo, integrar Supabase, portar telas de login, onboarding, lideranças e eleitores, além do mapa nativo.',
+        dueDate: '2026-02-26',
+        status: 'pending',
+      },
+    ],
   },
   {
-    date: '23/02',
-    title: 'Identidade Visual (Design System)',
+    id: 'fase-6',
+    title: 'Fase 6 — Segurança e Hardening',
     description:
-      'Nova logo, tipografia, paleta de cores e tokens de design — posicionando o CampMan como plataforma white-label.',
-    status: 'pending',
-  },
-  {
-    date: '25/02',
-    title: 'Publicação na Google Play Store',
-    description:
-      'Build Android (AAB), ícones, splash screens, políticas de privacidade e publicação beta na Play Store.',
-    status: 'pending',
-  },
-  {
-    date: '27/02',
-    title: 'Publicação na Apple App Store',
-    description:
-      'Configuração iOS, certificados, screenshots, revisão de guidelines e submissão na App Store.',
-    status: 'pending',
+      'Auditar RLS, performance, rate limiting, remoção de rotas legacy e validação de isolamento multi-tenant.',
+    startDate: '2026-02-27',
+    endDate: '2026-02-28',
+    tasks: [
+      {
+        code: '6.1',
+        title: 'Auditoria Final e Limpeza',
+        description:
+          'Executar advisors do Supabase, criar índices, testes de isolamento e remover páginas temporárias e rotas mobile antigas.',
+        dueDate: '2026-02-28',
+        status: 'pending',
+      },
+    ],
   },
 ];
 
@@ -136,10 +221,59 @@ function StatusIcon({ status, className }: { status: Status; className?: string 
   }
 }
 
+const formatDate = (dateString: string) =>
+  new Date(`${dateString}T00:00:00`).toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+  });
+
+const formatRange = (start: string, end: string) => `${formatDate(start)} · ${formatDate(end)}`;
+
+const parseDate = (dateString: string) => new Date(`${dateString}T00:00:00`);
+
+const scheduleStates = {
+  ahead: {
+    label: 'Adiantado',
+    description: 'Você concluiu mais marcos do que o previsto para hoje.',
+    badgeBg: 'bg-emerald-100 text-emerald-700',
+    icon: TrendingUp,
+  },
+  onTrack: {
+    label: 'Dentro do Cronograma',
+    description: 'Os marcos concluídos estão alinhados ao plano.',
+    badgeBg: 'bg-blue-100 text-blue-700',
+    icon: Activity,
+  },
+  delayed: {
+    label: 'Atrasado',
+    description: 'Existem itens vencidos que ainda não foram concluídos.',
+    badgeBg: 'bg-red-100 text-red-700',
+    icon: AlertTriangle,
+  },
+} as const;
+
 export default function RoadmapTimeline() {
-  const totalItems = roadmapItems.length;
-  const doneCount = roadmapItems.filter((i) => i.status === 'done').length;
-  const progressPercent = totalItems > 0 ? Math.round((doneCount / totalItems) * 100) : 0;
+  const allTasks = roadmapPhases.flatMap((phase) => phase.tasks);
+  const totalTasks = allTasks.length;
+  const doneCount = allTasks.filter((task) => task.status === 'done').length;
+  const progressPercent = totalTasks > 0 ? Math.round((doneCount / totalTasks) * 100) : 0;
+
+  const today = new Date();
+  const expectedTasks = allTasks.filter((task) => today >= parseDate(task.dueDate)).length;
+  const clampedExpected = Math.min(expectedTasks, totalTasks);
+
+  const scheduleStatus = (() => {
+    if (doneCount > clampedExpected) {
+      return { state: scheduleStates.ahead, variant: 'ahead' as const };
+    }
+    if (doneCount === clampedExpected) {
+      return { state: scheduleStates.onTrack, variant: 'onTrack' as const };
+    }
+    return { state: scheduleStates.delayed, variant: 'delayed' as const };
+  })();
+
+  const NextIcon = scheduleStatus.state.icon;
+  const nextTask = allTasks.find((task) => task.status !== 'done');
 
   return (
     <div className="min-h-screen bg-[#f8f9fb]">
@@ -166,84 +300,101 @@ export default function RoadmapTimeline() {
             Roadmap de Implementações
           </p>
 
-          {/* Barra de progresso */}
-          <div className="mt-8 max-w-xs mx-auto">
-            <div className="flex items-center justify-between text-xs text-white/60 mb-2">
-              <span>Progresso geral</span>
-              <span className="font-semibold text-[#e4d196]">{progressPercent}%</span>
+          {/* Cards de progresso e cronograma */}
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="bg-white/15 backdrop-blur rounded-2xl p-5 border border-white/20 text-left">
+              <div className="flex items-center justify-between text-sm text-white/70">
+                <span>Progresso geral</span>
+                <span className="font-semibold text-[#e4d196]">{progressPercent}%</span>
+              </div>
+              <div className="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-700 ease-out"
+                  style={{ width: `${progressPercent}%`, background: 'linear-gradient(90deg, #329788, #e4d196)' }}
+                />
+              </div>
+              <div className="mt-4 flex items-center justify-between text-xs text-white/60">
+                <span>
+                  {doneCount} de {totalTasks} marcos concluídos
+                </span>
+                <span>
+                  Esperado até hoje: <strong>{clampedExpected}</strong>
+                </span>
+              </div>
             </div>
-            <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-              <div
-                className="h-full rounded-full transition-all duration-700 ease-out"
-                style={{
-                  width: `${progressPercent}%`,
-                  background: 'linear-gradient(90deg, #329788, #e4d196)',
-                }}
-              />
+
+            <div className="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/20 text-left">
+              <div className="flex items-center gap-2 text-white/80 text-xs font-semibold uppercase tracking-[0.2em]">
+                <Zap className="h-4 w-4 text-[#e4d196]" />
+                Status do Cronograma
+              </div>
+              <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold shadow-sm bg-white/90 text-[#1C2954]">
+                <scheduleStatus.state.icon className="h-4 w-4" />
+                {scheduleStatus.state.label}
+              </div>
+              <p className="mt-3 text-sm text-white/80 leading-relaxed">{scheduleStatus.state.description}</p>
+              <div className="mt-4 text-xs text-white/60 flex items-center gap-2">
+                <Activity className="h-4 w-4" />
+                {clampedExpected} etapas deveriam estar concluídas até {today.toLocaleDateString('pt-BR')}.
+              </div>
+              {nextTask && (
+                <div className="mt-2 text-xs text-white/70 flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  Próximo marco: {nextTask.code} • {nextTask.title} (até {formatDate(nextTask.dueDate)})
+                </div>
+              )}
             </div>
-            <p className="text-xs text-white/40 mt-2">
-              {doneCount} de {totalItems} etapas concluídas
-            </p>
           </div>
         </div>
       </header>
 
       {/* ── Timeline ── */}
-      <main className="max-w-2xl mx-auto px-6 py-14">
-        <div className="relative">
-          {/* Linha vertical */}
-          <div
-            className="absolute left-[19px] top-4 bottom-4 w-[2px]"
-            style={{ background: 'linear-gradient(to bottom, #329788 0%, #e5e7eb 30%, #e5e7eb 100%)' }}
-          />
+      <main className="max-w-3xl mx-auto px-6 py-14 space-y-10">
+        {roadmapPhases.map((phase) => (
+          <section key={phase.id} className="relative rounded-3xl bg-white px-6 py-7 shadow-sm border border-gray-200">
+            <div className="flex flex-wrap items-center gap-3 border-b border-gray-100 pb-5">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#329788]">{phase.id.replace('-', ' ').toUpperCase()}</p>
+                <h2 className="text-xl font-semibold text-[#1C2954]">{phase.title}</h2>
+                <p className="text-sm text-gray-500 mt-1 max-w-2xl">{phase.description}</p>
+              </div>
+              <div className="ml-auto text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-600">
+                {formatRange(phase.startDate, phase.endDate)}
+              </div>
+            </div>
 
-          <div className="space-y-6">
-            {roadmapItems.map((item, index) => {
-              const style = statusStyles[item.status as Status];
+            <div className="mt-5 space-y-4">
+              {phase.tasks.map((task) => {
+                const style = statusStyles[task.status];
 
-              return (
-                <div key={index} className="relative flex gap-5 group">
-                  {/* Dot */}
-                  <div className="relative z-10 flex-shrink-0 pt-5">
-                    <div
-                      className={`w-10 h-10 rounded-full ${style.dotBg} ${style.dotBorder} border-2 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-200`}
-                    >
-                      <StatusIcon status={item.status as Status} className={`h-4 w-4 ${style.dotIcon}`} />
-                    </div>
-                  </div>
-
-                  {/* Card */}
+                return (
                   <div
-                    className={`flex-1 rounded-2xl border ${style.cardBorder} bg-gradient-to-br ${style.cardAccent} p-5 shadow-sm hover:shadow-lg transition-all duration-300 group-hover:-translate-y-0.5`}
+                    key={task.code}
+                    className={`rounded-2xl border ${style.cardBorder} bg-gradient-to-br ${style.cardAccent} p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md`}
                   >
-                    {/* Badges */}
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <span
-                        className="text-[11px] font-bold tracking-wide uppercase px-2.5 py-1 rounded-md bg-[#1C2954] text-[#e4d196]"
-                      >
-                        {item.date}
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-[#1C2954]">
+                        <StatusIcon status={task.status} className="h-3.5 w-3.5" />
+                        {task.code}
                       </span>
-                      <span
-                        className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-md ${style.badgeBg} ${style.badgeText} border ${style.badgeBorder}`}
-                      >
-                        <StatusIcon status={item.status as Status} className="h-3 w-3" />
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-[#1C2954] text-[#e4d196]">
+                        <Clock className="h-3.5 w-3.5" />
+                        {formatDate(task.dueDate)}
+                      </span>
+                      <span className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-md ${style.badgeBg} ${style.badgeText} border ${style.badgeBorder}`}>
+                        <StatusIcon status={task.status} className="h-3 w-3" />
                         {style.label}
                       </span>
                     </div>
 
-                    {/* Conteúdo */}
-                    <h3 className="text-base font-bold text-[#1C2954] leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-500 mt-1.5 leading-relaxed">
-                      {item.description}
-                    </p>
+                    <h3 className="text-base font-bold text-[#1C2954]">{task.title}</h3>
+                    <p className="text-sm text-gray-600 mt-1.5 leading-relaxed">{task.description}</p>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                );
+              })}
+            </div>
+          </section>
+        ))}
       </main>
 
       {/* ── Legenda ── */}
