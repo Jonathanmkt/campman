@@ -13,6 +13,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // Rotas públicas que não passam pelo updateSession
   if (
     pathname.startsWith('/convites-pendentes') ||
     pathname.startsWith('/mobile/onboarding') ||

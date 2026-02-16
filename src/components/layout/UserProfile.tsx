@@ -11,36 +11,67 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
+import { useCampanha } from '@/hooks/useCampanha';
+import { createClient } from '@/lib/supabase/client';
+import { ROLE_LABELS } from '@/lib/invite-permissions';
 
 export function UserProfile({ collapsed = false }: { collapsed?: boolean }) {
   const router = useRouter();
-  
+  const { data: userCampanha, isLoading } = useCampanha();
+
   // Função para lidar com o logout
   const handleSignOut = async () => {
     try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
       router.push('/auth/login');
     } catch (error) {
       console.error('Erro ao sair:', error);
     }
   };
-  
-  // TODO: substituir por dados dinâmicos do perfil/campanha (Etapa 1.2)
-  const fullName = 'Administrador';
+
+  const fullName = userCampanha?.nomeCompleto ?? 'Usuário';
+  const fotoUrl = userCampanha?.fotoUrl ?? null;
+  const roleLabel = userCampanha?.membroRole
+    ? ROLE_LABELS[userCampanha.membroRole] ?? userCampanha.membroRole
+    : 'Membro';
+
+  const initials = fullName
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           className={`relative flex items-center gap-2 rounded-md ${collapsed ? 'p-2' : 'pl-2 pr-3'} hover:bg-white/10`}
         >
-          <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
-            <span className="text-sm font-medium text-primary-foreground">
-              {fullName.split(' ').map(n => n[0]).join('')}
-            </span>
-          </div>
+          {fotoUrl ? (
+            <img
+              src={fotoUrl}
+              alt={fullName}
+              className="h-8 w-8 rounded-full object-cover"
+            />
+          ) : (
+            <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
+              {isLoading ? (
+                <div className="h-4 w-4 rounded-full bg-white/30 animate-pulse" />
+              ) : (
+                <span className="text-sm font-medium text-primary-foreground">
+                  {initials}
+                </span>
+              )}
+            </div>
+          )}
           {!collapsed && (
-            <span className="text-sm font-medium text-primary-foreground">{fullName.split(' ')[0]}</span>
+            <span className="text-sm font-medium text-primary-foreground">
+              {isLoading ? '...' : fullName.split(' ')[0]}
+            </span>
           )}
         </Button>
       </DropdownMenuTrigger>
@@ -49,7 +80,7 @@ export function UserProfile({ collapsed = false }: { collapsed?: boolean }) {
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{fullName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              Candidato
+              {roleLabel}
             </p>
           </div>
         </DropdownMenuLabel>

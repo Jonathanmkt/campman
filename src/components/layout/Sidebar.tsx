@@ -9,6 +9,7 @@ import { useSidebar } from './SidebarContext';
 import { useNavigation } from '@/hooks/useNavigation/useNavigation';
 import { LucideIcon } from 'lucide-react';
 import { UserProfile } from './UserProfile';
+import { useCampanha } from '@/hooks/useCampanha';
 
 interface SidebarLink {
   title: string;
@@ -22,9 +23,29 @@ interface SidebarProps {
   links: SidebarLink[];
 }
 
+/**
+ * Extrai as iniciais (até 2 letras) a partir de um nome.
+ */
+function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase();
+}
+
 export function Sidebar({ links }: SidebarProps) {
   const { collapsed, animationStage, handleMouseEnter, handleMouseLeave } = useSidebar();
   const { pathname: currentPathname } = useNavigation();
+  const { data: userCampanha, isLoading } = useCampanha();
+
+  const campanha = userCampanha?.campanha;
+  const nomeCandidato = campanha?.nome_candidato ?? 'Minha Campanha';
+  const nomeCampanha = campanha?.nome ?? 'Campanha 2026';
+  const fotoCandidato = campanha?.foto_candidato_url ?? null;
+  const iniciais = getInitials(nomeCandidato);
 
   // Função para manter sidebar expandida durante interação com UserProfile
   const handleUserProfileInteraction = (e: React.MouseEvent) => {
@@ -34,7 +55,7 @@ export function Sidebar({ links }: SidebarProps) {
   return (
     <motion.div
       className="bg-primary flex flex-col relative"
-      {...(collapsed ? 
+      {...(collapsed ?
         // Fechamento em duas etapas com velocidades diferentes
         {
           initial: { width: 280 },
@@ -61,20 +82,44 @@ export function Sidebar({ links }: SidebarProps) {
         <div className={`flex ${collapsed ? 'justify-center' : 'items-center gap-4'} pt-0 w-full`}>
           {collapsed ? (
             <div className="flex justify-center items-center">
-              <div className="w-[52px] h-[52px] rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-xl font-bold text-primary-foreground">TM</span>
-              </div>
+              {fotoCandidato ? (
+                <img
+                  src={fotoCandidato}
+                  alt={nomeCandidato}
+                  className="w-[52px] h-[52px] rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-[52px] h-[52px] rounded-full bg-white/20 flex items-center justify-center">
+                  {isLoading ? (
+                    <div className="w-6 h-6 rounded-full bg-white/30 animate-pulse" />
+                  ) : (
+                    <span className="text-xl font-bold text-primary-foreground">{iniciais}</span>
+                  )}
+                </div>
+              )}
             </div>
           ) : (
             <>
               <div className="flex-shrink-0">
-                <div className="w-[64px] h-[64px] rounded-full bg-white/20 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-primary-foreground">TM</span>
-                </div>
+                {fotoCandidato ? (
+                  <img
+                    src={fotoCandidato}
+                    alt={nomeCandidato}
+                    className="w-[64px] h-[64px] rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-[64px] h-[64px] rounded-full bg-white/20 flex items-center justify-center">
+                    {isLoading ? (
+                      <div className="w-8 h-8 rounded-full bg-white/30 animate-pulse" />
+                    ) : (
+                      <span className="text-2xl font-bold text-primary-foreground">{iniciais}</span>
+                    )}
+                  </div>
+                )}
               </div>
-              <motion.div 
+              <motion.div
                 className="overflow-hidden flex-1"
-                {...(collapsed ? 
+                {...(collapsed ?
                   {
                     initial: { width: 180 },
                     animate: { width: animationStage === 1 ? 0 : 0 },
@@ -94,11 +139,19 @@ export function Sidebar({ links }: SidebarProps) {
                 )}
               >
                 <div className="w-[180px] flex flex-col whitespace-nowrap">
-                  {/* TODO: substituir por dados dinâmicos da tabela campanha (Etapa 1.2) */}
-                  <h1 className='text-2xl font-bold text-primary-foreground leading-tight mb-1'>
-                    Minha Campanha
-                  </h1>
-                  <span className='text-sm text-primary-foreground leading-tight'>Campanha 2026</span>
+                  {isLoading ? (
+                    <>
+                      <div className="h-6 w-36 bg-white/20 rounded animate-pulse mb-1" />
+                      <div className="h-4 w-24 bg-white/15 rounded animate-pulse" />
+                    </>
+                  ) : (
+                    <>
+                      <h1 className='text-2xl font-bold text-primary-foreground leading-tight mb-1'>
+                        {nomeCandidato}
+                      </h1>
+                      <span className='text-sm text-primary-foreground leading-tight'>{nomeCampanha}</span>
+                    </>
+                  )}
                 </div>
               </motion.div>
             </>
@@ -136,7 +189,7 @@ export function Sidebar({ links }: SidebarProps) {
       </div>
 
       {/* UserProfile na parte inferior */}
-      <div 
+      <div
         className="px-3 pb-4 mt-6"
         onMouseEnter={handleUserProfileInteraction}
         onClick={handleUserProfileInteraction}

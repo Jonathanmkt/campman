@@ -121,24 +121,49 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 
 ---
 
-#### ETAPA 1.3 — Role "Admin" e Sistema RBAC Atualizado
-- [ ] **1.3.1** Adicionar role `admin` ao check constraint da coluna `roles` em `profiles`
-- [ ] **1.3.2** Atualizar `src/lib/supabase/middleware.ts`:
-  - Adicionar `admin` ao tipo `UserRole`
-  - Definir rota padrão do admin: `/dashboard` (com acesso total)
-  - Admin pode acessar todas as rotas do dashboard
-- [ ] **1.3.3** Atualizar `src/middleware.ts` para considerar rotas de onboarding do admin
-- [ ] **1.3.4** Criar lógica de hierarquia de convites:
+#### ETAPA 1.3 — Role "Admin" e Sistema RBAC Atualizado ✅
+- [x] **1.3.1** Adicionar role `admin` ao check constraint da coluna `roles` em `profiles`
+  - ✅ Criada função `check_valid_roles()` + constraint `profiles_roles_check` (migração aplicada)
+- [x] **1.3.2** Atualizar `src/lib/supabase/middleware.ts`:
+  - ✅ `UserRole` agora inclui `admin` e `eleitor`
+  - ✅ Rota padrão do admin: `/dashboard` (com acesso total a dashboard + mobile + onboarding)
+  - ✅ Proteção explícita: `/dashboard/configuracoes` exclusiva para admin
+  - ✅ Middleware busca `campanha_id` do profile para verificar onboarding
+- [x] **1.3.3** Atualizar `src/middleware.ts` para considerar rotas de onboarding do admin
+  - ✅ `/onboarding` adicionada como rota pública
+  - ✅ Admin sem `campanha_id` é redirecionado para `/onboarding/admin`
+- [x] **1.3.4** Criar lógica de hierarquia de convites:
+  - ✅ `src/lib/invite-permissions.ts` — funções `getInvitableRoles`, `canInviteRole`, `canInvite`, `getInviteOptions`
+  - ✅ Labels em pt-BR para exibição no frontend (`ROLE_LABELS`)
   - **Admin** pode convidar: colaboradores, coordenadores, lideranças, eleitores
   - **Coordenador** pode convidar: lideranças
   - **Liderança** pode convidar: eleitores
   - Todos os convites passam a incluir `campanha_id`
-- [ ] **1.3.5** Atualizar tabela `convites`:
-  - Adicionar `campanha_id` (FK → campanha.id)
-  - Expandir check constraint de `role` para incluir `admin` e `eleitor`
-- [ ] **1.3.6** Atualizar componente Sidebar para exibir dados dinâmicos da campanha (nome do candidato, foto, nome da campanha) em vez de texto hardcoded
+- [x] **1.3.5** Atualizar tabela `convites`:
+  - ✅ `campanha_id` (FK → campanha.id) já existia
+  - ✅ Check constraint de `role` já incluía `admin` e `eleitor`
 
-> **Dependência:** Etapa 1.2 (tabelas `campanha` e `campanha_membro` devem existir).
+##### Referência (Projeto app-singaerj — aplicar conceito aqui)
+1. **Middleware com fluxo completo (`src/lib/middleware.ts`)**
+   - Cria Supabase Server Client usando cookies da requisição para ler `profiles.roles` e demais atributos logo no início.
+   - Para reloads ou primeira navegação pós-login, consulta tabelas (`profiles`) e integrações externas (ex.: Chatwoot) para consolidar **roles, permissões, ids vinculados, tokens**.
+   - Salva esse pacote na Iron Session e, antes de responder, aplica regras RBAC (redireciona `/painel`, bloqueia `/painel/admin`, envia quem tem só `usuario` para `/wait`, etc.).
+2. **Sessão persistida via Iron Session (`src/lib/session.ts`)**
+   - Cookie `singaerj-session` guarda dados sensíveis (tokens) e campos públicos necessários (`roles`, `nome`, `foto`, `permissions`).
+   - Flags como `userContextReady` permitem saber quando o frontend já consumiu os dados (usado para tesoureiro/secretário).
+3. **UserContext no frontend (`src/contexts/UserContext.tsx`)**
+   - Em cada montagem do app client, chama a server action `getUserPublicData` para ler apenas os campos públicos da Iron Session.
+   - Bloqueia renderização enquanto `userData` não chega, garantindo que todos os componentes tenham acesso a `roles`/permissões sem refazer queries.
+   - Disponibiliza helpers (`hasRole`, `signOut`, `confirmDataReceived`) e confirma para o middleware que os dados foram recebidos.
+
+> **Ação para Idealis Core:** seguir essa arquitetura: middleware central consolida roles + salva em sessão segura, e um `UserContext` servidor/cliente lê esses dados para determinar redirecionamentos e guardas de rota.
+- [x] **1.3.6** Atualizar componente Sidebar para exibir dados dinâmicos da campanha (nome do candidato, foto, nome da campanha) em vez de texto hardcoded
+  - ✅ `src/hooks/useCampanha.ts` — hook TanStack Query (cache 5min) que busca perfil + campanha + membro
+  - ✅ `Sidebar.tsx` atualizado: foto do candidato, iniciais dinâmicas, skeleton loading, nome da campanha
+  - ✅ `UserProfile.tsx` atualizado: nome real, foto, role label, signOut com Supabase
+  - ✅ `DashboardLayout.tsx` atualizado: link de "Configurações" visível apenas para admin
+
+> **Dependência:** Etapa 1.2 (tabelas `campanha` e `campanha_membro` devem existir). ✅ Satisfeita.
 
 ---
 
@@ -146,17 +171,20 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 
 #### ETAPA 2.1 — Fluxo de Onboarding do Admin
 - [ ] **2.1.1** Criar página `/auth/signup-admin` — cadastro do admin (email + senha ou telefone)
-- [ ] **2.1.2** Criar fluxo de onboarding multi-step (`/onboarding/admin`):
-  - **Step 1:** Nome da campanha + Nome do candidato + Cargo pretendido + Partido + Número
-  - **Step 2:** Seleção do estado (UF) — **irreversível** — lista dos 26 estados + DF
-  - **Step 3:** Upload de fotos (avatar do candidato, capa desktop, capa mobile)
-  - **Step 4:** Placeholder para tema de cores (a escolha real acontecerá somente na Etapa 2.2, após a Fase 3)
-  - **Step 5:** Confirmação e criação da campanha
+- [x] **2.1.2** Criar fluxo de onboarding multi-step (`/onboarding/admin`):
+  - ✅ **Step 1:** Nome da campanha + Nome do candidato + Cargo pretendido + Partido + Número
+  - ✅ **Step 2:** Seleção do estado (UF) — **irreversível** — com confirmação explícita
+  - ✅ **Step 3:** Placeholder para tema de cores (indica que será habilitado futuramente)
+  - ✅ **Step 4:** Confirmação e criação da campanha
+  - 📋 Upload de fotos adiado para etapa de Storage (2.1.3)
 - [ ] **2.1.3** Ao finalizar onboarding:
-  - Criar registro em `campanha`
-  - Criar registro em `campanha_membro` (role: admin)
-  - Configurar Storage bucket no Supabase para assets da campanha
-- [ ] **2.1.4** Criar tela de configurações da campanha (`/dashboard/configuracoes`) para edição posterior (tudo exceto UF, que é irreversível)
+  - ✅ Criar registro em `campanha` (feito no onboarding)
+  - ✅ Criar registro em `campanha_membro` (role: admin) (feito no onboarding)
+  - [ ] Configurar Storage bucket no Supabase para assets da campanha
+- [x] **2.1.4** Criar tela de configurações da campanha (`/dashboard/configuracoes`) para edição posterior (tudo exceto UF, que é irreversível)
+  - ✅ Página criada com edição de todos os dados exceto UF (bloqueado)
+  - ✅ Invalidação do cache TanStack Query após salvar
+  - ✅ Proteção de acesso: só admin via middleware + verificação no componente
 
 > **Dependência:** Etapa 1.3 (role admin e RBAC devem estar funcionando).
 

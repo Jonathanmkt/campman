@@ -58,7 +58,7 @@ const roadmapPhases: RoadmapPhase[] = [
         description:
           'Atualizar middleware, incluir role admin, hierarquia de convites e Sidebar dinâmica para dados da campanha.',
         dueDate: '2026-02-16',
-        status: 'pending',
+        status: 'done',
       },
     ],
   },

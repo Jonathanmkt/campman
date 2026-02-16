@@ -1,6 +1,6 @@
 # Schema do Banco de Dados — Idealis Core
 
-> **Gerado automaticamente** em 13/02/2026, 20:30:58
+> **Gerado automaticamente** em 16/02/2026, 17:46:44
 > **Projeto Supabase:** xkqtrwbnionpbjziilgy
 > **Schema:** public
 

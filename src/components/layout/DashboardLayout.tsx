@@ -1,19 +1,25 @@
 'use client'
 
 import React from 'react';
-import { Users, Calendar, MapPin, Home, UserCheck, FolderKanban } from 'lucide-react';
+import { Users, Calendar, MapPin, Home, UserCheck, FolderKanban, Settings } from 'lucide-react';
 
 // Imports estáticos
 import { Sidebar } from './Sidebar';
 import { SidebarProvider } from './SidebarContext';
+import { useCampanha } from '@/hooks/useCampanha';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  
-  // Links da sidebar - usando cor yellow como no exemplo
+  const { data: userCampanha } = useCampanha();
+
+  const isAdmin =
+    userCampanha?.membroRole === 'admin' ||
+    userCampanha?.roles?.includes('admin');
+
+  // Links da sidebar — usando cor yellow como padrão
   const sidebarLinks = [
     {
       title: 'Dashboard',
@@ -56,9 +62,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       icon: FolderKanban,
       description: 'Projetos e tarefas',
       color: 'blue' as const
-    }
+    },
+    // Link de configurações — visível apenas para admin
+    ...(isAdmin
+      ? [
+        {
+          title: 'Configurações',
+          href: '/dashboard/configuracoes',
+          icon: Settings,
+          description: 'Configurações da campanha',
+          color: 'default' as const,
+        },
+      ]
+      : []),
   ];
-  
+
   return (
     <SidebarProvider>
       <div className='min-h-screen bg-tertiary flex'>

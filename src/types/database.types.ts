@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2026-02-13T23:30:56.267Z
+ * Última atualização: 2026-02-16T20:46:42.802Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 

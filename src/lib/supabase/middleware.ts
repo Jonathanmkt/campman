@@ -1,37 +1,70 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-type UserRole = 'coordenador' | 'lideranca' | 'colaborador' | null;
+/**
+ * Hierarquia de roles do Idealis Core (em ordem de prioridade):
+ * admin > coordenador > lideranca > colaborador > eleitor
+ */
+export type UserRole = 'admin' | 'coordenador' | 'lideranca' | 'colaborador' | 'eleitor' | null;
 
+/**
+ * Determina o papel primário do usuário a partir do array de roles.
+ * A prioridade segue a hierarquia: admin > coordenador > lideranca > colaborador > eleitor.
+ */
 function getPrimaryRole(roles: string[] | null): UserRole {
   if (!roles || roles.length === 0) return null;
-  
+
+  if (roles.includes('admin')) return 'admin';
   if (roles.includes('coordenador')) return 'coordenador';
   if (roles.includes('lideranca')) return 'lideranca';
   if (roles.includes('colaborador')) return 'colaborador';
-  
+  if (roles.includes('eleitor')) return 'eleitor';
+
   return null;
 }
 
+/**
+ * Retorna a rota padrão (home) para cada role.
+ */
 function getRouteForRole(role: UserRole): string {
   switch (role) {
+    case 'admin':
+      return '/dashboard';
     case 'coordenador':
       return '/mobile/liderancas';
     case 'lideranca':
       return '/mobile/eleitores';
     case 'colaborador':
       return '/dashboard';
+    case 'eleitor':
+      return '/mobile/perfil';
     default:
       return '/sem-acesso';
   }
 }
 
+/**
+ * Verifica se o usuário com determinado role pode acessar a rota atual.
+ * Admin tem acesso total a todas as rotas do dashboard e mobile.
+ */
 function isAllowedRoute(pathname: string, role: UserRole): boolean {
+  // Admin tem acesso total
+  if (role === 'admin') {
+    return pathname.startsWith('/dashboard') ||
+      pathname.startsWith('/mobile') ||
+      pathname.startsWith('/onboarding');
+  }
+
+  // Rotas exclusivas de admin — bloquear para outros roles
+  if (pathname.startsWith('/dashboard/configuracoes')) {
+    return false;
+  }
+
   // Rotas comuns a todos os usuários mobile
   if (pathname.startsWith('/mobile/perfil')) {
-    return role === 'coordenador' || role === 'lideranca';
+    return role === 'coordenador' || role === 'lideranca' || role === 'eleitor';
   }
-  
+
   if (role === 'coordenador') {
     return pathname.startsWith('/mobile/liderancas') || pathname.startsWith('/mobile/eleitores');
   }
@@ -41,10 +74,13 @@ function isAllowedRoute(pathname: string, role: UserRole): boolean {
   if (role === 'colaborador') {
     return pathname.startsWith('/dashboard');
   }
+  if (role === 'eleitor') {
+    return pathname.startsWith('/mobile/perfil') || pathname.startsWith('/mobile/eleitores');
+  }
   return pathname === '/sem-acesso';
 }
 
-const PUBLIC_ROUTES = ['/auth', '/sem-acesso', '/_next', '/api', '/favicon.ico', '/mobile/login', '/mobile/onboarding'];
+const PUBLIC_ROUTES = ['/auth', '/sem-acesso', '/_next', '/api', '/favicon.ico', '/mobile/login', '/mobile/onboarding', '/onboarding'];
 
 function isPublicRoute(pathname: string): boolean {
   return PUBLIC_ROUTES.some(route => pathname.startsWith(route));
@@ -94,14 +130,23 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // Buscar roles do perfil
+  // Buscar roles do perfil e membro da campanha
   const { data: profile } = await supabase
     .from('profiles')
-    .select('roles')
+    .select('roles, campanha_id')
     .eq('id', user.id)
     .single();
 
   const primaryRole = getPrimaryRole(profile?.roles ?? null);
+
+  // Se o admin ainda não completou o onboarding (sem campanha_id),
+  // redireciona para o fluxo de onboarding
+  if (primaryRole === 'admin' && !profile?.campanha_id && !pathname.startsWith('/onboarding')) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/onboarding/admin'
+    return NextResponse.redirect(url)
+  }
+
   const allowedRoute = getRouteForRole(primaryRole);
 
   // Rota raiz: redireciona para a rota permitida
