@@ -35,6 +35,20 @@ export async function POST(request: NextRequest) {
 
     const { customer, items } = parsed.data;
 
+    // Determinar URL pública definitiva
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    if (!siteUrl) {
+      console.error('[Pagar.me Checkout] NEXT_PUBLIC_SITE_URL não configurada');
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'NEXT_PUBLIC_SITE_URL não configurada no ambiente',
+          data: null,
+        },
+        { status: 500 }
+      );
+    }
+
     // Remover formatação do CPF
     const cleanDocument = customer.document.replace(/\D/g, '');
 
@@ -60,8 +74,16 @@ export async function POST(request: NextRequest) {
             billing_address_editable: false,
             customer_editable: true,
             accepted_payment_methods: ['credit_card', 'debit_card', 'pix', 'boleto'],
-            success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/payment/success`,
+            success_url: `${siteUrl}/payment/success`,
             skip_checkout_success_page: false,
+            pix: {
+              expires_in: 3600, // 1 hora para PIX
+            },
+            boleto: {
+              bank: '001', // Banco do Brasil
+              instructions: 'Pagar até o vencimento',
+              due_at: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 dias
+            },
           },
         },
       ],
@@ -73,11 +95,14 @@ export async function POST(request: NextRequest) {
     });
 
     // Chamar API Pagar.me
+    // IMPORTANTE: Pagar.me usa Basic Auth com secret_key como user e senha vazia
+    const authToken = Buffer.from(`${process.env.PAGARME_SECRET_KEY}:`).toString('base64');
+    
     const response = await fetch('https://api.pagar.me/core/v5/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.PAGARME_SECRET_KEY}`,
+        Authorization: `Basic ${authToken}`,
       },
       body: JSON.stringify(pagarmeOrder),
     });
@@ -85,11 +110,11 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('[Pagar.me Checkout] Erro:', data);
+      console.error('[Pagar.me Checkout] Erro completo:', JSON.stringify(data, null, 2));
       return NextResponse.json(
         {
           success: false,
-          error: 'Erro ao criar checkout',
+          error: data.message || 'Erro ao criar checkout',
           data: data,
         },
         { status: response.status }
