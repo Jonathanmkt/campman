@@ -1,99 +1,245 @@
 import { inviteAdmin } from '@/lib/services/invite-admin'
 import { NextRequest, NextResponse } from 'next/server'
-import { z } from 'zod'
 
 /**
  * POST /api/webhooks/pagarme
  *
- * Recebe webhook de pagamento aprovado do Pagar.me (ou simulação dev).
- * Valida o payload, extrai email do cliente e dispara convite admin via Supabase.
+ * Recebe webhook REAL da Pagar.me com autenticação Basic Auth.
+ * Processa eventos de pagamento e dispara convite admin via Supabase.
  *
- * Em produção: validar assinatura HMAC do webhook.
- * Em dev: aceita payload direto do simulador /dev/pagarme-simulator.
+ * IMPORTANTE: Pagar.me usa APENAS Basic Authentication (usuário/senha).
+ * NÃO usa HMAC/signatures.
  */
 
-const webhookSchema = z.object({
-  /** Email do cliente que pagou */
-  email: z.string().email('Email inválido'),
-  /** Nome do cliente */
-  nome: z.string().min(1, 'Nome obrigatório'),
-  /** Valor cobrado em centavos */
-  valor: z.number().positive('Valor deve ser positivo'),
-  /** ID da cobrança no Pagar.me */
-  charge_id: z.string().min(1, 'charge_id obrigatório'),
-  /** ID da assinatura no Pagar.me */
-  subscription_id: z.string().optional(),
-  /** Slug do plano contratado */
-  plano_slug: z.string().min(1, 'plano_slug obrigatório'),
-})
+/**
+ * Valida Basic Authentication do webhook Pagar.me
+ */
+function verifyBasicAuth(authHeader: string | null): boolean {
+  if (!authHeader) {
+    console.error('[Webhook Pagar.me] Header de autenticação ausente')
+    return false
+  }
+
+  try {
+    const [type, credentials] = authHeader.split(' ')
+
+    if (type !== 'Basic') {
+      console.error('[Webhook Pagar.me] Tipo de autenticação inválido:', type)
+      return false
+    }
+
+    const decoded = Buffer.from(credentials, 'base64').toString('utf-8')
+    const [username, password] = decoded.split(':')
+
+    const validUsername = process.env.PAGARME_WEBHOOK_USER
+    const validPassword = process.env.PAGARME_WEBHOOK_PASSWORD
+
+    if (!validUsername || !validPassword) {
+      console.error('[Webhook Pagar.me] Credenciais não configuradas no .env')
+      return false
+    }
+
+    if (username !== validUsername || password !== validPassword) {
+      console.error('[Webhook Pagar.me] Credenciais inválidas')
+      return false
+    }
+
+    return true
+  } catch (error) {
+    console.error('[Webhook Pagar.me] Erro ao validar Basic Auth:', error)
+    return false
+  }
+}
+
+/**
+ * Extrai email do payload Pagar.me (customer.email)
+ */
+function extractCustomerEmail(orderData: any): string | null {
+  return orderData?.customer?.email || null
+}
+
+/**
+ * Extrai plano do primeiro item (items[0].description ou items[0].id)
+ */
+function extractPlanSlug(orderData: any): string {
+  const firstItem = orderData?.items?.[0]
+  if (!firstItem) return 'basico' // fallback
+
+  // Tentar extrair do ID ou description
+  const itemId = firstItem.id?.toLowerCase() || ''
+  const itemDesc = firstItem.description?.toLowerCase() || ''
+
+  if (itemId.includes('profissional') || itemDesc.includes('profissional')) {
+    return 'profissional'
+  }
+  if (itemId.includes('cortesia') || itemDesc.includes('cortesia')) {
+    return 'cortesia'
+  }
+
+  return 'basico' // padrão
+}
+
+/**
+ * Handler para evento order.paid
+ */
+async function handleOrderPaid(orderData: any) {
+  const email = extractCustomerEmail(orderData)
+  const planoSlug = extractPlanSlug(orderData)
+  const chargeId = orderData?.charges?.[0]?.id || orderData?.id
+
+  if (!email) {
+    console.error('[Webhook] order.paid sem email:', orderData.id)
+    return
+  }
+
+  console.log('[Webhook] 💰 Pedido PAGO:', {
+    orderId: orderData.id,
+    email,
+    planoSlug,
+    chargeId,
+  })
+
+  // Determinar tipo do plano
+  const planoTipo = planoSlug === 'cortesia' ? 'cortesia' as const : 'pago' as const
+
+  // Disparar convite
+  const result = await inviteAdmin({
+    email,
+    planoTipo,
+    origemConvite: 'pagarme_webhook',
+    pagarmeChargeId: chargeId,
+  })
+
+  if (!result.success) {
+    console.error('[Webhook] Erro ao enviar convite:', result.error)
+  } else {
+    console.log('[Webhook] Convite enviado:', { email, userId: result.userId })
+  }
+}
+
+/**
+ * Handler para evento order.payment_failed
+ */
+async function handlePaymentFailed(orderData: any) {
+  console.log('[Webhook] ❌ Pagamento FALHOU:', {
+    orderId: orderData.id,
+    email: extractCustomerEmail(orderData),
+  })
+  // TODO: Notificar usuário, registrar no banco
+}
+
+/**
+ * Handler para evento order.canceled
+ */
+async function handleOrderCanceled(orderData: any) {
+  console.log('[Webhook] 🚫 Pedido CANCELADO:', {
+    orderId: orderData.id,
+    email: extractCustomerEmail(orderData),
+  })
+}
+
+/**
+ * Handler para evento charge.paid
+ */
+async function handleChargePaid(chargeData: any) {
+  console.log('[Webhook] 💳 Cobrança PAGA:', chargeData.id)
+}
+
+/**
+ * Handler para evento charge.pending (PIX/Boleto)
+ */
+async function handleChargePending(chargeData: any) {
+  console.log('[Webhook] ⏳ Cobrança PENDENTE (PIX/Boleto):', chargeData.id)
+}
+
+/**
+ * Handler para evento charge.refunded
+ */
+async function handleChargeRefunded(chargeData: any) {
+  console.log('[Webhook] ↩️ Cobrança ESTORNADA:', chargeData.id)
+}
+
+/**
+ * Handler para evento charge.payment_failed
+ */
+async function handleChargePaymentFailed(chargeData: any) {
+  console.log('[Webhook] ⚠️ Cobrança FALHOU:', chargeData.id)
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    // Validar Basic Authentication
+    const authHeader = request.headers.get('authorization')
 
-    // Em produção, validar HMAC do webhook aqui
-    // const signature = request.headers.get('x-pagarme-signature')
-    // if (!isValidSignature(signature, body)) { return 401 }
-
-    const parsed = webhookSchema.safeParse(body)
-
-    if (!parsed.success) {
-      console.error('[Webhook Pagar.me] Payload inválido:', parsed.error.errors)
+    if (!verifyBasicAuth(authHeader)) {
       return NextResponse.json(
-        { success: false, data: null, error: 'Payload inválido' },
-        { status: 400 }
+        { success: false, error: 'Unauthorized', data: null },
+        { status: 401 }
       )
     }
 
-    const { email, nome, charge_id, subscription_id, plano_slug } = parsed.data
+    // Processar evento
+    const payload = await request.text()
+    const event = JSON.parse(payload)
 
-    // Determinar origem: se charge_id começa com "sim_" é simulação dev
-    const isSimulation = charge_id.startsWith('sim_')
-    const origemConvite = isSimulation ? 'pagarme_simulator' as const : 'pagarme_webhook' as const
-
-    // Determinar tipo do plano baseado no slug
-    const planoTipo = plano_slug === 'cortesia' ? 'cortesia' as const : 'pago' as const
-
-    console.log('[Webhook Pagar.me] Processando pagamento:', {
-      email,
-      nome,
-      charge_id,
-      plano_slug,
-      origemConvite,
+    console.log('[Webhook Pagar.me] 📥 Evento recebido:', {
+      type: event.type,
+      id: event.data?.id,
+      timestamp: new Date().toISOString(),
     })
 
-    // Disparar convite
-    const result = await inviteAdmin({
-      email,
-      planoTipo,
-      origemConvite,
-      pagarmeChargeId: charge_id,
-      pagarmeSubscriptionId: subscription_id,
-    })
+    // Processar eventos
+    switch (event.type) {
+      case 'order.paid':
+        await handleOrderPaid(event.data)
+        break
 
-    if (!result.success) {
-      console.error('[Webhook Pagar.me] Erro ao enviar convite:', result.error)
-      return NextResponse.json(
-        { success: false, data: null, error: result.error },
-        { status: 500 }
-      )
+      case 'order.payment_failed':
+        await handlePaymentFailed(event.data)
+        break
+
+      case 'order.canceled':
+        await handleOrderCanceled(event.data)
+        break
+
+      case 'charge.paid':
+        await handleChargePaid(event.data)
+        break
+
+      case 'charge.pending':
+        await handleChargePending(event.data)
+        break
+
+      case 'charge.refunded':
+        await handleChargeRefunded(event.data)
+        break
+
+      case 'charge.payment_failed':
+        await handleChargePaymentFailed(event.data)
+        break
+
+      default:
+        console.log('[Webhook] ⚠️ Evento não tratado:', event.type)
     }
-
-    console.log('[Webhook Pagar.me] Convite enviado com sucesso:', {
-      email,
-      userId: result.userId,
-    })
 
     return NextResponse.json({
       success: true,
-      data: { userId: result.userId, email },
+      data: {
+        received: true,
+        event_type: event.type,
+        processed_at: new Date().toISOString(),
+      },
       error: null,
     })
-  } catch (error) {
-    console.error('[Webhook Pagar.me] Erro inesperado:', error)
+  } catch (error: any) {
+    console.error('[Webhook Pagar.me] ❌ Erro:', error)
     return NextResponse.json(
-      { success: false, data: null, error: 'Erro interno do servidor' },
-      { status: 500 }
+      {
+        success: false,
+        error: 'Webhook error',
+        data: { message: error.message },
+      },
+      { status: 400 }
     )
   }
 }
