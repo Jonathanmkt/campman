@@ -1,8 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -20,198 +18,61 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { Check, ChevronLeft, ChevronRight, AlertTriangle, Loader2 } from 'lucide-react';
-
-/** Lista de UFs brasileiras */
-const UF_LIST = [
-    'AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO',
-    'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR',
-    'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO',
-];
-
-/** Nomes completos dos estados */
-const UF_NAMES: Record<string, string> = {
-    AC: 'Acre', AL: 'Alagoas', AM: 'Amazonas', AP: 'Amapá',
-    BA: 'Bahia', CE: 'Ceará', DF: 'Distrito Federal', ES: 'Espírito Santo',
-    GO: 'Goiás', MA: 'Maranhão', MG: 'Minas Gerais', MS: 'Mato Grosso do Sul',
-    MT: 'Mato Grosso', PA: 'Pará', PB: 'Paraíba', PE: 'Pernambuco',
-    PI: 'Piauí', PR: 'Paraná', RJ: 'Rio de Janeiro', RN: 'Rio Grande do Norte',
-    RO: 'Rondônia', RR: 'Roraima', RS: 'Rio Grande do Sul', SC: 'Santa Catarina',
-    SE: 'Sergipe', SP: 'São Paulo', TO: 'Tocantins',
-};
-
-const CARGOS = [
-    { value: 'deputado_estadual', label: 'Deputado Estadual' },
-    { value: 'deputado_federal', label: 'Deputado Federal' },
-    { value: 'vereador', label: 'Vereador' },
-    { value: 'prefeito', label: 'Prefeito' },
-    { value: 'senador', label: 'Senador' },
-    { value: 'governador', label: 'Governador' },
-];
-
-const CARGOS_MUNICIPAIS = ['vereador', 'prefeito'];
-
-const TOTAL_STEPS = 4;
-
-interface FormData {
-    nomeCampanha: string;
-    nomeCandidato: string;
-    cargoPretendido: string;
-    partido: string;
-    numeroCandidato: string;
-    uf: string;
-    cidade: string;
-}
+import { Check, ChevronLeft, ChevronRight, AlertTriangle, Loader2, Lock } from 'lucide-react';
+import {
+    useOnboardingAdmin,
+    UF_LIST,
+    UF_NAMES,
+    CARGOS,
+    TOTAL_STEPS,
+} from './hooks/useOnboardingAdmin';
 
 export default function OnboardingAdminPage() {
-    const router = useRouter();
-    const [currentStep, setCurrentStep] = useState(1);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [ufConfirmed, setUfConfirmed] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const {
+        currentStep,
+        formData,
+        isInvitedUser,
+        ufConfirmed,
+        isMunicipal,
+        error,
+        isSubmitting,
+        isLoadingMetadata,
+        updateField,
+        setUfConfirmed,
+        handleNext,
+        handlePrev,
+        isStepValid,
+        handleSubmit,
+        planoLabel,
+    } = useOnboardingAdmin();
 
-    const [formData, setFormData] = useState<FormData>({
-        nomeCampanha: '',
-        nomeCandidato: '',
-        cargoPretendido: '',
-        partido: '',
-        numeroCandidato: '',
-        uf: '',
-        cidade: '',
-    });
+    if (isLoadingMetadata) {
+        return (
+            <Card className="shadow-xl border-0">
+                <CardContent className="flex items-center justify-center py-20">
+                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                </CardContent>
+            </Card>
+        );
+    }
 
-    const updateField = (field: keyof FormData, value: string) => {
-        setFormData((prev) => ({ ...prev, [field]: value }));
-        setError(null);
-    };
-
-    const isMunicipal = CARGOS_MUNICIPAIS.includes(formData.cargoPretendido);
-
-    /** Validação por step */
-    const isStepValid = (step: number): boolean => {
-        switch (step) {
-            case 1:
-                return !!(
-                    formData.nomeCampanha.trim() &&
-                    formData.nomeCandidato.trim() &&
-                    formData.cargoPretendido
-                );
-            case 2:
-                return !!(formData.uf && ufConfirmed && (!isMunicipal || formData.cidade.trim()));
-            case 3:
-                // Tema de cores é placeholder (Etapa 2.2)
-                return true;
-            case 4:
-                return true;
-            default:
-                return false;
-        }
-    };
-
-    const handleNext = () => {
-        if (currentStep < TOTAL_STEPS && isStepValid(currentStep)) {
-            setCurrentStep((s) => s + 1);
-        }
-    };
-
-    const handlePrev = () => {
-        if (currentStep > 1) {
-            setCurrentStep((s) => s - 1);
-        }
-    };
-
-    const handleSubmit = async () => {
-        setIsSubmitting(true);
-        setError(null);
-
-        try {
-            const supabase = createClient();
-
-            const {
-                data: { user },
-            } = await supabase.auth.getUser();
-
-            if (!user) {
-                setError('Sessão expirada. Faça login novamente.');
-                return;
-            }
-
-            // 1. Criar a campanha
-            const { data: campanha, error: campanhaError } = await supabase
-                .from('campanha')
-                .insert({
-                    nome: formData.nomeCampanha.trim(),
-                    nome_candidato: formData.nomeCandidato.trim(),
-                    cargo_pretendido: formData.cargoPretendido,
-                    partido: formData.partido.trim() || null,
-                    numero_candidato: formData.numeroCandidato.trim() || null,
-                    uf: formData.uf,
-                    cidade: isMunicipal ? formData.cidade.trim() : null,
-                    status: 'ativa',
-                })
-                .select('id')
-                .single();
-
-            if (campanhaError || !campanha) {
-                console.error('Erro ao criar campanha:', campanhaError);
-                setError(campanhaError?.message ?? 'Erro ao criar campanha');
-                return;
-            }
-
-            // 2. Criar vínculo como admin na campanha_membro
-            const { error: membroError } = await supabase.from('campanha_membro').insert({
-                campanha_id: campanha.id,
-                profile_id: user.id,
-                role: 'admin',
-                status: 'ativo',
-            });
-
-            if (membroError) {
-                console.error('Erro ao criar membro:', membroError);
-                setError(membroError.message);
-                return;
-            }
-
-            // 3. Atualizar profile com campanha_id e role admin
-            const { error: profileError } = await supabase
-                .from('profiles')
-                .update({
-                    campanha_id: campanha.id,
-                    roles: ['admin'],
-                })
-                .eq('id', user.id);
-
-            if (profileError) {
-                console.error('Erro ao atualizar perfil:', profileError);
-                setError(profileError.message);
-                return;
-            }
-
-            // Redirecionar para o dashboard
-            router.push('/dashboard');
-        } catch (err) {
-            console.error('Erro no onboarding:', err);
-            setError('Erro inesperado. Tente novamente.');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    /** Step mínimo visível (se não veio de convite, step 1 é pulado) */
+    const minStep = isInvitedUser ? 1 : 2;
 
     return (
         <Card className="shadow-xl border-0">
             <CardHeader className="text-center pb-2">
                 <CardTitle className="text-2xl font-bold">Configurar Campanha</CardTitle>
                 <CardDescription>
-                    Etapa {currentStep} de {TOTAL_STEPS} — Configure os dados da sua campanha
+                    Etapa {currentStep - minStep + 1} de {TOTAL_STEPS - minStep + 1} — Configure os dados da sua campanha
                 </CardDescription>
 
                 {/* Progress bar */}
                 <div className="flex gap-2 mt-4">
-                    {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+                    {Array.from({ length: TOTAL_STEPS - minStep + 1 }).map((_, i) => (
                         <div
                             key={i}
-                            className={`h-2 flex-1 rounded-full transition-colors duration-300 ${i + 1 <= currentStep ? 'bg-primary' : 'bg-muted'
-                                }`}
+                            className={`h-2 flex-1 rounded-full transition-colors duration-300 ${i + minStep <= currentStep ? 'bg-primary' : 'bg-muted'}`}
                         />
                     ))}
                 </div>
@@ -225,8 +86,50 @@ export default function OnboardingAdminPage() {
                     </div>
                 )}
 
-                {/* ── Step 1: Dados da campanha ── */}
-                {currentStep === 1 && (
+                {/* ── Step 1: Definição de senha (só se veio de convite) ── */}
+                {currentStep === 1 && isInvitedUser && (
+                    <div className="space-y-4">
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div className="flex items-start gap-3">
+                                <Lock className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                                <div>
+                                    <p className="font-semibold text-blue-800">Defina sua senha de acesso</p>
+                                    <p className="text-sm text-blue-700 mt-1">
+                                        Você foi convidado para o Idealis Core. Crie uma senha para acessar o painel.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label htmlFor="password">Senha *</Label>
+                            <Input
+                                id="password"
+                                type="password"
+                                placeholder="Mínimo 6 caracteres"
+                                value={formData.password}
+                                onChange={(e) => updateField('password', e.target.value)}
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label htmlFor="confirmPassword">Confirmar Senha *</Label>
+                            <Input
+                                id="confirmPassword"
+                                type="password"
+                                placeholder="Repita a senha"
+                                value={formData.confirmPassword}
+                                onChange={(e) => updateField('confirmPassword', e.target.value)}
+                            />
+                            {formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword && (
+                                <p className="text-xs text-destructive">As senhas não coincidem.</p>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {/* ── Step 2: Dados da campanha ── */}
+                {currentStep === 2 && (
                     <div className="space-y-4">
                         <div className="space-y-2">
                             <Label htmlFor="nomeCampanha">Nome da Campanha *</Label>
@@ -290,8 +193,8 @@ export default function OnboardingAdminPage() {
                     </div>
                 )}
 
-                {/* ── Step 2: Estado (UF) — IRREVERSÍVEL ── */}
-                {currentStep === 2 && (
+                {/* ── Step 3: Estado (UF) — IRREVERSÍVEL ── */}
+                {currentStep === 3 && (
                     <div className="space-y-4">
                         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                             <div className="flex items-start gap-3">
@@ -368,8 +271,8 @@ export default function OnboardingAdminPage() {
                     </div>
                 )}
 
-                {/* ── Step 3: Tema de cores (Placeholder — Etapa 2.2) ── */}
-                {currentStep === 3 && (
+                {/* ── Step 4: Tema de cores (Placeholder — Etapa 2.2) ── */}
+                {currentStep === 4 && (
                     <div className="space-y-4">
                         <div className="bg-muted/50 rounded-lg p-6 text-center">
                             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -387,8 +290,8 @@ export default function OnboardingAdminPage() {
                     </div>
                 )}
 
-                {/* ── Step 4: Confirmação ── */}
-                {currentStep === 4 && (
+                {/* ── Step 5: Confirmação ── */}
+                {currentStep === 5 && (
                     <div className="space-y-4">
                         <h3 className="font-semibold text-lg">Confirme os dados da campanha</h3>
 
@@ -432,6 +335,10 @@ export default function OnboardingAdminPage() {
                                 </div>
                             )}
                             <div className="flex justify-between p-3">
+                                <span className="text-muted-foreground text-sm">Plano</span>
+                                <span className="font-medium text-sm">{planoLabel}</span>
+                            </div>
+                            <div className="flex justify-between p-3">
                                 <span className="text-muted-foreground text-sm">Tema</span>
                                 <span className="font-medium text-sm">Azul (padrão)</span>
                             </div>
@@ -439,7 +346,7 @@ export default function OnboardingAdminPage() {
 
                         <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
                             <p className="text-xs text-amber-700">
-                                ⚠️ Após criar, o <strong>estado ({formData.uf})</strong> não poderá ser alterado.
+                                Após criar, o <strong>estado ({formData.uf})</strong> não poderá ser alterado.
                                 Os demais dados podem ser editados em Configurações.
                             </p>
                         </div>
@@ -451,7 +358,7 @@ export default function OnboardingAdminPage() {
                     <Button
                         variant="outline"
                         onClick={handlePrev}
-                        disabled={currentStep === 1}
+                        disabled={currentStep <= minStep}
                     >
                         <ChevronLeft className="h-4 w-4 mr-1" />
                         Voltar
