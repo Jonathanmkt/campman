@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2026-02-16T20:46:42.802Z
+ * Última atualização: 2026-02-19T15:23:06.008Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -2078,6 +2078,66 @@ export type Database = {
           },
         ]
       }
+      pedidos: {
+        Row: {
+          codigo: string
+          convite_enviado_em: string | null
+          created_at: string
+          documento: string
+          email: string
+          id: string
+          meio_pagamento: string
+          nome: string
+          pagarme_charge_id: string | null
+          pagarme_data: Json | null
+          pagarme_order_id: string | null
+          plano_nome: string
+          plano_slug: string
+          status: string
+          updated_at: string
+          valor: number
+          webhook_recebido_em: string | null
+        }
+        Insert: {
+          codigo: string
+          convite_enviado_em?: string | null
+          created_at?: string
+          documento: string
+          email: string
+          id?: string
+          meio_pagamento: string
+          nome: string
+          pagarme_charge_id?: string | null
+          pagarme_data?: Json | null
+          pagarme_order_id?: string | null
+          plano_nome: string
+          plano_slug: string
+          status?: string
+          updated_at?: string
+          valor: number
+          webhook_recebido_em?: string | null
+        }
+        Update: {
+          codigo?: string
+          convite_enviado_em?: string | null
+          created_at?: string
+          documento?: string
+          email?: string
+          id?: string
+          meio_pagamento?: string
+          nome?: string
+          pagarme_charge_id?: string | null
+          pagarme_data?: Json | null
+          pagarme_order_id?: string | null
+          plano_nome?: string
+          plano_slug?: string
+          status?: string
+          updated_at?: string
+          valor?: number
+          webhook_recebido_em?: string | null
+        }
+        Relationships: []
+      }
       pesquisa_quantitativa: {
         Row: {
           area_id: string
@@ -3640,6 +3700,7 @@ export type Database = {
             }
             Returns: string
           }
+      check_valid_roles: { Args: { roles: string[] }; Returns: boolean }
       confirmar_convite: {
         Args: { p_auth_user_id: string; p_senha_hash: string; p_token: string }
         Returns: Json

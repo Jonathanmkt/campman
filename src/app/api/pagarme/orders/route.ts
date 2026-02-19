@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.PAGARME_SECRET_KEY}`,
+          Authorization: `Basic ${Buffer.from(`${process.env.PAGARME_SECRET_KEY}:`).toString('base64')}`,
         },
       }
     );
@@ -64,13 +64,14 @@ export async function GET(request: NextRequest) {
       },
       error: null,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Erro desconhecido';
     console.error('[Pagar.me Orders] Erro inesperado:', error);
     return NextResponse.json(
       {
         success: false,
         error: 'Erro ao consultar pedido',
-        data: { message: error.message },
+        data: { message },
       },
       { status: 500 }
     );

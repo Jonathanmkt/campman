@@ -1,4 +1,5 @@
 import { inviteAdmin } from '@/lib/services/invite-admin'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { NextRequest, NextResponse } from 'next/server'
 
 /**
@@ -51,58 +52,76 @@ function verifyBasicAuth(authHeader: string | null): boolean {
   }
 }
 
-/**
- * Extrai email do payload Pagar.me (customer.email)
- */
-function extractCustomerEmail(orderData: any): string | null {
-  return orderData?.customer?.email || null
+type PagarmeOrderData = Record<string, unknown>
+
+function extractCustomerEmail(orderData: PagarmeOrderData): string | null {
+  const customer = orderData?.customer as Record<string, unknown> | undefined
+  return (customer?.email as string) || null
 }
 
-/**
- * Extrai plano do primeiro item (items[0].description ou items[0].id)
- */
-function extractPlanSlug(orderData: any): string {
-  const firstItem = orderData?.items?.[0]
-  if (!firstItem) return 'basico' // fallback
+function extractPlanSlug(orderData: PagarmeOrderData): string {
+  const items = orderData?.items as Array<Record<string, unknown>> | undefined
+  const firstItem = items?.[0]
+  if (!firstItem) return 'basico'
 
-  // Tentar extrair do ID ou description
-  const itemId = firstItem.id?.toLowerCase() || ''
-  const itemDesc = firstItem.description?.toLowerCase() || ''
+  const itemCode = String(firstItem.code || '').toLowerCase()
+  const itemDesc = String(firstItem.description || '').toLowerCase()
 
-  if (itemId.includes('profissional') || itemDesc.includes('profissional')) {
-    return 'profissional'
-  }
-  if (itemId.includes('cortesia') || itemDesc.includes('cortesia')) {
-    return 'cortesia'
-  }
-
-  return 'basico' // padrão
+  if (itemCode.includes('profissional') || itemDesc.includes('profissional')) return 'profissional'
+  if (itemCode.includes('cortesia') || itemDesc.includes('cortesia')) return 'cortesia'
+  return itemCode || 'basico'
 }
 
 /**
  * Handler para evento order.paid
+ * Fluxo: atualiza pedido local → envia convite via Supabase auth
  */
-async function handleOrderPaid(orderData: any) {
+async function handleOrderPaid(orderData: PagarmeOrderData) {
+  const supabase = createAdminClient()
   const email = extractCustomerEmail(orderData)
   const planoSlug = extractPlanSlug(orderData)
-  const chargeId = orderData?.charges?.[0]?.id || orderData?.id
+  const pagarmeOrderId = orderData?.id as string
+  const charges = orderData?.charges as Array<Record<string, unknown>> | undefined
+  const chargeId = (charges?.[0]?.id as string) || pagarmeOrderId
+  const localOrderId = (orderData?.metadata as Record<string, unknown>)?.local_order_id as string | undefined
 
   if (!email) {
-    console.error('[Webhook] order.paid sem email:', orderData.id)
+    console.error('[Webhook] order.paid sem email:', pagarmeOrderId)
     return
   }
 
-  console.log('[Webhook] 💰 Pedido PAGO:', {
-    orderId: orderData.id,
-    email,
-    planoSlug,
-    chargeId,
-  })
+  console.log('[Webhook] 💰 Pedido PAGO:', { pagarmeOrderId, localOrderId, email, planoSlug, chargeId })
 
-  // Determinar tipo do plano
+  // Atualizar pedido local para paid (se tiver local_order_id no metadata)
+  if (localOrderId) {
+    const { error: updateError } = await supabase
+      .from('pedidos')
+      .update({
+        status: 'paid',
+        pagarme_charge_id: chargeId,
+        webhook_recebido_em: new Date().toISOString(),
+      })
+      .eq('codigo', localOrderId)
+
+    if (updateError) {
+      console.error('[Webhook] Erro ao atualizar pedido local:', updateError.message)
+    } else {
+      console.log('[Webhook] Pedido local atualizado para paid:', localOrderId)
+    }
+  } else {
+    // Fallback: buscar por pagarme_order_id se não tiver local_order_id
+    await supabase
+      .from('pedidos')
+      .update({
+        status: 'paid',
+        pagarme_charge_id: chargeId,
+        webhook_recebido_em: new Date().toISOString(),
+      })
+      .eq('pagarme_order_id', pagarmeOrderId)
+  }
+
+  // Disparar convite via Supabase auth
   const planoTipo = planoSlug === 'cortesia' ? 'cortesia' as const : 'pago' as const
-
-  // Disparar convite
   const result = await inviteAdmin({
     email,
     planoTipo,
@@ -113,56 +132,50 @@ async function handleOrderPaid(orderData: any) {
   if (!result.success) {
     console.error('[Webhook] Erro ao enviar convite:', result.error)
   } else {
-    console.log('[Webhook] Convite enviado:', { email, userId: result.userId })
+    console.log('[Webhook] ✅ Convite enviado:', { email, userId: result.userId })
+
+    // Marcar convite_enviado_em no pedido local
+    if (localOrderId) {
+      await supabase
+        .from('pedidos')
+        .update({ convite_enviado_em: new Date().toISOString() })
+        .eq('codigo', localOrderId)
+    }
   }
 }
 
-/**
- * Handler para evento order.payment_failed
- */
-async function handlePaymentFailed(orderData: any) {
-  console.log('[Webhook] ❌ Pagamento FALHOU:', {
-    orderId: orderData.id,
-    email: extractCustomerEmail(orderData),
-  })
-  // TODO: Notificar usuário, registrar no banco
+async function handlePaymentFailed(orderData: PagarmeOrderData) {
+  const supabase = createAdminClient()
+  const pagarmeOrderId = orderData?.id as string
+  const localOrderId = (orderData?.metadata as Record<string, unknown>)?.local_order_id as string | undefined
+
+  console.log('[Webhook] ❌ Pagamento FALHOU:', { pagarmeOrderId, email: extractCustomerEmail(orderData) })
+
+  if (localOrderId) {
+    await supabase.from('pedidos').update({ status: 'failed' }).eq('codigo', localOrderId)
+  }
 }
 
-/**
- * Handler para evento order.canceled
- */
-async function handleOrderCanceled(orderData: any) {
+async function handleOrderCanceled(orderData: PagarmeOrderData) {
   console.log('[Webhook] 🚫 Pedido CANCELADO:', {
     orderId: orderData.id,
     email: extractCustomerEmail(orderData),
   })
 }
 
-/**
- * Handler para evento charge.paid
- */
-async function handleChargePaid(chargeData: any) {
+async function handleChargePaid(chargeData: PagarmeOrderData) {
   console.log('[Webhook] 💳 Cobrança PAGA:', chargeData.id)
 }
 
-/**
- * Handler para evento charge.pending (PIX/Boleto)
- */
-async function handleChargePending(chargeData: any) {
+async function handleChargePending(chargeData: PagarmeOrderData) {
   console.log('[Webhook] ⏳ Cobrança PENDENTE (PIX/Boleto):', chargeData.id)
 }
 
-/**
- * Handler para evento charge.refunded
- */
-async function handleChargeRefunded(chargeData: any) {
+async function handleChargeRefunded(chargeData: PagarmeOrderData) {
   console.log('[Webhook] ↩️ Cobrança ESTORNADA:', chargeData.id)
 }
 
-/**
- * Handler para evento charge.payment_failed
- */
-async function handleChargePaymentFailed(chargeData: any) {
+async function handleChargePaymentFailed(chargeData: PagarmeOrderData) {
   console.log('[Webhook] ⚠️ Cobrança FALHOU:', chargeData.id)
 }
 
@@ -231,13 +244,14 @@ export async function POST(request: NextRequest) {
       },
       error: null,
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Erro desconhecido'
     console.error('[Webhook Pagar.me] ❌ Erro:', error)
     return NextResponse.json(
       {
         success: false,
         error: 'Webhook error',
-        data: { message: error.message },
+        data: { message },
       },
       { status: 400 }
     )
