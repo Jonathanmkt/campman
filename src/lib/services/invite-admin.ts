@@ -54,7 +54,7 @@ export async function inviteAdmin(payload: InviteAdminPayload): Promise<InviteAd
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
     const { data, error } = await supabase.auth.admin.inviteUserByEmail(payload.email, {
-      redirectTo: `${siteUrl}/auth/oauth?next=/onboarding/admin`,
+      redirectTo: `${siteUrl}/auth/confirm?next=/onboarding/admin`,
       data: {
         role: 'admin',
         plano_tipo: payload.planoTipo,

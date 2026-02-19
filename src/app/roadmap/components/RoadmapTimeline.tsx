@@ -64,18 +64,35 @@ const roadmapPhases: RoadmapPhase[] = [
   },
   {
     id: 'fase-2',
-    title: 'Fase 2 — Onboarding e Configuração',
+    title: 'Fase 2 — Monetização, Onboarding e Configuração',
     description:
-      'Fluxo completo de onboarding do admin, assets de campanha e preparação do módulo de temas (pós-Fase 3).',
+      'Integração Pagar.me, SMTP customizado, fluxo completo de onboarding do admin via convite e tela de configurações da campanha.',
     startDate: '2026-02-17',
     endDate: '2026-02-24',
     tasks: [
       {
+        code: '2.extra',
+        title: 'Integração Pagar.me + Webhook',
+        description:
+          'Checkout `/checkout`, webhook `/api/webhooks/pagarme`, tabela `pedidos`, convite automático via `inviteUserByEmail` ao confirmar pagamento.',
+        dueDate: '2026-02-17',
+        status: 'done',
+      },
+      {
+        code: '2.smtp',
+        title: 'SMTP Customizado + Template de Email',
+        description:
+          'HostGator SMTP configurado no Supabase (`nao-responda@idealiscore.com.br`), template HTML de convite criado com link PKCE correto (`/auth/confirm?token_hash=...`).',
+        dueDate: '2026-02-17',
+        status: 'done',
+      },
+      {
         code: '2.1',
-        title: 'Onboarding do Admin',
-        description: 'Signup dedicado, onboarding multi-step (incluindo escolha de UF irreversível) e tela de configurações.',
-        dueDate: '2026-02-18',
-        status: 'pending',
+        title: 'Onboarding do Admin (5 Steps)',
+        description:
+          'Fluxo multi-step: definição de senha, dados da campanha, UF irreversível, tema (placeholder) e confirmação. Cria campanha, campanha_membro, profile e assinatura. Trigger auto-profile em auth.users.',
+        dueDate: '2026-02-19',
+        status: 'done',
       },
       {
         code: '2.2',

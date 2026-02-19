@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seu acesso ao Idealis está pronto</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f6f9;font-family:'Segoe UI',Arial,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f9;padding:40px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:40px 48px;text-align:center;">
+              <h1 style="margin:0;color:#ffffff;font-size:28px;font-weight:700;letter-spacing:-0.5px;">Idealis</h1>
+              <p style="margin:8px 0 0;color:#94a3b8;font-size:14px;letter-spacing:1px;text-transform:uppercase;">Plataforma de Gestão</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:48px 48px 32px;">
+
+              <p style="margin:0 0 8px;color:#64748b;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:1px;">Bem-vindo(a) ao Idealis</p>
+              <h2 style="margin:0 0 24px;color:#1e293b;font-size:26px;font-weight:700;line-height:1.3;">
+                Seu acesso está pronto! 🎉
+              </h2>
+
+              <p style="margin:0 0 20px;color:#475569;font-size:16px;line-height:1.7;">
+                Olá! Seu pagamento foi confirmado e sua conta de administrador no <strong style="color:#1e293b;">Idealis</strong> foi criada com sucesso.
+              </p>
+
+              <p style="margin:0 0 32px;color:#475569;font-size:16px;line-height:1.7;">
+                Clique no botão abaixo para definir sua senha e acessar o painel:
+              </p>
+
+              <!-- CTA Button -->
+              <table cellpadding="0" cellspacing="0" style="margin:0 0 32px;">
+                <tr>
+                  <td style="background:linear-gradient(135deg,#0f3460,#1a1a2e);border-radius:8px;">
+                    <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next=/onboarding/admin"
+                       style="display:inline-block;padding:16px 40px;color:#ffffff;font-size:16px;font-weight:600;text-decoration:none;border-radius:8px;letter-spacing:0.3px;">
+                      Acessar minha conta →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Info box -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 32px;">
+                <tr>
+                  <td style="background-color:#f8fafc;border-left:4px solid #0f3460;border-radius:0 8px 8px 0;padding:16px 20px;">
+                    <p style="margin:0;color:#475569;font-size:14px;line-height:1.6;">
+                      ⏰ <strong>Este link expira em 24 horas.</strong> Se não conseguir acessar a tempo, entre em contato com o suporte.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 8px;color:#475569;font-size:15px;line-height:1.7;">
+                Se o botão não funcionar, copie e cole o link abaixo no seu navegador:
+              </p>
+              <p style="margin:0 0 32px;word-break:break-all;">
+                <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next=/onboarding/admin" style="color:#0f3460;font-size:13px;text-decoration:underline;">
+                  {{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next=/onboarding/admin
+                </a>
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 48px;">
+              <hr style="border:none;border-top:1px solid #e2e8f0;margin:0;" />
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:24px 48px 40px;">
+              <p style="margin:0 0 8px;color:#94a3b8;font-size:13px;line-height:1.6;">
+                Você está recebendo este email porque realizou uma compra na plataforma Idealis.
+                Se não reconhece esta compra, ignore este email ou entre em contato com o suporte.
+              </p>
+              <p style="margin:0;color:#cbd5e1;font-size:12px;">
+                © 2026 Idealis · Todos os direitos reservados
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

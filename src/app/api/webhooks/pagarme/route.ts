@@ -130,16 +130,22 @@ async function handleOrderPaid(orderData: PagarmeOrderData) {
   })
 
   if (!result.success) {
-    console.error('[Webhook] Erro ao enviar convite:', result.error)
+    const isRateLimit = result.error?.includes('rate limit') || result.error?.includes('429')
+    if (isRateLimit) {
+      console.error('[Webhook] ⚠️ Rate limit de email atingido. Convite NÃO enviado para:', email)
+      console.error('[Webhook] Pedido está PAGO mas convite pendente. Reenvie manualmente.')
+    } else {
+      console.error('[Webhook] ❌ Erro ao enviar convite:', result.error)
+    }
   } else {
     console.log('[Webhook] ✅ Convite enviado:', { email, userId: result.userId })
 
-    // Marcar convite_enviado_em no pedido local
+    // Marcar convite_enviado_em — tenta por localOrderId, fallback por pagarme_order_id
+    const conviteUpdate = { convite_enviado_em: new Date().toISOString() }
     if (localOrderId) {
-      await supabase
-        .from('pedidos')
-        .update({ convite_enviado_em: new Date().toISOString() })
-        .eq('codigo', localOrderId)
+      await supabase.from('pedidos').update(conviteUpdate).eq('codigo', localOrderId)
+    } else {
+      await supabase.from('pedidos').update(conviteUpdate).eq('pagarme_order_id', pagarmeOrderId)
     }
   }
 }

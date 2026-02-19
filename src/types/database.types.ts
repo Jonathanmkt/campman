@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2026-02-19T15:23:06.008Z
+ * Última atualização: 2026-02-19T22:08:40.867Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -2349,7 +2349,7 @@ export type Database = {
         Row: {
           access_level: number | null
           auth_method: string | null
-          campanha_id: string
+          campanha_id: string | null
           cpf: string | null
           data_atualizacao: string
           data_criacao: string
@@ -2369,7 +2369,7 @@ export type Database = {
         Insert: {
           access_level?: number | null
           auth_method?: string | null
-          campanha_id: string
+          campanha_id?: string | null
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string
@@ -2389,7 +2389,7 @@ export type Database = {
         Update: {
           access_level?: number | null
           auth_method?: string | null
-          campanha_id?: string
+          campanha_id?: string | null
           cpf?: string | null
           data_atualizacao?: string
           data_criacao?: string

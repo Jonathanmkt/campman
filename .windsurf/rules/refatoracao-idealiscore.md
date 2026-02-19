@@ -170,16 +170,20 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 ### FASE 2 — ONBOARDING E CONFIGURAÇÃO
 
 #### ETAPA 2.1 — Fluxo de Onboarding do Admin
-- [ ] **2.1.1** Criar página `/auth/signup-admin` — cadastro do admin (email + senha ou telefone)
+- [x] **2.1.1** Criar página `/auth/signup-admin` — cadastro do admin via convite (fluxo Pagar.me → webhook → `inviteUserByEmail`)
+  - ✅ Admin não se cadastra manualmente: recebe convite por email após pagamento confirmado
 - [x] **2.1.2** Criar fluxo de onboarding multi-step (`/onboarding/admin`):
-  - ✅ **Step 1:** Nome da campanha + Nome do candidato + Cargo pretendido + Partido + Número
-  - ✅ **Step 2:** Seleção do estado (UF) — **irreversível** — com confirmação explícita
-  - ✅ **Step 3:** Placeholder para tema de cores (indica que será habilitado futuramente)
-  - ✅ **Step 4:** Confirmação e criação da campanha
+  - ✅ **Step 1:** Definição de senha (apenas para usuários vindos de convite)
+  - ✅ **Step 2:** Nome da campanha + Nome do candidato + Cargo pretendido + Partido + Número
+  - ✅ **Step 3:** Seleção do estado (UF) — **irreversível** — com confirmação explícita
+  - ✅ **Step 4:** Placeholder para tema de cores (indica que será habilitado futuramente)
+  - ✅ **Step 5:** Confirmação e criação da campanha
   - 📋 Upload de fotos adiado para etapa de Storage (2.1.3)
-- [ ] **2.1.3** Ao finalizar onboarding:
+- [x] **2.1.3** Ao finalizar onboarding:
   - ✅ Criar registro em `campanha` (feito no onboarding)
   - ✅ Criar registro em `campanha_membro` (role: admin) (feito no onboarding)
+  - ✅ Criar registro em `assinatura` vinculado ao plano correto
+  - ✅ Atualizar `profiles.campanha_id` após criação da campanha
   - [ ] Configurar Storage bucket no Supabase para assets da campanha
 - [x] **2.1.4** Criar tela de configurações da campanha (`/dashboard/configuracoes`) para edição posterior (tudo exceto UF, que é irreversível)
   - ✅ Página criada com edição de todos os dados exceto UF (bloqueado)
@@ -323,6 +327,14 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 
 5. **Rebranding:** Projeto renomeado de CampMan para **Idealis Core**. URL: `app.idealiscore.com.br`. Repositório: `IdealisCore`. Nome na interface: "Idealis Core". Repositório mobile: `idealiscore-mobile`.
 
+## Decisões Registradas em 19/02/2026
+
+6. **Fluxo de autenticação de convite:** Trocado de `/auth/oauth` (PKCE code) para `/auth/confirm?token_hash=...&type=invite` (fluxo OTP/PKCE correto para convites Supabase). Template de email atualizado para usar `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next=/onboarding/admin`.
+7. **Trigger de auto-criação de profile:** Criado trigger `on_auth_user_created` em `auth.users` que insere automaticamente um registro em `public.profiles` ao criar novo usuário. `campanha_id` em `profiles` tornado nullable para suportar o onboarding antes da criação da campanha.
+8. **RLS desabilitado temporariamente:** Todas as políticas RLS do schema `public` foram desabilitadas durante o desenvolvimento. Reativar e auditar na Fase 6 (Etapa 6.1).
+9. **SMTP customizado:** Configurado SMTP do HostGator (`nao-responda@idealiscore.com.br`) no Supabase para envio de emails de convite com template HTML customizado.
+10. **Fluxo completo validado em produção:** Pagamento → Webhook → Convite por email → Onboarding → Campanha criada → Assinatura criada → Dashboard. Testado e confirmado em `2026-02-19`.
+
 ---
 
 ## Regras para Agentes de IA durante a Refatoração
@@ -349,4 +361,9 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 |---|---|---|---|
 | 2026-02-12 | Planejamento | ✅ Concluído | Plano macro criado e persistido como workspace rule |
 | 2026-02-13 | Rebranding CampMan → Idealis Core | ✅ Concluído | Todas as referências no código atualizadas (package.json, docker-compose, GH Actions, layouts, mobile, dashboard, roadmap, types, docs) |
-| | | | |
+| 2026-02-17 | Integração Pagar.me (Fase 2 — Monetização) | ✅ Concluído | Checkout `/checkout`, webhook `/api/webhooks/pagarme`, tabela `pedidos`, convite automático via `inviteUserByEmail` |
+| 2026-02-17 | SMTP customizado | ✅ Concluído | HostGator SMTP configurado no Supabase, template HTML de convite criado em `supabase/templates/invite.html` |
+| 2026-02-18 | Onboarding Admin multi-step | ✅ Concluído | `/onboarding/admin` com 5 steps: senha, dados da campanha, UF, tema (placeholder), confirmação |
+| 2026-02-19 | Fix fluxo de convite (redirect) | ✅ Concluído | `redirectTo` corrigido para `/auth/confirm`, template de email atualizado para fluxo PKCE com `token_hash` |
+| 2026-02-19 | Trigger auto-profile + campanha_id nullable | ✅ Concluído | Trigger `on_auth_user_created` criado; `profiles.campanha_id` tornado nullable |
+| 2026-02-19 | Fluxo completo validado em produção | ✅ Concluído | Pagamento real → webhook → convite → onboarding → campanha → assinatura → dashboard. Tudo funcionando. |
