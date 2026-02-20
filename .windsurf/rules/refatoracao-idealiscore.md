@@ -327,6 +327,10 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 
 5. **Rebranding:** Projeto renomeado de CampMan para **Idealis Core**. URL: `app.idealiscore.com.br`. Repositório: `IdealisCore`. Nome na interface: "Idealis Core". Repositório mobile: `idealiscore-mobile`.
 
+## Decisões Registradas em 20/02/2026
+
+11. **Georreferenciamento dinâmico:** Criado arquivo central `src/lib/geo/uf-coordinates.ts` como fonte única de coordenadas para os 27 estados. `campanha.uf` é propagado via `useCampanha` → `AreaMapContent` → `MapContainer` → `GoogleMap`/`MapSearch`/`CreateAreaModal`. No mobile, `NovaLiderancaForm` busca `campanha.uf` e passa para `AddressSearch`. Fallback padrão: `'DF'` (centro geográfico do Brasil). API `/api/geocode` aceita param `uf` e filtra por `administrative_area_level_1`. Endpoint `confirmar-convite` usa `campanha.uf` do convite como fallback de `estado` em vez de `'RJ'`.
+
 ## Decisões Registradas em 19/02/2026
 
 6. **Fluxo de autenticação de convite:** Trocado de `/auth/oauth` (PKCE code) para `/auth/confirm?token_hash=...&type=invite` (fluxo OTP/PKCE correto para convites Supabase). Template de email atualizado para usar `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite&next=/onboarding/admin`.
@@ -367,3 +371,4 @@ As etapas estão ordenadas de forma que **cada etapa só depende de etapas anter
 | 2026-02-19 | Fix fluxo de convite (redirect) | ✅ Concluído | `redirectTo` corrigido para `/auth/confirm`, template de email atualizado para fluxo PKCE com `token_hash` |
 | 2026-02-19 | Trigger auto-profile + campanha_id nullable | ✅ Concluído | Trigger `on_auth_user_created` criado; `profiles.campanha_id` tornado nullable |
 | 2026-02-19 | Fluxo completo validado em produção | ✅ Concluído | Pagamento real → webhook → convite → onboarding → campanha → assinatura → dashboard. Tudo funcionando. |
+| 2026-02-20 | Fase 3 — Georreferenciamento Dinâmico | ✅ Concluído | Criado `src/lib/geo/uf-coordinates.ts` (fonte única: coordenadas + zoom para 27 estados, fallback DF). Removidos todos os hardcodes de RJ: GoogleMap, MapSearch, AddressSearch (mobile), CreateAreaModal, AreaMapContent, MapContainer, /api/geocode, confirmar-convite/route.ts. Mapa, buscas e registros de área/liderança agora usam `campanha.uf` dinamicamente. |

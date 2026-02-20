@@ -109,16 +109,16 @@ const roadmapPhases: RoadmapPhase[] = [
     title: 'Fase 3 — Georreferenciamento Dinâmico',
     description:
       'Parametrizar mapas, geocode e filtros por estado escolhido no onboarding, removendo qualquer referência fixa ao RJ.',
-    startDate: '2026-02-19',
+    startDate: '2026-02-20',
     endDate: '2026-02-20',
     tasks: [
       {
         code: '3.1',
         title: 'Mapa, Busca e API por UF',
         description:
-          'Centralizar coordenadas por estado, atualizar GoogleMap/MapSearch/Geocode e coluna `area.estado` para ser dinâmica.',
+          'Criado `src/lib/geo/uf-coordinates.ts` com coordenadas dos 27 estados (fallback DF). GoogleMap, MapSearch, AddressSearch (mobile), CreateAreaModal, AreaMapContent, MapContainer e /api/geocode atualizados para usar `campanha.uf` dinamicamente. Hardcodes de RJ removidos.',
         dueDate: '2026-02-20',
-        status: 'pending',
+        status: 'done',
       },
     ],
   },
