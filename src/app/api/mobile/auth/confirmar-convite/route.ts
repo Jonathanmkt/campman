@@ -28,9 +28,12 @@ export async function POST(request: NextRequest) {
     // Buscar convite antes de criar usuário
     const { data: convite, error: conviteError } = await supabase
       .from('convites')
-      .select('id, telefone, status, expires_at')
+      .select('id, telefone, status, expires_at, campanha:campanha_id(uf)')
       .eq('token', token.trim())
       .single();
+
+    // UF da campanha para usar como fallback de estado em áreas criadas
+    const campanhaUf = (convite?.campanha as { uf?: string } | null)?.uf ?? 'DF';
 
     if (conviteError || !convite) {
       return NextResponse.json(
@@ -181,7 +184,7 @@ export async function POST(request: NextRequest) {
             nome: liderancaData.bairro,
             cidade: liderancaData.cidade,
             bairro: liderancaData.bairro,
-            estado: liderancaData.estado || 'RJ',
+            estado: liderancaData.estado || campanhaUf,
             latitude: liderancaData.latitude,
             longitude: liderancaData.longitude,
             needs_review: true
@@ -195,7 +198,7 @@ export async function POST(request: NextRequest) {
               tipo: 'bairro',
               bairro: liderancaData.bairro,
               cidade: liderancaData.cidade,
-              estado: liderancaData.estado || 'RJ',
+              estado: liderancaData.estado || campanhaUf,
               latitude: liderancaData.latitude,
               longitude: liderancaData.longitude,
               logradouro: liderancaData.logradouro,

@@ -6,9 +6,10 @@ import GoogleMap from './GoogleMap';
 interface MapContainerProps {
   onMapReady?: (map: google.maps.Map) => void;
   onCenterChanged?: (center: { lat: number; lng: number }) => void;
+  uf?: string;
 }
 
-export function MapContainer({ onMapReady, onCenterChanged }: MapContainerProps) {
+export function MapContainer({ onMapReady, onCenterChanged, uf }: MapContainerProps) {
   // Console log para debug
   console.log('Renderizando MapContainer');
   
@@ -18,6 +19,7 @@ export function MapContainer({ onMapReady, onCenterChanged }: MapContainerProps)
         className="h-full w-full rounded-lg"
         onMapReady={onMapReady}
         onCenterChanged={onCenterChanged}
+        uf={uf}
       />
     </div>
   )

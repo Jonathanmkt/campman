@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Search, MapPin, X } from 'lucide-react';
+import { UF_NAMES, UF_FALLBACK } from '@/lib/geo/uf-coordinates';
 
 interface SearchResult {
   place_id: string;
@@ -13,9 +14,11 @@ interface SearchResult {
 
 interface MapSearchProps {
   onLocationSelect: (lat: number, lng: number, address: string) => void;
+  uf?: string;
 }
 
-export function MapSearch({ onLocationSelect }: MapSearchProps) {
+export function MapSearch({ onLocationSelect, uf }: MapSearchProps) {
+  const activeUf = uf || UF_FALLBACK;
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -55,10 +58,13 @@ export function MapSearch({ onLocationSelect }: MapSearchProps) {
     setError(null);
 
     try {
-      // Usar Google Geocoding API via nossa API route (apenas Rio de Janeiro)
-      const response = await fetch(
-        `/api/geocode?address=${encodeURIComponent(searchQuery + ', Rio de Janeiro, RJ, Brasil')}`
-      );
+      // Usar Google Geocoding API via nossa API route filtrada pela UF da campanha
+      const estadoNome = UF_NAMES[activeUf] ?? activeUf;
+      const params = new URLSearchParams({
+        address: `${searchQuery}, ${estadoNome}, ${activeUf}, Brasil`,
+        uf: activeUf,
+      });
+      const response = await fetch(`/api/geocode?${params.toString()}`);
 
       if (!response.ok) {
         throw new Error('Erro na busca de endereços');

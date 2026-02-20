@@ -47,6 +47,7 @@ interface AddressSearchProps {
   onAddressSelect: (address: AddressData) => void;
   placeholder?: string;
   cityFilter?: string | null;
+  uf?: string;
   disabled?: boolean;
 }
 
@@ -54,6 +55,7 @@ export function AddressSearch({
   onAddressSelect,
   placeholder = "Digite o endereço da liderança...",
   cityFilter,
+  uf = 'DF',
   disabled = false,
 }: AddressSearchProps) {
   const [query, setQuery] = useState('');
@@ -94,10 +96,11 @@ export function AddressSearch({
     setError(null);
 
     try {
-      const context = `${searchQuery}, ${cityFilter.trim()}, RJ, Brasil`;
+      const context = `${searchQuery}, ${cityFilter.trim()}, ${uf}, Brasil`;
       const params = new URLSearchParams({
         address: context,
         city: cityFilter.trim(),
+        uf,
         result_types: 'neighborhood|sublocality|sublocality_level_1|sublocality_level_2|administrative_area_level_3|administrative_area_level_4'
       });
 
@@ -178,7 +181,7 @@ export function AddressSearch({
     } finally {
       setIsLoading(false);
     }
-  }, [cityFilter, disabled]);
+  }, [cityFilter, uf, disabled]);
 
   // Debounce para busca
   useEffect(() => {

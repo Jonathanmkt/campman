@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Loader2, ArrowLeft, Check, Share2, Star } from 'lucide-react';
+import { useCampanha } from '@/hooks/useCampanha';
+import { UF_FALLBACK } from '@/lib/geo/uf-coordinates';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -26,6 +28,9 @@ interface ConviteData {
 }
 
 export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLiderancaFormProps) {
+  const { data: userCampanha } = useCampanha();
+  const campanhaUf = userCampanha?.campanha?.uf ?? UF_FALLBACK;
+
   const [step, setStep] = useState<1 | 2 | 'success'>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -314,6 +319,7 @@ export function NovaLiderancaForm({ onSuccess, onCancel, prefillData }: NovaLide
             onAddressSelect={handleAddressSelect}
             placeholder="Digite o nome do bairro..."
             cityFilter={selectedMunicipio?.nome || null}
+            uf={campanhaUf}
             disabled={!selectedMunicipio}
           />
           {!selectedMunicipio && (

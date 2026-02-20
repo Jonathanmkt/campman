@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useGoogleMaps } from '../hooks/useGoogleMaps';
+import { getUfLocation, UF_FALLBACK } from '@/lib/geo/uf-coordinates';
 import { useOptimizedAreas } from '../hooks/useOptimizedAreas';
 import { useMunicipioMarkers } from '../hooks/useMunicipioMarkers';
 import { clusterAreas } from '../utils/clustering';
@@ -19,13 +20,16 @@ interface GoogleMapProps {
   className?: string;
   onMapReady?: (map: google.maps.Map) => void;
   onCenterChanged?: (center: { lat: number; lng: number }) => void;
+  uf?: string;
 }
 
 export default function GoogleMap({ 
   className = "h-full w-full",
   onMapReady,
-  onCenterChanged
+  onCenterChanged,
+  uf,
 }: GoogleMapProps) {
+  const activeUf = uf || UF_FALLBACK;
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const { isLoaded, error: hookError } = useGoogleMaps();
@@ -45,30 +49,26 @@ export default function GoogleMap({
     shouldShowMunicipioMarkers
   } = useMunicipioMarkers({ mapInstance: map });
 
-  // Obter localização do usuário
+  // Obter localização do usuário; fallback = centro do estado da campanha
   useEffect(() => {
-    // Fallback: Centro do RJ (entre Araruama e Rio)
-    const fallbackLocation = { lat: -22.6140, lng: -42.6406 };
+    const ufLocation = getUfLocation(activeUf);
+    const fallbackLocation = { lat: ufLocation.lat, lng: ufLocation.lng };
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const userLat = position.coords.latitude;
           const userLng = position.coords.longitude;
-          
-          // Verificar se o usuário está próximo do Rio de Janeiro (região da campanha)
-          // Se estiver muito longe, usar Araruama como centro
-          const distanceFromRJ = Math.sqrt(
-            Math.pow(userLat - (-22.9068), 2) + Math.pow(userLng - (-43.1729), 2)
+
+          // Verificar se o usuário está próximo do estado da campanha (~200km)
+          const distanceFromUf = Math.sqrt(
+            Math.pow(userLat - ufLocation.lat, 2) + Math.pow(userLng - ufLocation.lng, 2)
           );
-          
-          if (distanceFromRJ < 2) { // Aproximadamente 200km
-            setUserLocation({
-              lat: userLat,
-              lng: userLng
-            });
+
+          if (distanceFromUf < 2) {
+            setUserLocation({ lat: userLat, lng: userLng });
           } else {
-            // Usuário muito longe do RJ, usar Araruama
+            // Usuário longe do estado da campanha — centralizar no estado
             setUserLocation(fallbackLocation);
           }
         },
@@ -85,7 +85,7 @@ export default function GoogleMap({
     } else {
       setUserLocation(fallbackLocation);
     }
-  }, []);
+  }, [activeUf]);
 
   // Inicializar o mapa quando o Google Maps estiver carregado
   useEffect(() => {

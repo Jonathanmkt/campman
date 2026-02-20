@@ -12,6 +12,8 @@ import { useOptimizedAreas } from '../hooks/useOptimizedAreas';
 import { useCreateArea } from '../hooks/useCreateArea';
 import { useUpdateArea } from '../hooks/useUpdateArea';
 import type { Area } from '../hooks/useAreas';
+import { useCampanha } from '@/hooks/useCampanha';
+import { UF_FALLBACK } from '@/lib/geo/uf-coordinates';
 
 export function AreaMapContent() {
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
@@ -20,6 +22,9 @@ export function AreaMapContent() {
   const [selectedArea, setSelectedArea] = useState<Area | null>(null);
   
   // Usar hook otimizado que carrega apenas áreas visíveis no viewport
+  const { data: userCampanha } = useCampanha();
+  const campanhaUf = userCampanha?.campanha?.uf ?? UF_FALLBACK;
+
   const { areas, loading, shouldShowMarkers, refreshAreas } = useOptimizedAreas({ mapInstance });
   
   // Hooks para criar e editar áreas
@@ -101,6 +106,7 @@ export function AreaMapContent() {
                 <MapContainer 
                   onMapReady={setMapInstance} 
                   onCenterChanged={handleCenterChanged}
+                  uf={campanhaUf}
                 />
               </div>
             </ResizablePanel>
@@ -139,6 +145,7 @@ export function AreaMapContent() {
         open={createModalOpen}
         onOpenChange={setCreateModalOpen}
         onCreateArea={handleCreateAreaSubmit}
+        uf={campanhaUf}
       />
 
       <EditAreaModal

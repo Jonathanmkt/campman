@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
     const lng = searchParams.get('lng');
     const reverse = searchParams.get('reverse');
     const city = searchParams.get('city');
+    const uf = searchParams.get('uf');
     const resultTypes = searchParams.get('result_types');
     
     // Verificar se é geocoding reverso
@@ -43,6 +44,9 @@ export async function GET(request: NextRequest) {
     }
 
     const componentFilters = ['country:BR'];
+    if (uf) {
+      componentFilters.push(`administrative_area_level_1:${uf}`);
+    }
     if (city) {
       componentFilters.push(`administrative_area_level_2:${city}`);
     }

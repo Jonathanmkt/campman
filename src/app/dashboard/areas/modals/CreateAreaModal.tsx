@@ -14,6 +14,7 @@ interface CreateAreaModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onCreateArea: (areaData: CreateAreaData) => Promise<void>;
+  uf?: string;
 }
 
 export interface CreateAreaData {
@@ -31,7 +32,7 @@ export interface CreateAreaData {
   longitude?: number;
 }
 
-export function CreateAreaModal({ open, onOpenChange, onCreateArea }: CreateAreaModalProps) {
+export function CreateAreaModal({ open, onOpenChange, onCreateArea, uf }: CreateAreaModalProps) {
   const [formData, setFormData] = useState<CreateAreaData>({
     nome: '',
     tipo: '',
@@ -158,7 +159,7 @@ export function CreateAreaModal({ open, onOpenChange, onCreateArea }: CreateArea
             <Label>
               Endereço <span className="text-red-500">*</span>
             </Label>
-            <MapSearch onLocationSelect={handleLocationSelect} />
+            <MapSearch onLocationSelect={handleLocationSelect} uf={uf} />
             {selectedLocation && (
               <div className="text-sm text-green-600 bg-green-50 p-2 rounded">
                 📍 Localização selecionada: {selectedLocation.address}
