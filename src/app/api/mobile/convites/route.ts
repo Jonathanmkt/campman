@@ -1,16 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { createClient as createServerClient } from '@/lib/supabase/server';
 
 // GET - Listar convites pendentes
 export async function GET(request: NextRequest) {
   try {
+    const supabaseAuth = await createServerClient();
+    const { data: { user } } = await supabaseAuth.auth.getUser();
+
     const supabase = createAdminClient()
     const { searchParams } = new URL(request.url);
     const createdBy = searchParams.get('created_by');
 
-    // Usar a função do banco para listar convites pendentes
+    // Buscar campanha_id do usuário logado para filtrar convites
+    let campanhaId: string | null = null;
+    if (user) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('campanha_id')
+        .eq('id', user.id)
+        .single();
+      campanhaId = profile?.campanha_id ?? null;
+    }
+
+    // Usar a função do banco para listar convites pendentes filtrados por campanha
     const { data, error } = await supabase.rpc('listar_convites_pendentes', {
-      p_created_by: createdBy || null,
+      p_created_by: createdBy ?? undefined,
+      p_campanha_id: campanhaId ?? undefined,
     });
 
     if (error) {
@@ -106,6 +122,26 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = createAdminClient()
+
+    // Buscar campanha_id do criador do convite
+    let campanhaIdPost: string | null = null;
+    if (created_by) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('campanha_id')
+        .eq('id', created_by)
+        .single();
+      campanhaIdPost = profile?.campanha_id ?? null;
+    }
+    if (!campanhaIdPost && coordenador_regional_id) {
+      const { data: coord } = await supabase
+        .from('coordenador_regional')
+        .select('campanha_id')
+        .eq('id', coordenador_regional_id)
+        .single();
+      campanhaIdPost = coord?.campanha_id ?? null;
+    }
+
     // Chamar função do banco que cria liderança provisória + convite em transação
     const { data, error } = await supabase.rpc('criar_convite_lideranca', {
       p_telefone: telefoneNormalizado,
@@ -115,6 +151,7 @@ export async function POST(request: NextRequest) {
       p_coordenador_regional_id: coordenador_regional_id || null,
       p_created_by: created_by || null,
       p_expires_hours: expires_hours,
+      p_campanha_id: campanhaIdPost,
     });
 
     if (error) {

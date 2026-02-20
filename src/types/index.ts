@@ -4,7 +4,7 @@
  * Este arquivo contém tipos auxiliares e re-exports dos tipos do Supabase
  * para facilitar o uso em toda a aplicação.
  * 
- * Última atualização: 2026-02-19T22:08:40.884Z
+ * Última atualização: 2026-02-20T14:27:56.785Z
  */
 
 // Re-export dos tipos principais do Supabase

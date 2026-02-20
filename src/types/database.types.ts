@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2026-02-19T22:08:40.867Z
+ * Última atualização: 2026-02-20T14:27:56.770Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -3705,18 +3705,32 @@ export type Database = {
         Args: { p_auth_user_id: string; p_senha_hash: string; p_token: string }
         Returns: Json
       }
-      criar_convite_lideranca: {
-        Args: {
-          p_coordenador_regional_id?: string
-          p_created_by?: string
-          p_expires_hours?: number
-          p_nome_completo: string
-          p_nome_popular?: string
-          p_telefone: string
-          p_tipo_lideranca?: string
-        }
-        Returns: Json
-      }
+      criar_convite_lideranca:
+        | {
+            Args: {
+              p_coordenador_regional_id?: string
+              p_created_by?: string
+              p_expires_hours?: number
+              p_nome_completo: string
+              p_nome_popular?: string
+              p_telefone: string
+              p_tipo_lideranca?: string
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
+              p_campanha_id?: string
+              p_coordenador_regional_id?: string
+              p_created_by?: string
+              p_expires_hours?: number
+              p_nome_completo: string
+              p_nome_popular?: string
+              p_telefone: string
+              p_tipo_lideranca?: string
+            }
+            Returns: Json
+          }
       disablelongtransactions: { Args: never; Returns: string }
       dropgeometrycolumn:
         | {
@@ -3953,10 +3967,12 @@ export type Database = {
         }[]
       }
       gettransactionid: { Args: never; Returns: unknown }
-      listar_convites_pendentes: {
-        Args: { p_created_by?: string }
-        Returns: Json
-      }
+      listar_convites_pendentes:
+        | { Args: { p_created_by?: string }; Returns: Json }
+        | {
+            Args: { p_campanha_id?: string; p_created_by?: string }
+            Returns: Json
+          }
       login_mobile: {
         Args: { p_senha_hash: string; p_telefone: string }
         Returns: Json

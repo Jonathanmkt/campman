@@ -1,19 +1,42 @@
 import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { createClient as createServerClient } from '@/lib/supabase/server';
 
 export async function GET() {
   try {
+    const supabaseAuth = await createServerClient();
+    const { data: { user } } = await supabaseAuth.auth.getUser();
+
     const supabase = createAdminClient()
-    const { data, error } = await supabase
+
+    // Buscar campanha_id do usuário logado para filtrar coordenadores
+    let campanhaId: string | null = null;
+    if (user) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('campanha_id')
+        .eq('id', user.id)
+        .single();
+      campanhaId = profile?.campanha_id ?? null;
+    }
+
+    let query = supabase
       .from('coordenador_regional')
       .select(`
         id,
         profile_id,
+        campanha_id,
         profiles:profile_id (
           nome_completo,
           telefone
         )
       `);
+
+    if (campanhaId) {
+      query = query.eq('campanha_id', campanhaId);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('Erro ao buscar coordenadores:', error);

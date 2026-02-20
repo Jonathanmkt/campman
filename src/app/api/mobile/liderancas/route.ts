@@ -16,15 +16,24 @@ async function getCoordenadorLogado() {
   const supabase = createAdminClient()
   const { data: coordenadorRegional, error: coordenadorError } = await supabase
     .from('coordenador_regional')
-    .select('id')
+    .select('id, campanha_id')
     .eq('profile_id', user.id)
     .single();
 
   if (coordenadorError || !coordenadorRegional) {
-    return {
-      error: 'Coordenador regional não encontrado para o usuário logado',
-      status: 403 as const,
-    };
+    // Fallback: buscar campanha_id direto do profile
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('campanha_id')
+      .eq('id', user.id)
+      .single();
+    if (!profile?.campanha_id) {
+      return {
+        error: 'Coordenador regional não encontrado para o usuário logado',
+        status: 403 as const,
+      };
+    }
+    return { coordenadorRegional: { id: null as unknown as string, campanha_id: profile.campanha_id } };
   }
 
   return { coordenadorRegional };
@@ -153,6 +162,7 @@ export async function POST(request: NextRequest) {
         status: 'ativo',
         ativo: true,
         coordenador_regional_id: coordenadorRegional.id,
+        campanha_id: coordenadorRegional.campanha_id,
         cidade: cidade?.trim() || null,
         estado: estado?.trim() || null,
         bairro: bairro?.trim() || null,
@@ -199,6 +209,7 @@ export async function POST(request: NextRequest) {
         expires_at: expiresAt.toISOString(),
         lideranca_id: lideranca.id,
         nome_convidado: nome_completo.trim(),
+        campanha_id: coordenadorRegional.campanha_id,
       })
       .select()
       .single();

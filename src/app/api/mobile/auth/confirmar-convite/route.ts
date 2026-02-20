@@ -28,12 +28,13 @@ export async function POST(request: NextRequest) {
     // Buscar convite antes de criar usuário
     const { data: convite, error: conviteError } = await supabase
       .from('convites')
-      .select('id, telefone, status, expires_at, campanha:campanha_id(uf)')
+      .select('id, telefone, status, expires_at, campanha_id, campanha:campanha_id(uf)')
       .eq('token', token.trim())
       .single();
 
-    // UF da campanha para usar como fallback de estado em áreas criadas
+    // UF e campanha_id da campanha para usar nos inserts de área
     const campanhaUf = (convite?.campanha as { uf?: string } | null)?.uf ?? 'DF';
+    const conviteCampanhaId = convite?.campanha_id ?? null;
 
     if (conviteError || !convite) {
       return NextResponse.json(
@@ -178,7 +179,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Se não existe, criar área com dados da liderança
-        if (!areaData) {
+        if (!areaData && conviteCampanhaId) {
           console.log('[CONFIRMAR-CONVITE] Criando nova área com dados:', {
             municipio_id: municipioData.id,
             nome: liderancaData.bairro,
@@ -208,6 +209,7 @@ export async function POST(request: NextRequest) {
               endereco_formatado: liderancaData.endereco_formatado,
               ativo: true,
               needs_review: true,
+              campanha_id: conviteCampanhaId as string,
             })
             .select('id')
             .single();
@@ -240,6 +242,7 @@ export async function POST(request: NextRequest) {
               area_id: areaData.id,
               tipo_atuacao: 'moradia',
               ativo: true,
+              campanha_id: conviteCampanhaId as string,
             })
             .select('id')
             .single();
