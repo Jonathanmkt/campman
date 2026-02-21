@@ -22,7 +22,8 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Save, Loader2, CheckCircle, Lock, AlertTriangle } from 'lucide-react';
+import { Save, Loader2, CheckCircle, Lock, AlertTriangle, UserPlus } from 'lucide-react';
+import { ConviteMembroForm } from './components/ConviteMembroForm';
 
 const CARGOS = [
     { value: 'deputado_estadual', label: 'Deputado Estadual' },
@@ -258,6 +259,23 @@ export default function ConfiguracoesPage() {
                             <p className="text-xs text-muted-foreground">Estado irreversível</p>
                         </div>
                     </div>
+                </CardContent>
+            </Card>
+
+            {/* Convites de Equipe — admin convida colaboradores e coordenadores via email */}
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <UserPlus className="h-4 w-4" />
+                        Convidar Membro da Equipe
+                    </CardTitle>
+                    <CardDescription>
+                        Envie convites por email para novos colaboradores ou coordenadores.
+                        Eles receberão um link para criar a conta e acessar a campanha.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ConviteMembroForm />
                 </CardContent>
             </Card>
 

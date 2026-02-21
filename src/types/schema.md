@@ -1,6 +1,6 @@
 # Schema do Banco de Dados — Idealis Core
 
-> **Gerado automaticamente** em 16/02/2026, 17:46:44
+> **Gerado automaticamente** em 20/02/2026, 17:44:10
 > **Projeto Supabase:** xkqtrwbnionpbjziilgy
 > **Schema:** public
 
@@ -8,50 +8,52 @@
 
 | Total de Tabelas | Com RLS | Sem RLS |
 |---|---|---|
-| 40 | 39 | 1 |
+| 42 | 0 | 42 |
 
 ## Índice de Tabelas
 
-- 🔒 **area** (2 registros) — Áreas geográficas da campanha (bairros, distritos, zonas eleitorais)
-- 🔒 **assinatura** (1 registros) — Vínculo campanha → plano com vigência e status de pagamento
-- 🔒 **campanha** (1 registros) — Tenant principal do sistema. Cada campanha é um inquilino isolado.
-- 🔒 **campanha_membro** (1 registros) — Vínculo usuário ↔ campanha com papel (role)
-- 🔒 **categoria_projeto** (0 registros)
-- 🔒 **colaborador** (0 registros) — Colaboradores da campanha com informações específicas de trabalho
-- 🔒 **colaborador_departamento** (0 registros) — Relacionamento entre colaboradores e departamentos para papéis de coordenação
-- 🔒 **colaborador_equipe** (0 registros) — Relacionamento N:N entre colaboradores e equipes com contexto específico
-- 🔒 **convites** (2 registros) — Convites para cadastro de usuários mobile via WhatsApp
-- 🔒 **coordenador_regional** (0 registros)
-- 🔒 **coordenador_regional_municipio** (465 registros)
-- 🔒 **departamento** (0 registros) — Departamentos/núcleos da campanha (Comunicação, Mobilização, Financeiro, etc.)
-- 🔒 **eleitor** (0 registros) — Cadastro de eleitores da campanha
-- 🔒 **equipamento** (0 registros) — Equipamentos e materiais da campanha
-- 🔒 **equipe** (0 registros) — Equipes de trabalho dentro dos departamentos
-- 🔒 **evento** (0 registros) — Eventos da campanha eleitoral
-- 🔒 **labels** (0 registros)
-- 🔒 **lideranca** (24 registros) — Cadastro de lideranças da campanha
-- 🔒 **lideranca_area** (2 registros) — Relacionamento entre lideranças e áreas de atuação
-- 🔒 **lideranca_eleitor** (0 registros) — Relacionamento entre lideranças e eleitores
-- 🔒 **material** (0 registros) — Materiais e suprimentos da campanha
-- 🔒 **milestones** (0 registros)
-- 🔒 **municipio** (93 registros) — Cadastro de municípios da campanha
-- 🔒 **pagamento** (0 registros) — Registro final de pagamento confirmado. Só criado após confirmação via webhook ou registro manual.
-- 🔒 **pesquisa_quantitativa** (0 registros)
-- 🔒 **pix** (0 registros) — Ciclo de vida do PIX: criação do QR Code até confirmação via webhook. Campos alinhados com Pagar.me API v5.
-- 🔒 **plano** (3 registros) — Planos de assinatura do SaaS (global, não pertence a uma campanha)
-- 🔒 **profiles** (119 registros) — Perfis de usuários colaboradores da campanha com controle de acesso
-- 🔒 **project_baselines** (0 registros)
-- 🔒 **projects** (0 registros)
-- 🔒 **projeto_equipe** (0 registros) — Relacionamento entre projetos e equipes da campanha
-- 🔒 **qr_code_campanha** (0 registros) — QR Codes para captação de eleitores com rastreamento de origem (CRM)
+- ⚠️ **area** (2 registros) — Áreas geográficas da campanha (bairros, distritos, zonas eleitorais)
+- ⚠️ **assinatura** (2 registros) — Vínculo campanha → plano com vigência e status de pagamento
+- ⚠️ **campanha** (2 registros) — Tenant principal do sistema. Cada campanha é um inquilino isolado.
+- ⚠️ **campanha_membro** (1 registros) — Vínculo usuário ↔ campanha com papel (role)
+- ⚠️ **categoria_projeto** (0 registros)
+- ⚠️ **colaborador** (0 registros) — Colaboradores da campanha com informações específicas de trabalho
+- ⚠️ **colaborador_departamento** (0 registros) — Relacionamento entre colaboradores e departamentos para papéis de coordenação
+- ⚠️ **colaborador_equipe** (0 registros) — Relacionamento N:N entre colaboradores e equipes com contexto específico
+- ⚠️ **convite_eleitor** (0 registros)
+- ⚠️ **convites** (0 registros) — Convites para cadastro de usuários mobile via WhatsApp
+- ⚠️ **coordenador_regional** (0 registros)
+- ⚠️ **coordenador_regional_municipio** (0 registros)
+- ⚠️ **departamento** (0 registros) — Departamentos/núcleos da campanha (Comunicação, Mobilização, Financeiro, etc.)
+- ⚠️ **eleitor** (0 registros) — Cadastro de eleitores da campanha
+- ⚠️ **equipamento** (0 registros) — Equipamentos e materiais da campanha
+- ⚠️ **equipe** (0 registros) — Equipes de trabalho dentro dos departamentos
+- ⚠️ **evento** (0 registros) — Eventos da campanha eleitoral
+- ⚠️ **labels** (0 registros)
+- ⚠️ **lideranca** (0 registros) — Cadastro de lideranças da campanha
+- ⚠️ **lideranca_area** (0 registros) — Relacionamento entre lideranças e áreas de atuação
+- ⚠️ **lideranca_eleitor** (0 registros) — Relacionamento entre lideranças e eleitores
+- ⚠️ **material** (0 registros) — Materiais e suprimentos da campanha
+- ⚠️ **milestones** (0 registros)
+- ⚠️ **municipio** (93 registros) — Cadastro de municípios da campanha
+- ⚠️ **pagamento** (0 registros) — Registro final de pagamento confirmado. Só criado após confirmação via webhook ou registro manual.
+- ⚠️ **pedidos** (1 registros)
+- ⚠️ **pesquisa_quantitativa** (0 registros)
+- ⚠️ **pix** (0 registros) — Ciclo de vida do PIX: criação do QR Code até confirmação via webhook. Campos alinhados com Pagar.me API v5.
+- ⚠️ **plano** (3 registros) — Planos de assinatura do SaaS (global, não pertence a uma campanha)
+- ⚠️ **profiles** (1 registros) — Perfis de usuários colaboradores da campanha com controle de acesso
+- ⚠️ **project_baselines** (0 registros)
+- ⚠️ **projects** (0 registros)
+- ⚠️ **projeto_equipe** (0 registros) — Relacionamento entre projetos e equipes da campanha
+- ⚠️ **qr_code_campanha** (0 registros) — QR Codes para captação de eleitores com rastreamento de origem (CRM)
 - ⚠️ **spatial_ref_sys** (0 registros)
-- 🔒 **sprints** (0 registros)
-- 🔒 **task_baseline_snapshots** (0 registros)
-- 🔒 **task_dependencies** (0 registros)
-- 🔒 **task_resources** (0 registros)
-- 🔒 **tasks** (0 registros)
-- 🔒 **time_entries** (0 registros)
-- 🔒 **workflows** (0 registros)
+- ⚠️ **sprints** (0 registros)
+- ⚠️ **task_baseline_snapshots** (0 registros)
+- ⚠️ **task_dependencies** (0 registros)
+- ⚠️ **task_resources** (0 registros)
+- ⚠️ **tasks** (0 registros)
+- ⚠️ **time_entries** (0 registros)
+- ⚠️ **workflows** (0 registros)
 
 > 🔒 = RLS ativado | ⚠️ = RLS desativado
 
@@ -61,7 +63,7 @@
 
 > Áreas geográficas da campanha (bairros, distritos, zonas eleitorais)
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 2
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -100,8 +102,8 @@
 - `municipio_id` → `municipio.id`
 
 **Check Constraints:**
-- `(tipo = ANY (ARRAY['bairro'::text, 'distrito'::text, 'zona_eleitoral'::text, 'setor'::text, 'quadra'::text]))`
 - `((prioridade >= 1) AND (prioridade <= 5))`
+- `(tipo = ANY (ARRAY['bairro'::text, 'distrito'::text, 'zona_eleitoral'::text, 'setor'::text, 'quadra'::text]))`
 
 ---
 
@@ -109,8 +111,8 @@
 
 > Vínculo campanha → plano com vigência e status de pagamento
 
-- **RLS:** ✅ Ativado
-- **Registros:** 1
+- **RLS:** ⚠️ Desativado
+- **Registros:** 2
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
 |---|---|---|---|---|---|---|
@@ -134,8 +136,8 @@
 - `plano_id` → `plano.id`
 
 **Check Constraints:**
-- `(status = ANY (ARRAY['ativa'::text, 'cancelada'::text, 'suspensa'::text, 'expirada'::text, 'trial'::text]))`
 - `(ciclo = ANY (ARRAY['mensal'::text, 'anual'::text, 'cortesia'::text]))`
+- `(status = ANY (ARRAY['ativa'::text, 'cancelada'::text, 'suspensa'::text, 'expirada'::text, 'trial'::text]))`
 
 ---
 
@@ -143,8 +145,8 @@
 
 > Tenant principal do sistema. Cada campanha é um inquilino isolado.
 
-- **RLS:** ✅ Ativado
-- **Registros:** 1
+- **RLS:** ⚠️ Desativado
+- **Registros:** 2
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
 |---|---|---|---|---|---|---|
@@ -165,9 +167,9 @@
 | updated_at | timestamptz |  | `now()` |  |  |  |
 
 **Check Constraints:**
-- `(status = ANY (ARRAY['ativa'::text, 'pausada'::text, 'encerrada'::text]))`
-- `(cargo_pretendido = ANY (ARRAY['deputado_estadual'::text, 'deputado_federal'::text, 'vereador'::text, 'prefeito'::text, 'senador'::text, 'governador'::text]))`
 - `(length(uf) = 2)`
+- `(cargo_pretendido = ANY (ARRAY['deputado_estadual'::text, 'deputado_federal'::text, 'vereador'::text, 'prefeito'::text, 'senador'::text, 'governador'::text]))`
+- `(status = ANY (ARRAY['ativa'::text, 'pausada'::text, 'encerrada'::text]))`
 
 ---
 
@@ -175,7 +177,7 @@
 
 > Vínculo usuário ↔ campanha com papel (role)
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 1
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -202,7 +204,7 @@
 
 ## categoria_projeto
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -224,7 +226,7 @@
 
 > Colaboradores da campanha com informações específicas de trabalho
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -265,10 +267,10 @@
 - `supervisor_id` → `colaborador.id`
 
 **Check Constraints:**
-- `(possui_cnh = ANY (ARRAY['A'::text, 'B'::text, 'C'::text, 'D'::text, 'E'::text, 'AB'::text, 'AC'::text, 'AD'::text, 'AE'::text]))`
-- `(status_colaborador = ANY (ARRAY['ativo'::text, 'inativo'::text, 'licenca'::text, 'desligado'::text]))`
-- `(nivel_acesso_projetos = ANY (ARRAY['basico'::text, 'intermediario'::text, 'avancado'::text, 'admin'::text]))`
 - `(funcao = ANY (ARRAY['coordenador_geral'::text, 'coordenador_area'::text, 'supervisor'::text, 'cabo_eleitoral'::text, 'voluntario'::text, 'assessor'::text, 'motorista'::text, 'seguranca'::text]))`
+- `(status_colaborador = ANY (ARRAY['ativo'::text, 'inativo'::text, 'licenca'::text, 'desligado'::text]))`
+- `(possui_cnh = ANY (ARRAY['A'::text, 'B'::text, 'C'::text, 'D'::text, 'E'::text, 'AB'::text, 'AC'::text, 'AD'::text, 'AE'::text]))`
+- `(nivel_acesso_projetos = ANY (ARRAY['basico'::text, 'intermediario'::text, 'avancado'::text, 'admin'::text]))`
 
 ---
 
@@ -276,7 +278,7 @@
 
 > Relacionamento entre colaboradores e departamentos para papéis de coordenação
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -302,8 +304,8 @@
 - `departamento_id` → `departamento.id`
 
 **Check Constraints:**
-- `(papel = ANY (ARRAY['coordenador'::text, 'vice-coordenador'::text, 'assessor'::text, 'membro'::text]))`
 - `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'licenca'::text]))`
+- `(papel = ANY (ARRAY['coordenador'::text, 'vice-coordenador'::text, 'assessor'::text, 'membro'::text]))`
 
 ---
 
@@ -311,7 +313,7 @@
 
 > Relacionamento N:N entre colaboradores e equipes com contexto específico
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -342,10 +344,41 @@
 - `equipe_id` → `equipe.id`
 
 **Check Constraints:**
-- `(papel = ANY (ARRAY['membro'::text, 'vice-lider'::text, 'lider'::text, 'coordenador'::text, 'supervisor'::text]))`
-- `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'licenca'::text, 'afastado'::text]))`
 - `((data_fim IS NULL) OR (data_fim >= data_inicio))`
 - `((dedicacao IS NULL) OR (dedicacao = ANY (ARRAY['integral'::text, 'parcial'::text, 'voluntario'::text])))`
+- `(papel = ANY (ARRAY['membro'::text, 'vice-lider'::text, 'lider'::text, 'coordenador'::text, 'supervisor'::text]))`
+- `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'licenca'::text, 'afastado'::text]))`
+
+---
+
+## convite_eleitor
+
+- **RLS:** ⚠️ Desativado
+- **Registros:** 0
+
+| Coluna | Tipo | Null | Default | PK | Unique | Descrição |
+|---|---|---|---|---|---|---|
+| id | uuid |  | `gen_random_uuid()` | 🔑 |  |  |
+| token | text |  | `encode(gen_random_bytes(32), 'hex'::text` |  | ✓ |  |
+| campanha_id | uuid |  |  |  |  |  |
+| origem_tipo | text |  |  |  |  |  |
+| origem_id | uuid | ✓ |  |  |  |  |
+| eleitor_id | uuid | ✓ |  |  |  |  |
+| total_cliques | integer |  | `0` |  |  |  |
+| status | text |  | `'ativo'::text` |  |  |  |
+| aceite_lgpd | boolean | ✓ | `false` |  |  |  |
+| aceite_lgpd_at | timestamptz | ✓ |  |  |  |  |
+| expires_at | timestamptz | ✓ |  |  |  |  |
+| created_at | timestamptz |  | `now()` |  |  |  |
+| updated_at | timestamptz |  | `now()` |  |  |  |
+
+**Foreign Keys:**
+- `campanha_id` → `campanha.id`
+- `eleitor_id` → `eleitor.id`
+
+**Check Constraints:**
+- `(status = ANY (ARRAY['ativo'::text, 'usado'::text, 'expirado'::text, 'cancelado'::text]))`
+- `(origem_tipo = ANY (ARRAY['lideranca'::text, 'coordenador'::text, 'campanha'::text, 'eleitor'::text]))`
 
 ---
 
@@ -353,8 +386,8 @@
 
 > Convites para cadastro de usuários mobile via WhatsApp
 
-- **RLS:** ✅ Ativado
-- **Registros:** 2
+- **RLS:** ⚠️ Desativado
+- **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
 |---|---|---|---|---|---|---|
@@ -384,7 +417,7 @@
 
 ## coordenador_regional
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -403,8 +436,8 @@
 
 ## coordenador_regional_municipio
 
-- **RLS:** ✅ Ativado
-- **Registros:** 465
+- **RLS:** ⚠️ Desativado
+- **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
 |---|---|---|---|---|---|---|
@@ -425,7 +458,7 @@
 
 > Departamentos/núcleos da campanha (Comunicação, Mobilização, Financeiro, etc.)
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -455,8 +488,8 @@
 - `departamento_pai_id` → `departamento.id`
 
 **Check Constraints:**
-- `(tipo_departamento = ANY (ARRAY['estrategico'::text, 'operacional'::text, 'administrativo'::text]))`
 - `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'planejado'::text]))`
+- `(tipo_departamento = ANY (ARRAY['estrategico'::text, 'operacional'::text, 'administrativo'::text]))`
 
 ---
 
@@ -464,7 +497,7 @@
 
 > Cadastro de eleitores da campanha
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -509,11 +542,11 @@
 - `responsavel_cadastro` → `profiles.id`
 
 **Check Constraints:**
+- `((nivel_apoio >= 0) AND (nivel_apoio <= 5))`
 - `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'duplicado'::text, 'falecido'::text]))`
 - `(escolaridade = ANY (ARRAY['fundamental_incompleto'::text, 'fundamental_completo'::text, 'medio_incompleto'::text, 'medio_completo'::text, 'superior_incompleto'::text, 'superior_completo'::text, 'pos_graduacao'::text]))`
 - `(estado_civil = ANY (ARRAY['solteiro'::text, 'casado'::text, 'divorciado'::text, 'viuvo'::text, 'uniao_estavel'::text]))`
 - `(intencao_voto = ANY (ARRAY['favoravel'::text, 'contrario'::text, 'indeciso'::text, 'nao_informado'::text]))`
-- `((nivel_apoio >= 0) AND (nivel_apoio <= 5))`
 - `(sexo = ANY (ARRAY['M'::text, 'F'::text, 'O'::text]))`
 
 ---
@@ -522,7 +555,7 @@
 
 > Equipamentos e materiais da campanha
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -556,9 +589,9 @@
 - `responsavel_atual` → `colaborador.id`
 
 **Check Constraints:**
+- `(estado_conservacao = ANY (ARRAY['novo'::text, 'bom'::text, 'regular'::text, 'ruim'::text, 'danificado'::text]))`
 - `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'manutencao'::text, 'perdido'::text, 'vendido'::text]))`
 - `(tipo_equipamento = ANY (ARRAY['som'::text, 'microfone'::text, 'carro_som'::text, 'banner'::text, 'bandeira'::text, 'tenda'::text, 'cadeira'::text, 'mesa'::text, 'gerador'::text, 'iluminacao'::text, 'veiculo'::text, 'notebook'::text, 'impressora'::text, 'camera'::text, 'drone'::text]))`
-- `(estado_conservacao = ANY (ARRAY['novo'::text, 'bom'::text, 'regular'::text, 'ruim'::text, 'danificado'::text]))`
 
 ---
 
@@ -566,7 +599,7 @@
 
 > Equipes de trabalho dentro dos departamentos
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -608,7 +641,7 @@
 
 > Eventos da campanha eleitoral
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -654,7 +687,7 @@
 
 ## labels
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -680,8 +713,8 @@
 
 > Cadastro de lideranças da campanha
 
-- **RLS:** ✅ Ativado
-- **Registros:** 24
+- **RLS:** ⚠️ Desativado
+- **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
 |---|---|---|---|---|---|---|
@@ -731,9 +764,9 @@
 
 **Check Constraints:**
 - `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'pendente'::text, 'bloqueado'::text]))`
+- `(tipo_lideranca = ANY (ARRAY['comunitaria'::text, 'religiosa'::text, 'sindical'::text, 'empresarial'::text, 'politica'::text, 'social'::text, 'esportiva'::text, 'cultural'::text]))`
 - `((nivel_influencia >= 1) AND (nivel_influencia <= 5))`
 - `(status_cadastro = ANY (ARRAY['provisorio'::text, 'confirmado'::text]))`
-- `(tipo_lideranca = ANY (ARRAY['comunitaria'::text, 'religiosa'::text, 'sindical'::text, 'empresarial'::text, 'politica'::text, 'social'::text, 'esportiva'::text, 'cultural'::text]))`
 
 ---
 
@@ -741,8 +774,8 @@
 
 > Relacionamento entre lideranças e áreas de atuação
 
-- **RLS:** ✅ Ativado
-- **Registros:** 2
+- **RLS:** ⚠️ Desativado
+- **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
 |---|---|---|---|---|---|---|
@@ -773,7 +806,7 @@
 
 > Relacionamento entre lideranças e eleitores
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -805,7 +838,7 @@
 
 > Materiais e suprimentos da campanha
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -846,7 +879,7 @@
 
 ## milestones
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -878,7 +911,7 @@
 
 > Cadastro de municípios da campanha
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 93
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -909,7 +942,7 @@
 
 > Registro final de pagamento confirmado. Só criado após confirmação via webhook ou registro manual.
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -942,9 +975,40 @@
 
 ---
 
+## pedidos
+
+- **RLS:** ⚠️ Desativado
+- **Registros:** 1
+
+| Coluna | Tipo | Null | Default | PK | Unique | Descrição |
+|---|---|---|---|---|---|---|
+| id | uuid |  | `gen_random_uuid()` | 🔑 |  |  |
+| codigo | text |  |  |  | ✓ |  |
+| email | text |  |  |  |  |  |
+| nome | text |  |  |  |  |  |
+| documento | text |  |  |  |  |  |
+| plano_slug | text |  |  |  |  |  |
+| plano_nome | text |  |  |  |  |  |
+| valor | numeric |  |  |  |  |  |
+| meio_pagamento | text |  |  |  |  |  |
+| status | text |  | `'pending'::text` |  |  |  |
+| pagarme_order_id | text | ✓ |  |  | ✓ |  |
+| pagarme_charge_id | text | ✓ |  |  |  |  |
+| pagarme_data | jsonb | ✓ |  |  |  |  |
+| webhook_recebido_em | timestamptz | ✓ |  |  |  |  |
+| convite_enviado_em | timestamptz | ✓ |  |  |  |  |
+| created_at | timestamptz |  | `now()` |  |  |  |
+| updated_at | timestamptz |  | `now()` |  |  |  |
+
+**Check Constraints:**
+- `(meio_pagamento = ANY (ARRAY['cartao_credito'::text, 'pix'::text, 'boleto'::text]))`
+- `(status = ANY (ARRAY['pending'::text, 'processing'::text, 'paid'::text, 'failed'::text, 'expired'::text]))`
+
+---
+
 ## pesquisa_quantitativa
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -970,7 +1034,7 @@
 
 > Ciclo de vida do PIX: criação do QR Code até confirmação via webhook. Campos alinhados com Pagar.me API v5.
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1013,7 +1077,7 @@
 
 > Planos de assinatura do SaaS (global, não pertence a uma campanha)
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 3
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1044,8 +1108,8 @@
 
 > Perfis de usuários colaboradores da campanha com controle de acesso
 
-- **RLS:** ✅ Ativado
-- **Registros:** 119
+- **RLS:** ⚠️ Desativado
+- **Registros:** 1
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
 |---|---|---|---|---|---|---|
@@ -1066,20 +1130,21 @@
 | updated_at | timestamptz |  | `timezone('utc'::text, now())` |  |  |  |
 | senha_hash | text | ✓ |  |  |  |  |
 | auth_method | text | ✓ | `'supabase'::text` |  |  |  |
-| campanha_id | uuid |  |  |  |  |  |
+| campanha_id | uuid | ✓ |  |  |  |  |
 
 **Foreign Keys:**
 - `campanha_id` → `campanha.id`
 
 **Check Constraints:**
 - `(auth_method = ANY (ARRAY['supabase'::text, 'mobile'::text]))`
+- `check_valid_roles(roles)`
 - `(status = ANY (ARRAY['ativo'::text, 'inativo'::text, 'suspenso'::text]))`
 
 ---
 
 ## project_baselines
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1102,7 +1167,7 @@
 
 ## projects
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1138,7 +1203,7 @@
 
 > Relacionamento entre projetos e equipes da campanha
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1169,7 +1234,7 @@
 
 > QR Codes para captação de eleitores com rastreamento de origem (CRM)
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1213,7 +1278,7 @@
 
 ## sprints
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1243,7 +1308,7 @@
 
 ## task_baseline_snapshots
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1268,7 +1333,7 @@
 
 ## task_dependencies
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1295,7 +1360,7 @@
 
 ## task_resources
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1323,7 +1388,7 @@
 
 ## tasks
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1382,7 +1447,7 @@
 
 ## time_entries
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |
@@ -1409,7 +1474,7 @@
 
 ## workflows
 
-- **RLS:** ✅ Ativado
+- **RLS:** ⚠️ Desativado
 - **Registros:** 0
 
 | Coluna | Tipo | Null | Default | PK | Unique | Descrição |

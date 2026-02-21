@@ -4,11 +4,11 @@
 
 @layer base {
   :root {
-    /* Defina suas variáveis CSS customizadas */
-    --primary: #1C2954;
-    --primary-foreground: #e4d196;
-    --secondary: #329788;
-    --secondary-foreground: #FFFFFF;
+    /* Cores Idealis Core */
+    --primary: #0055c7;
+    --primary-foreground: #ffffff;
+    --secondary: #ffda42;
+    --secondary-foreground: #0a1628;
     --tertiary: #f8fafc;
     
     /* Variáveis do sistema Shadcn/ui */
@@ -22,7 +22,7 @@
     --muted-foreground: 0 0% 45.1%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
-    --ring: 217 71% 53%;
+    --ring: 214 100% 39%;
     --radius: 0.5rem;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;

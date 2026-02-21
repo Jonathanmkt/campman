@@ -7,11 +7,12 @@ const inputVariants = cva(
   [
     // Base styles
     "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground",
-    "dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs", 
+    "dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs",
     "outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium md:text-sm",
-    
-    // Interactive states
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    "transition-colors",
+
+    // Interactive states (minimal focus)
+    "focus-visible:outline-none focus-visible:border-gray-500 focus-visible:shadow-none focus-visible:ring-0 focus-visible:ring-offset-0",
     "disabled:cursor-not-allowed disabled:opacity-50"
   ].join(' '),
   {
@@ -39,8 +40,8 @@ function Input({
       data-slot="input"
       className={cn(
         inputVariants({ state }),
-        // Adicional !important para garantir maior especificidade
-        "focus-visible:!border-primary focus-visible:!ring-primary/50 focus-visible:!ring-[3px] hover:!border-primary",
+        // Remove rings coloridos e mantém borda discreta
+        "focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!shadow-none hover:border-gray-400",
         className
       )}
       {...props}

@@ -3,9 +3,9 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 /**
  * Hierarquia de roles do Idealis Core (em ordem de prioridade):
- * admin > coordenador > lideranca > colaborador > eleitor
+ * masteradmin > admin > coordenador > lideranca > colaborador > eleitor
  */
-export type UserRole = 'admin' | 'coordenador' | 'lideranca' | 'colaborador' | 'eleitor' | null;
+export type UserRole = 'masteradmin' | 'admin' | 'coordenador' | 'lideranca' | 'colaborador' | 'eleitor' | null;
 
 /**
  * Determina o papel primário do usuário a partir do array de roles.
@@ -14,6 +14,7 @@ export type UserRole = 'admin' | 'coordenador' | 'lideranca' | 'colaborador' | '
 function getPrimaryRole(roles: string[] | null): UserRole {
   if (!roles || roles.length === 0) return null;
 
+  if (roles.includes('masteradmin')) return 'masteradmin';
   if (roles.includes('admin')) return 'admin';
   if (roles.includes('coordenador')) return 'coordenador';
   if (roles.includes('lideranca')) return 'lideranca';
@@ -28,6 +29,8 @@ function getPrimaryRole(roles: string[] | null): UserRole {
  */
 function getRouteForRole(role: UserRole): string {
   switch (role) {
+    case 'masteradmin':
+      return '/dashboard';
     case 'admin':
       return '/dashboard';
     case 'coordenador':
@@ -48,8 +51,8 @@ function getRouteForRole(role: UserRole): string {
  * Admin tem acesso total a todas as rotas do dashboard e mobile.
  */
 function isAllowedRoute(pathname: string, role: UserRole): boolean {
-  // Admin tem acesso total
-  if (role === 'admin') {
+  // Masteradmin e Admin têm acesso total
+  if (role === 'masteradmin' || role === 'admin') {
     return pathname.startsWith('/dashboard') ||
       pathname.startsWith('/mobile') ||
       pathname.startsWith('/onboarding');
@@ -72,7 +75,7 @@ function isAllowedRoute(pathname: string, role: UserRole): boolean {
     return pathname.startsWith('/mobile/eleitores');
   }
   if (role === 'colaborador') {
-    return pathname.startsWith('/dashboard');
+    return pathname.startsWith('/dashboard') || pathname.startsWith('/mobile');
   }
   if (role === 'eleitor') {
     return pathname.startsWith('/mobile/perfil') || pathname.startsWith('/mobile/eleitores');
@@ -80,7 +83,7 @@ function isAllowedRoute(pathname: string, role: UserRole): boolean {
   return pathname === '/sem-acesso';
 }
 
-const PUBLIC_ROUTES = ['/auth', '/sem-acesso', '/_next', '/api', '/favicon.ico', '/mobile/login', '/mobile/onboarding', '/onboarding'];
+const PUBLIC_ROUTES = ['/auth', '/sem-acesso', '/_next', '/api', '/favicon.ico', '/mobile/login', '/mobile/onboarding', '/onboarding', '/convite'];
 
 function isPublicRoute(pathname: string): boolean {
   return PUBLIC_ROUTES.some(route => pathname.startsWith(route));
@@ -141,7 +144,7 @@ export async function updateSession(request: NextRequest) {
 
   // Se o admin ainda não completou o onboarding (sem campanha_id),
   // redireciona para o fluxo de onboarding
-  if (primaryRole === 'admin' && !profile?.campanha_id && !pathname.startsWith('/onboarding')) {
+  if ((primaryRole === 'admin' || primaryRole === 'masteradmin') && !profile?.campanha_id && !pathname.startsWith('/onboarding')) {
     const url = request.nextUrl.clone()
     url.pathname = '/onboarding/admin'
     return NextResponse.redirect(url)

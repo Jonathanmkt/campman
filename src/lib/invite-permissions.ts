@@ -3,20 +3,23 @@ import type { UserRole } from '@/lib/supabase/middleware';
 /**
  * Hierarquia de convites do Idealis Core:
  *
+ * - **Masteradmin** pode convidar: admin, colaborador, coordenador, liderança, eleitor
  * - **Admin** pode convidar: colaborador, coordenador, liderança, eleitor
- * - **Coordenador** pode convidar: liderança
+ * - **Colaborador** pode convidar: coordenador, liderança
+ * - **Coordenador** pode convidar: liderança, eleitor
  * - **Liderança** pode convidar: eleitor
- * - **Colaborador** e **Eleitor** não podem convidar ninguém
+ * - **Eleitor** não pode convidar ninguém (compartilha link público)
  *
  * Todos os convites incluem `campanha_id` obrigatoriamente.
  */
 
 /** Roles que cada papel pode convidar */
 const INVITE_HIERARCHY: Record<string, string[]> = {
+    masteradmin: ['admin', 'colaborador', 'coordenador', 'lideranca', 'eleitor'],
     admin: ['colaborador', 'coordenador', 'lideranca', 'eleitor'],
-    coordenador: ['lideranca'],
+    colaborador: ['coordenador', 'lideranca'],
+    coordenador: ['lideranca', 'eleitor'],
     lideranca: ['eleitor'],
-    colaborador: [],
     eleitor: [],
 };
 
@@ -47,6 +50,7 @@ export function canInvite(inviterRole: UserRole): boolean {
  * Labels em pt-BR para exibição no frontend.
  */
 export const ROLE_LABELS: Record<string, string> = {
+    masteradmin: 'Master Admin',
     admin: 'Administrador',
     colaborador: 'Colaborador',
     coordenador: 'Coordenador',

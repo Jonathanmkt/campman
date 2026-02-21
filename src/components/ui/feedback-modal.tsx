@@ -2,14 +2,24 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, X, AlertCircle } from 'lucide-react';
+import { Check, X, AlertCircle, Mail } from 'lucide-react';
 
-type FeedbackType = 'success' | 'error';
+/**
+ * Tipos de feedback disponíveis:
+ * - undefined: spinner de loading genérico
+ * - 'success': confirmação verde
+ * - 'error': erro vermelho
+ * - 'processing': aguardando confirmação (azul Idealis + spinner)
+ * - 'email': pagamento confirmado — orienta o usuário a verificar o e-mail
+ */
+type FeedbackType = 'success' | 'error' | 'processing' | 'email';
 
 interface FeedbackModalProps {
   isOpen: boolean;
   type?: FeedbackType;
   message: string;
+  /** Subtítulo opcional exibido abaixo da mensagem principal */
+  subtitle?: string;
   onClose: () => void;
 }
 
@@ -20,7 +30,7 @@ interface ModalConfig {
   circleBg: string;
 }
 
-export function FeedbackModal({ isOpen, type, message, onClose }: FeedbackModalProps) {
+export function FeedbackModal({ isOpen, type, message, subtitle, onClose }: FeedbackModalProps) {
   const [showLoading, setShowLoading] = React.useState(false);
 
   // Timer para loading
@@ -34,22 +44,18 @@ export function FeedbackModal({ isOpen, type, message, onClose }: FeedbackModalP
     };
   }, [isOpen, type]);
 
-  // Config padrão quando type é undefined (loading)
+  // Config padrão quando type é undefined (loading genérico)
   const defaultConfig: ModalConfig = {
     icon: showLoading ? (
       <motion.div
-        className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full"
+        className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full"
         animate={{ rotate: 360 }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          ease: "linear"
-        }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
       />
     ) : null,
-    iconBg: 'bg-primary/10',
-    pulseBg: 'bg-primary/20',
-    circleBg: 'bg-primary/5'
+    iconBg: 'bg-[#0055c7]',
+    pulseBg: 'bg-[#0055c7]/20',
+    circleBg: 'bg-[#0055c7]/5'
   };
 
   // Configurações específicas para cada tipo de modal
@@ -65,7 +71,25 @@ export function FeedbackModal({ isOpen, type, message, onClose }: FeedbackModalP
       iconBg: 'bg-red-500',
       pulseBg: 'bg-red-400/30',
       circleBg: 'bg-red-100'
-    }
+    },
+    processing: {
+      icon: (
+        <motion.div
+          className="w-14 h-14 border-4 border-white/30 border-t-white rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        />
+      ),
+      iconBg: 'bg-[#0055c7]',
+      pulseBg: 'bg-[#0055c7]/20',
+      circleBg: 'bg-[#0055c7]/5'
+    },
+    email: {
+      icon: <Mail className="w-12 h-12 text-white" strokeWidth={1.5} />,
+      iconBg: 'bg-[#0055c7]',
+      pulseBg: 'bg-[#ffda42]/40',
+      circleBg: 'bg-[#ffda42]/10'
+    },
   };
 
   // Usa config padrão se type for undefined
@@ -158,14 +182,26 @@ export function FeedbackModal({ isOpen, type, message, onClose }: FeedbackModalP
             </motion.div>
 
             {/* Mensagem com animação de entrada */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="text-xl font-medium text-gray-800 text-center"
-            >
-              {message}
-            </motion.p>
+            <div className="flex flex-col items-center gap-2 text-center">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 }}
+                className="text-xl font-semibold text-gray-800"
+              >
+                {message}
+              </motion.p>
+              {subtitle && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2 }}
+                  className="text-sm text-gray-500 max-w-xs"
+                >
+                  {subtitle}
+                </motion.p>
+              )}
+            </div>
           </motion.div>
         </motion.div>
       )}

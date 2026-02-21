@@ -5,7 +5,7 @@
  * ⚠️  ATENÇÃO: Este arquivo é gerado automaticamente!
  * Não edite manualmente. Execute 'npm run generate-types' para atualizar.
  * 
- * Última atualização: 2026-02-20T14:27:56.770Z
+ * Última atualização: 2026-02-20T20:44:08.924Z
  * Projeto ID: xkqtrwbnionpbjziilgy
  */
 
@@ -682,6 +682,69 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "vw_equipe_membros"
             referencedColumns: ["equipe_id"]
+          },
+        ]
+      }
+      convite_eleitor: {
+        Row: {
+          aceite_lgpd: boolean | null
+          aceite_lgpd_at: string | null
+          campanha_id: string
+          created_at: string
+          eleitor_id: string | null
+          expires_at: string | null
+          id: string
+          origem_id: string | null
+          origem_tipo: string
+          status: string
+          token: string
+          total_cliques: number
+          updated_at: string
+        }
+        Insert: {
+          aceite_lgpd?: boolean | null
+          aceite_lgpd_at?: string | null
+          campanha_id: string
+          created_at?: string
+          eleitor_id?: string | null
+          expires_at?: string | null
+          id?: string
+          origem_id?: string | null
+          origem_tipo: string
+          status?: string
+          token?: string
+          total_cliques?: number
+          updated_at?: string
+        }
+        Update: {
+          aceite_lgpd?: boolean | null
+          aceite_lgpd_at?: string | null
+          campanha_id?: string
+          created_at?: string
+          eleitor_id?: string | null
+          expires_at?: string | null
+          id?: string
+          origem_id?: string | null
+          origem_tipo?: string
+          status?: string
+          token?: string
+          total_cliques?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "convite_eleitor_campanha_id_fkey"
+            columns: ["campanha_id"]
+            isOneToOne: false
+            referencedRelation: "campanha"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "convite_eleitor_eleitor_id_fkey"
+            columns: ["eleitor_id"]
+            isOneToOne: false
+            referencedRelation: "eleitor"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -3967,6 +4030,10 @@ export type Database = {
         }[]
       }
       gettransactionid: { Args: never; Returns: unknown }
+      increment_convite_eleitor_cliques: {
+        Args: { p_convite_id: string }
+        Returns: undefined
+      }
       listar_convites_pendentes:
         | { Args: { p_created_by?: string }; Returns: Json }
         | {

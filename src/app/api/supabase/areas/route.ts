@@ -39,12 +39,29 @@ export async function GET(request: NextRequest): Promise<NextResponse<PaginatedR
     const sortBy = searchParams.get('sort_by') || 'nome';
     const sortOrder = searchParams.get('sort_order') || 'asc';
     
-    // Usar função RPC para buscar áreas com contagem de lideranças
-    // Para simplificar, vamos buscar todas as áreas e aplicar filtros/paginação no JS
-    const { data: allAreas, error: areasError } = await supabase
+    // Buscar campanha_id do usuário logado para isolamento multi-tenant
+    const { data: { user } } = await supabase.auth.getUser();
+    let campanhaId: string | null = null;
+    if (user) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('campanha_id')
+        .eq('id', user.id)
+        .single();
+      campanhaId = profile?.campanha_id ?? null;
+    }
+
+    // Buscar áreas com contagem de lideranças, filtradas por campanha
+    let areasQuery = supabase
       .from('area')
       .select('*')
       .eq('ativo', true);
+
+    if (campanhaId) {
+      areasQuery = areasQuery.eq('campanha_id', campanhaId);
+    }
+
+    const { data: allAreas, error: areasError } = await areasQuery;
 
     if (areasError) {
       throw areasError;

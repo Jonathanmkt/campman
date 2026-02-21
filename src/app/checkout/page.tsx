@@ -22,9 +22,9 @@ const PLANOS = [
 ];
 
 const PAYMENT_METHODS = [
-  { id: 'credit_card' as const, label: 'Cartão', icon: CreditCard },
-  { id: 'pix' as const, label: 'PIX', icon: QrCode },
-  { id: 'boleto' as const, label: 'Boleto', icon: Barcode },
+  { id: 'credit_card' as const, label: 'Cartão', icon: CreditCard, desc: 'Pagamento instantâneo' },
+  { id: 'pix' as const, label: 'PIX', icon: QrCode, desc: 'QR Code dinâmico' },
+  { id: 'boleto' as const, label: 'Boleto', icon: Barcode, desc: 'Vencimento em 3 dias' },
 ];
 
 export default function CheckoutPage() {
@@ -224,34 +224,81 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-5xl h-[90vh] grid md:grid-cols-2 gap-0 bg-white rounded-2xl shadow-2xl overflow-hidden">
-        {/* Lado Esquerdo - Arte/Produto */}
-        <div className="bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-8 flex flex-col text-white">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Idealis Core</h1>
-            <p className="text-blue-100 text-sm">
-              Plataforma completa para gestão de campanhas eleitorais
-            </p>
+    <div
+      className="h-screen flex items-center justify-center p-6"
+      style={{
+        background: 'linear-gradient(135deg, #020b1f 0%, #04163a 45%, #051d4d 100%)'
+      }}
+    >
+      <div className="w-full max-w-5xl h-[90vh] grid md:grid-cols-2 gap-0 rounded-2xl shadow-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl">
+        {/* Lado Esquerdo - Marca / Produto */}
+        <div
+          className="p-8 flex flex-col text-white relative overflow-hidden"
+          style={{ backgroundColor: 'var(--primary)' }}
+        >
+          {/* Círculo decorativo de fundo */}
+          <div
+            className="absolute -top-20 -right-20 w-72 h-72 rounded-full opacity-10"
+            style={{ backgroundColor: 'var(--secondary)' }}
+          />
+          <div
+            className="absolute -bottom-16 -left-16 w-56 h-56 rounded-full opacity-10"
+            style={{ backgroundColor: 'var(--secondary)' }}
+          />
+
+          {/* Logo */}
+          <div className="relative mb-8">
+            <Image
+              src="/logo idealis com foguete branca.png"
+              alt="Idealis Core"
+              width={180}
+              height={48}
+              className="object-contain"
+              priority
+            />
           </div>
 
+          {/* Tagline */}
+          <p className="text-white/70 text-sm mb-8 relative">
+            Plataforma completa para gestão de campanhas eleitorais
+          </p>
+
+          {/* Card do plano selecionado */}
           {planoSelecionado && (
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 mb-auto">
-              <h3 className="text-xl font-semibold mb-1">{planoSelecionado.nome}</h3>
-              <p className="text-blue-100 text-sm mb-3">{planoSelecionado.descricao}</p>
-              <div className="text-4xl font-bold">{formatCurrency(planoSelecionado.valor)}</div>
-              <p className="text-xs text-blue-200 mt-1">Pagamento único</p>
+            <div
+              className="relative rounded-2xl p-6 border border-white/20 backdrop-blur-sm mb-auto"
+              style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+            >
+              {/* Badge amarelo */}
+              <span
+                className="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4"
+                style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}
+              >
+                Plano selecionado
+              </span>
+              <h3 className="text-xl font-bold mb-1">{planoSelecionado.nome}</h3>
+              <p className="text-white/60 text-sm mb-5">{planoSelecionado.descricao}</p>
+              <div className="flex items-end gap-1">
+                <span
+                  className="text-4xl font-extrabold"
+                  style={{ color: 'var(--secondary)' }}
+                >
+                  {formatCurrency(planoSelecionado.valor)}
+                </span>
+              </div>
+              <p className="text-white/40 text-xs mt-1">Pagamento único · Acesso imediato</p>
             </div>
           )}
 
-          <div className="flex items-center gap-2 text-xs text-blue-200 mt-auto">
-            <span>Powered by</span>
-            <span className="font-semibold text-white">Pagar.me</span>
+          {/* Rodapé */}
+          <div className="flex items-center gap-2 text-xs text-white/40 mt-auto relative">
+            <span>Pagamento processado por</span>
+            <span className="font-semibold text-white/60">Pagar.me</span>
           </div>
         </div>
 
         {/* Lado Direito - Formulário */}
-        <div className="p-8 flex flex-col overflow-y-auto">
+        <div className="p-8 flex flex-col overflow-y-auto bg-white/90 border-l border-white/30">
           <h2 className="text-lg font-semibold mb-1">Pagamento</h2>
           <p className="text-xs text-gray-500 mb-4">Revise seus dados antes de confirmar</p>
 
@@ -272,7 +319,7 @@ export default function CheckoutPage() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="Email"
                 required
-                className="h-10 text-sm border border-gray-300 rounded-md px-3"
+                className="h-10 text-sm border border-gray-300 rounded-md px-3 focus-visible:ring-0 focus-visible:border-gray-500"
               />
             </div>
 
@@ -305,19 +352,25 @@ export default function CheckoutPage() {
               <div className="grid grid-cols-3 gap-2">
                 {PAYMENT_METHODS.map((method) => {
                   const Icon = method.icon;
+                  const isActive = paymentMethod === method.id;
                   return (
                     <button
                       key={method.id}
                       type="button"
                       onClick={() => setPaymentMethod(method.id)}
-                      className={`flex flex-col items-center justify-center gap-1 p-3 rounded-lg border-2 transition-all ${
-                        paymentMethod === method.id
-                          ? 'border-blue-600 bg-blue-50 text-blue-600'
-                          : 'border-gray-200 hover:border-gray-300'
+                      className={`group relative overflow-hidden rounded-xl p-3 flex flex-col items-center justify-center gap-1 border transition-all backdrop-blur ${
+                        isActive
+                          ? 'border-[var(--secondary)] bg-white/80 shadow-lg text-[var(--primary)]'
+                          : 'border-white/40 bg-white/30 text-gray-600 hover:border-white/70 hover:bg-white/50'
                       }`}
                     >
-                      <Icon className="h-5 w-5" />
-                      <span className="text-xs font-medium">{method.label}</span>
+                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/60 to-white/5 opacity-80" />
+                      <div className="relative flex flex-col items-center gap-1">
+                        <Icon className={`h-5 w-5 ${isActive ? 'text-[var(--primary)]' : 'text-gray-500 group-hover:text-[var(--primary)]/80'}`} />
+                        <span className="text-[11px] font-semibold tracking-wide uppercase">
+                          {method.label}
+                        </span>
+                      </div>
                     </button>
                   );
                 })}
@@ -376,7 +429,8 @@ export default function CheckoutPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-11 text-sm font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 mt-auto"
+              className="w-full h-11 text-sm font-semibold mt-auto"
+              style={{ backgroundColor: 'var(--primary)' }}
             >
               {loading ? (
                 <>

@@ -297,6 +297,32 @@ export function useOnboardingAdmin(): UseOnboardingAdminReturn {
         return;
       }
 
+      // 3.5) Criar registro em colaborador para o admin (admin também é colaborador da campanha)
+      const { error: colabError } = await supabase.from('colaborador').insert({
+        profile_id: user.id,
+        funcao: 'administrador',
+        campanha_id: campanha.id,
+        status_colaborador: 'ativo',
+        ativo: true,
+        data_inicio_atividade: new Date().toISOString().split('T')[0],
+      });
+
+      if (colabError) {
+        // Não-bloqueante: o admin pode funcionar sem registro em colaborador
+        console.error('[Onboarding] Erro ao criar colaborador (não-bloqueante):', colabError);
+      }
+
+      // 3.6) Criar coordenador_regional padrão da campanha (vinculado ao admin)
+      // Serve como fallback para lideranças criadas sem coordenador explícito
+      const { error: coordPadraoError } = await supabase.from('coordenador_regional').insert({
+        profile_id: user.id,
+        campanha_id: campanha.id,
+      });
+
+      if (coordPadraoError) {
+        console.error('[Onboarding] Erro ao criar coordenador padrão (não-bloqueante):', coordPadraoError);
+      }
+
       // 4) Atualizar profile com campanha_id e role admin
       const { error: profileError } = await supabase
         .from('profiles')
